@@ -13,9 +13,16 @@ namespace prestaToolsApi.Controllers
 
         [HttpGet]
         [Route("listar")]
+
+        //CRUD
+
+
+
         public dynamic getUsers() {
 
             //TODO TODA LA LOGICA para buscar el usuarios en la base de datos
+
+
 
             List<User> users = new List<User>
             {
@@ -31,6 +38,13 @@ namespace prestaToolsApi.Controllers
                 {
                     id = 2,
                     name = "RicARDO",
+                    email = "DOS@uno.com",
+                    password = "1234",
+                },
+                    new User
+                {
+                    id = 2,
+                    name = "CARLOS",
                     email = "DOS@uno.com",
                     password = "1234",
                 }
