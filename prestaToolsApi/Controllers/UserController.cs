@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using prestaToolsApi.Data.Repository;
+using System.Security.Claims;
 
 namespace prestaToolsApi.Controllers
 {
@@ -10,56 +12,65 @@ namespace prestaToolsApi.Controllers
     {
 
 
+        private readonly InterfaceUserRepository _userRepository;
 
-        [HttpGet]
-        [Route("listar")]
-
-        //CRUD
-
-
-
-        public dynamic getUsers() {
-
-            //TODO TODA LA LOGICA para buscar el usuarios en la base de datos
-
-
-
-            List<User> users = new List<User>
-            {
-
-                new User
-                {
-                    id = 1,
-                    name = "Hialmar",
-                    email = "uno@uno.com",
-                    password = "1234",
-                },
-                new User
-                {
-                    id = 2,
-                    name = "RicARDO",
-                    email = "DOS@uno.com",
-                    password = "1234",
-                },
-                    new User
-                {
-                    id = 2,
-                    name = "CARLOS",
-                    email = "DOS@uno.com",
-                    password = "1234",
-                }
-            };
-
-        return users;
+        public UserController(InterfaceUserRepository userRepository)
+        {
+            _userRepository = userRepository;
 
         }
 
 
 
 
+        [HttpGet]
+        [Route("listar")]
+        public async Task<IActionResult> getAllUsers() {
 
-    };
+         
 
+        return Ok(await  _userRepository.GetAllUser());
+
+        }
+
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<IActionResult> getUserId( int id)
+        {
+
+         
+
+            return Ok(await _userRepository.GetByUserId(id));
+
+        }
+
+
+
+        [HttpPost]
+        [Route("")]
+        public async Task<IActionResult> InsertUser([FromBody] User user)
+        {
+            //TODO. 
+
+            if (user == null)
+            {
+                return BadRequest();
+
+            }
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+
+            }
+
+            var created = await _userRepository.InsertUser(user); 
+
+
+            return Created("created", created);
+
+        }
+
+    }
 
 
 
