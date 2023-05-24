@@ -1,6 +1,6 @@
 ﻿namespace prestaToolsApi.Data.Repository
 {
-    public interface InterfaceUserRepository
+    public interface IUserRepository
     {
 
         Task<IEnumerable<User>> GetAllUser(); 

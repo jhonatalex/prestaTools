@@ -7,14 +7,11 @@ namespace prestaToolsApi.Controllers
 
 
     [ApiController]
-    [Route("User")]
+    [Route("user")]
     public class UserController : Controller
     {
-
-
-        private readonly InterfaceUserRepository _userRepository;
-
-        public UserController(InterfaceUserRepository userRepository)
+        private readonly IUserRepository _userRepository;
+        public UserController(IUserRepository userRepository)
         {
             _userRepository = userRepository;
 
@@ -25,20 +22,17 @@ namespace prestaToolsApi.Controllers
 
         [HttpGet]
         [Route("listar")]
-        public async Task<IActionResult> getAllUsers() {
+        public async Task<IActionResult> getAllUsers() 
+        {
 
-         
-
-        return Ok(await  _userRepository.GetAllUser());
+            return Ok(await  _userRepository.GetAllUser());
 
         }
 
         [HttpGet]
-        [Route("{id}")]
+        [Route("obtener/{id}")]
         public async Task<IActionResult> getUserId( int id)
         {
-
-         
 
             return Ok(await _userRepository.GetByUserId(id));
 
@@ -47,7 +41,7 @@ namespace prestaToolsApi.Controllers
 
 
         [HttpPost]
-        [Route("")]
+        [Route("insertar")]
         public async Task<IActionResult> InsertUser([FromBody] User user)
         {
             //TODO. 
@@ -68,6 +62,42 @@ namespace prestaToolsApi.Controllers
 
             return Created("created", created);
 
+        }
+
+
+
+        [HttpPut]
+        [Route("actualizar")]
+        public async Task<IActionResult> UpdateUser([FromBody] User user)
+        {
+            //TODO. 
+
+            if (user == null)
+            {
+                return BadRequest();
+
+            }
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+
+            }
+
+            await _userRepository.UpdateUser(user);
+
+
+            return NoContent();
+
+        }
+
+
+
+        [HttpDelete]
+        [Route("borrar/{id}")]
+        public async Task<IActionResult> DeleteUser(int id) 
+        {
+            //await _userRepository.DeleteUser(new User { Id = id });
+            return NoContent();
         }
 
     }
