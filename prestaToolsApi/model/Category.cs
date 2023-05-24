@@ -4,7 +4,6 @@
     {
 
         public int id_cat { get; set; }
-
         public string title { get; set; }
         public string description { get; set; }
         public string url_imagen { get; set; }

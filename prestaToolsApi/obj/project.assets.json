@@ -1955,19 +1955,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Lenovo\\.nuget\\packages\\": {}
+    "C:\\Users\\riccr\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\proyects_net\\prestaToolsApi\\prestaToolsApi\\prestaToolsApi.csproj",
+      "projectUniqueName": "C:\\Git\\prestaTools\\prestaToolsApi\\prestaToolsApi.csproj",
       "projectName": "prestaToolsApi",
-      "projectPath": "C:\\proyects_net\\prestaToolsApi\\prestaToolsApi\\prestaToolsApi.csproj",
-      "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-      "outputPath": "C:\\proyects_net\\prestaToolsApi\\prestaToolsApi\\obj\\",
+      "projectPath": "C:\\Git\\prestaTools\\prestaToolsApi\\prestaToolsApi.csproj",
+      "packagesPath": "C:\\Users\\riccr\\.nuget\\packages\\",
+      "outputPath": "C:\\Git\\prestaTools\\prestaToolsApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\riccr\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2025,7 +2025,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
       }
     }
   }
