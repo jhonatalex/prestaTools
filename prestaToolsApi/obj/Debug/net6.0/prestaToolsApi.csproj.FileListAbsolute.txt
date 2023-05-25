@@ -116,3 +116,4 @@ C:\Git\prestaTools\prestaToolsApi\obj\Debug\net6.0\scopedcss\bundle\prestaToolsA
 C:\Git\prestaTools\prestaToolsApi\obj\Debug\net6.0\prestaToolsApi.csproj.CopyComplete
 C:\Git\prestaTools\prestaToolsApi\obj\Debug\net6.0\prestaToolsApi.genruntimeconfig.cache
 C:\Git\prestaTools\prestaToolsApi\obj\Debug\net6.0\ref\prestaToolsApi.dll
+C:\proyects_net\prestaToolsApi\prestaToolsApi\bin\Debug\net6.0\BCrypt.Net.dll

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Git\\prestaTools\\prestaToolsApi\\prestaToolsApi.csproj": {}
+    "C:\\proyects_net\\prestaToolsApi\\prestaToolsApi\\prestaToolsApi.csproj": {}
   },
   "projects": {
-    "C:\\Git\\prestaTools\\prestaToolsApi\\prestaToolsApi.csproj": {
+    "C:\\proyects_net\\prestaToolsApi\\prestaToolsApi\\prestaToolsApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Git\\prestaTools\\prestaToolsApi\\prestaToolsApi.csproj",
+        "projectUniqueName": "C:\\proyects_net\\prestaToolsApi\\prestaToolsApi\\prestaToolsApi.csproj",
         "projectName": "prestaToolsApi",
-        "projectPath": "C:\\Git\\prestaTools\\prestaToolsApi\\prestaToolsApi.csproj",
-        "packagesPath": "C:\\Users\\riccr\\.nuget\\packages\\",
-        "outputPath": "C:\\Git\\prestaTools\\prestaToolsApi\\obj\\",
+        "projectPath": "C:\\proyects_net\\prestaToolsApi\\prestaToolsApi\\prestaToolsApi.csproj",
+        "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
+        "outputPath": "C:\\proyects_net\\prestaToolsApi\\prestaToolsApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\riccr\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -40,6 +40,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "BCrypt.Net": {
+              "target": "Package",
+              "version": "[0.1.0, )"
+            },
             "Dapper": {
               "target": "Package",
               "version": "[2.0.123, )"
@@ -72,7 +76,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }
