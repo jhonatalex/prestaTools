@@ -1,0 +1,98 @@
+CREATE TABLE `User` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`name` varchar(255) NOT NULL,
+	`last_name` varchar(255) NOT NULL,
+	`password` varchar(255) NOT NULL,
+	`email` varchar(255) NOT NULL UNIQUE,
+	`telephone` varchar(255)  NULL,
+	`address` varchar(255)  NULL,
+	`d_identidad` varchar(255) NULL,
+	`date_up` TIMESTAMP,
+	`state` BOOLEAN NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `Lender` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`d_identidad` varchar(255) NOT NULL,
+	`name` varchar(255) NOT NULL,
+	`last_name` varchar(255) NOT NULL,
+	`password` varchar(255) NOT NULL,
+	`email` varchar(255) NOT NULL UNIQUE,
+	`telephone` varchar(255) NOT NULL,
+	`address` varchar(255) NOT NULL,
+	`number_bank` varchar(255) NOT NULL,
+	`balance_wallet` DECIMAL NOT NULL,
+	`date_up` TIMESTAMP,
+	`state` BOOLEAN NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `Tool` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`name` varchar(255) NOT NULL,
+	`reference` varchar(255) NOT NULL,
+	`nuevo` BOOLEAN NOT NULL,
+	`model` varchar(255) NOT NULL,
+	`description` varchar(255) NOT NULL,
+	`widgets` BOOLEAN NOT NULL,
+	`value_commercial` DECIMAL NOT NULL,
+	`value_rent` DECIMAL NOT NULL,
+	`year_buy` INT NOT NULL,
+	`weigt` DECIMAL NOT NULL,
+	`mesuare` DECIMAL NOT NULL,
+	`number_piece` INT NOT NULL,
+	`url_image_1` varchar(255) NOT NULL,
+	`url_image_2` varchar(255) NOT NULL,
+	`url_image_3` varchar(255) NOT NULL,
+	`terms_use` varchar(255) NOT NULL,
+	`break_downs` varchar(255) NOT NULL,
+	`time_use` DECIMAL NOT NULL,
+	`id_category` INT NOT NULL,
+	`id_user` INT NOT NULL,
+	`id_lenders` INT NOT NULL,
+		`date_up` TIMESTAMP,
+	PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `Category` (
+	`id_cat` INT NOT NULL AUTO_INCREMENT,
+	`nombre_cat` varchar(255) NOT NULL,
+	`descrip_cat` varchar(255) NOT NULL,
+	PRIMARY KEY (`id_cat`)
+);
+
+CREATE TABLE `Venta` (
+	`id_venta` INT NOT NULL AUTO_INCREMENT,
+	`id_user` INT NOT NULL,
+	`type_comprobante` varchar(255) NOT NULL,
+	`number_comprobante` varchar(255) NOT NULL,
+		`date_up` TIMESTAMP,
+	`tax` DECIMAL NOT NULL,
+	`total` DECIMAL NOT NULL,
+	`state` BOOLEAN NOT NULL,
+	PRIMARY KEY (`id_venta`)
+);
+
+CREATE TABLE `Detalle_venta` (
+	`id_detalle_venta` INT NOT NULL AUTO_INCREMENT,
+	`id_venta` INT NOT NULL,
+	`id_tool` INT NOT NULL,
+	`amount_venta` DECIMAL NOT NULL,
+	`date_up` TIMESTAMP,
+	`price` DECIMAL NOT NULL,
+	`descuento` DECIMAL NOT NULL,
+	PRIMARY KEY (`id_detalle_venta`)
+);
+
+ALTER TABLE `Tool` ADD CONSTRAINT `Tool_fk0` FOREIGN KEY (`id_category`) REFERENCES `Category`(`id_cat`);
+
+ALTER TABLE `Tool` ADD CONSTRAINT `Tool_fk1` FOREIGN KEY (`id_user`) REFERENCES `User`(`id`);
+
+ALTER TABLE `Tool` ADD CONSTRAINT `Tool_fk2` FOREIGN KEY (`id_lenders`) REFERENCES `Lender`(`id`);
+
+ALTER TABLE `Venta` ADD CONSTRAINT `Venta_fk0` FOREIGN KEY (`id_user`) REFERENCES `User`(`id`);
+
+ALTER TABLE `Detalle_venta` ADD CONSTRAINT `Detalle_venta_fk0` FOREIGN KEY (`id_venta`) REFERENCES `Venta`(`id_venta`);
+
+ALTER TABLE `Detalle_venta` ADD CONSTRAINT `Detalle_venta_fk1` FOREIGN KEY (`id_tool`) REFERENCES `Tool`(`id`);
