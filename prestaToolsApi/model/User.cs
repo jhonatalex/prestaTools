@@ -11,7 +11,7 @@
         public string telephone { get; set; }
         public string address { get; set; }
         public string d_identidad { get; set; }
-        public DateTime date { get; set; }
+        public DateTime date_up { get; set; }
         public bool state { get; set;}
 
     }

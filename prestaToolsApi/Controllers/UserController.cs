@@ -7,7 +7,7 @@ namespace prestaToolsApi.Controllers
 
 
     [ApiController]
-    [Route("user")]
+    [Route("api/user")]
     public class UserController : Controller
     {
         private readonly IUserRepository _userRepository;
@@ -18,10 +18,8 @@ namespace prestaToolsApi.Controllers
         }
 
 
-
-
         [HttpGet]
-        [Route("listar")]
+        [Route("list")]
         public async Task<IActionResult> getAllUsers() 
         {
 
@@ -30,7 +28,7 @@ namespace prestaToolsApi.Controllers
         }
 
         [HttpGet]
-        [Route("obtener/{id}")]
+        [Route("get/users/{id}")]
         public async Task<IActionResult> getUserId( int id)
         {
 
@@ -41,7 +39,7 @@ namespace prestaToolsApi.Controllers
 
 
         [HttpPost]
-        [Route("insertar")]
+        [Route("insert")]
         public async Task<IActionResult> InsertUser([FromBody] User user)
         {
             //TODO. 
@@ -64,10 +62,37 @@ namespace prestaToolsApi.Controllers
 
         }
 
+        [HttpPost]
+        [Route("login")]
+        public async Task<IActionResult> LoginUser(string email, string password)
+        {
+            //TODO. 
+
+            if (email == null || password == null)
+            {
+                return BadRequest();
+
+            }
+           
+            var user = await _userRepository.LoginUser(email, password);
+
+
+            if (user == null )
+            {
+                return BadRequest();
+
+            }
+
+
+            return Created("created", user);
+
+        }
+
+
 
 
         [HttpPut]
-        [Route("actualizar")]
+        [Route("update")]
         public async Task<IActionResult> UpdateUser([FromBody] User user)
         {
             //TODO. 
@@ -93,10 +118,11 @@ namespace prestaToolsApi.Controllers
 
 
         [HttpDelete]
-        [Route("borrar/{id}")]
+        [Route("delete/{id}")]
         public async Task<IActionResult> DeleteUser(int id) 
         {
-            //await _userRepository.DeleteUser(new User { Id = id });
+            await _userRepository.DeleteUser(new User { id = id });
+
             return NoContent();
         }
 

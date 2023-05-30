@@ -5,11 +5,10 @@
 
         Task<IEnumerable<User>> GetAllUser(); 
         Task<User> GetByUserId(int id);
-        Task<Boolean>InsertUser(User user);
-        Task<Boolean> UpdateUser(User user);
-        Task<Boolean> DeleteUser(int id); 
-   
-
+        Task<User> LoginUser(string email, string pasword);
+        Task<bool>InsertUser(User user);
+        Task<bool> UpdateUser(User user);
+        Task<bool> DeleteUser(User user);
 
     }
 }
