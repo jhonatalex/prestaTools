@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using MySql.Data.MySqlClient;
+using MySqlConnector;
 using Org.BouncyCastle.Crypto.Generators;
 
 namespace prestaToolsApi.Data.Repository
@@ -13,9 +14,9 @@ namespace prestaToolsApi.Data.Repository
             _connectionString = connectionString;
         }
 
-        protected MySqlConnection dbConnection()
+        protected MySqlConnector.MySqlConnection dbConnection()
         {
-            return new MySqlConnection(_connectionString.ConnectionString);
+            return new MySqlConnector.MySqlConnection(_connectionString.ConnectionString);
         }
 
         public async Task<bool> InsertUser(User user)
