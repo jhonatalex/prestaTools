@@ -36,7 +36,6 @@ namespace prestaToolsApi.Controllers
             }
         }
 
-
         [HttpGet]
         [Route("get/{idTool:int}")]
         public IActionResult getTool(int idTool)
@@ -49,7 +48,6 @@ namespace prestaToolsApi.Controllers
                 return BadRequest("Herramienta no encontrada");
             }
 
-
             try
             {
                 oTool = _dbContext.Tools.Include(c => c.ObjetCategory).Where(ObjetoTool=> ObjetoTool.Id == idTool).FirstOrDefault();
@@ -60,7 +58,6 @@ namespace prestaToolsApi.Controllers
                 return StatusCode(StatusCodes.Status200OK, new { message = error.Message });
             }
         }
-
 
 
         [HttpPost]
@@ -83,7 +80,7 @@ namespace prestaToolsApi.Controllers
 
 
         [HttpPost]
-        [Route("save-imagen")]
+        [Route("save-imagen-tool")]
         public async Task<String> saveImage([FromBody] ImageTool file)
         {
 
