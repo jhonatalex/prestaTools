@@ -96,3 +96,50 @@ ALTER TABLE `Venta` ADD CONSTRAINT `Venta_fk0` FOREIGN KEY (`id_user`) REFERENCE
 ALTER TABLE `Detalle_venta` ADD CONSTRAINT `Detalle_venta_fk0` FOREIGN KEY (`id_venta`) REFERENCES `Venta`(`id_venta`);
 
 ALTER TABLE `Detalle_venta` ADD CONSTRAINT `Detalle_venta_fk1` FOREIGN KEY (`id_tool`) REFERENCES `Tool`(`id`);
+
+
+
+********************SEEDS**************************************************************
+-- Insertar la categoría "Herramientas"
+INSERT INTO Category (nombre_cat, descrip_cat)
+VALUES ('Herramientas', 'Categoría de herramientas para diversos usos');
+
+-- Insertar la categoría "Eventos"
+INSERT INTO Category (nombre_cat, descrip_cat)
+VALUES ('Eventos', 'Categoría de productos relacionados con eventos y celebraciones');
+
+-- Insertar la categoría "Industria"
+INSERT INTO Category (nombre_cat, descrip_cat)
+VALUES ('Industria', 'Categoría de productos utilizados en la industria y manufactura');
+
+-- Insertar la categoría "Deportes"
+INSERT INTO Category (nombre_cat, descrip_cat)
+VALUES ('Deportes', 'Categoría de productos relacionados con actividades deportivas');
+
+-- Insertar datos en la tabla `Lender`
+INSERT INTO Lender (d_identidad, name, last_name, password, email, telephone, address, number_bank, balance_wallet, date_up, state)
+VALUES ('123456789', 'Juan', 'Pérez', 'contraseña123', 'juan@example.com', '1234567890', 'Calle Principal 123', '1234567890', 1000.00, CURRENT_TIMESTAMP, 1);
+
+-- Insertar datos en la tabla `Lender`
+INSERT INTO Lender (d_identidad, name, last_name, password, email, telephone, address, number_bank, balance_wallet, date_up, state)
+VALUES ('987654321', 'María', 'López', 'password123', 'maria@example.com', '9876543210', 'Avenida Principal 456', '0987654321', 1500.00, CURRENT_TIMESTAMP, 1);
+
+
+-- Insertar productos de la categoría "Herramientas"
+INSERT INTO Tool (name, reference, nuevo, model, description, widgets, value_commercial, value_rent, year_buy, weigt, mesuare, number_piece, url_image_1, url_image_2, url_image_3, terms_use, break_downs, time_use, id_category, id_user, id_lenders, date_up)
+VALUES ('Taladro', 'REF001', 1, 'Modelo A', 'Descripción de la herramienta 1', 1, 100.00, 10.00, 2022, 5.5, 10.0, 1, 'url_imagen1.jpg', 'url_imagen2.jpg', 'url_imagen3.jpg', 'Términos de uso de la herramienta 1', 'Desgloses de la herramienta 1', 2.5, 1, 1, 1, CURRENT_TIMESTAMP);
+
+-- Insertar productos de la categoría "Eventos"
+INSERT INTO Tool (name, reference, nuevo, model, description, widgets, value_commercial, value_rent, year_buy, weigt, mesuare, number_piece, url_image_1, url_image_2, url_image_3, terms_use, break_downs, time_use, id_category, id_user, id_lenders, date_up)
+VALUES ('Parlante', 'REF002', 0, 'Modelo B', 'Descripción del evento 1', 0, 50.00, 5.00, 2023, 0.0, 0.0, 0, 'url_imagen4.jpg', 'url_imagen5.jpg', 'url_imagen6.jpg', 'Términos de uso del evento 1', 'Desgloses del evento 1', 3.5, 2, 2, 2, CURRENT_TIMESTAMP);
+
+-- Insertar productos de la categoría "Industria"
+INSERT INTO Tool (name, reference, nuevo, model, description, widgets, value_commercial, value_rent, year_buy, weigt, mesuare, number_piece, url_image_1, url_image_2, url_image_3, terms_use, break_downs, time_use, id_category, id_user, id_lenders, date_up)
+VALUES ('Brazo robotico', 'REF003', 1, 'Modelo C', 'Descripción del producto industrial 1', 0, 200.00, 20.00, 2021, 15.0, 20.0, 5, 'url_imagen7.jpg', 'url_imagen8.jpg', 'url_imagen9.jpg', 'Términos de uso del producto industrial 1', 'Desgloses del producto industrial 1', 4.0, 3, 1, 1, CURRENT_TIMESTAMP);
+
+-- Insertar productos de la categoría "Deportes"
+INSERT INTO Tool (name, reference, nuevo, model, description, widgets, value_commercial, value_rent, year_buy, weigt, mesuare, number_piece, url_image_1, url_image_2, url_image_3, terms_use, break_downs, time_use, id_category, id_user, id_lenders, date_up)
+VALUES ('Mesa de Tenis', 'REF004', 1, 'Modelo D', 'Descripción del producto deportivo 1', 1, 75.00, 7.50, 2023, 2.0, 5.0, 2, 'url_imagen10.jpg', 'url_imagen11.jpg', 'url_imagen12.jpg', 'Términos de uso del producto deportivo 1', 'Desgloses del producto deportivo 1', 2.0, 2, 5, 2, CURRENT_TIMESTAMP);
+
+
+SELECT * FROM tool

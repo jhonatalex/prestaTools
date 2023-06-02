@@ -121,7 +121,8 @@ namespace prestaToolsApi.Controllers
         [Route("delete/{id}")]
         public async Task<IActionResult> DeleteUser(int id) 
         {
-            //await _userRepository.DeleteUser(new User { Id = id });
+            await _userRepository.DeleteUser(new User { id = id });
+
             return NoContent();
         }
 
