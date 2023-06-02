@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\prestaToolsApi",
-    "\\prestaToolsApi\\Controllers"
+    "\\prestaToolsApi\\Controllers",
+    "\\prestaToolsApi\\model"
   ],
-  "SelectedNode": "\\prestaToolsApi\\Program.cs",
+  "SelectedNode": "\\prestaToolsApi\\prestaToolsApi.csproj",
   "PreviewInSolutionExplorer": false
 }
