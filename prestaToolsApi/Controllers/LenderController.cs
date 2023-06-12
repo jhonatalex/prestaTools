@@ -5,6 +5,7 @@ using prestaToolsApi.model;
 namespace prestaToolsApi.Controllers
 {
 
+
     [ApiController]
     [Route("api/lender")]
     public class LenderController : Controller
@@ -22,7 +23,7 @@ namespace prestaToolsApi.Controllers
         public async Task<IActionResult> getAllLenders()
         {
 
-            return Ok(await _lenderRepository.GetAllLender());
+            return Ok(await _lenderRepository.GetAllLenders());
 
         }
 
@@ -43,7 +44,7 @@ namespace prestaToolsApi.Controllers
         {
             //TODO. 
 
-            if (user == null)
+            if (lender == null)
             {
                 return BadRequest();
 
@@ -54,7 +55,7 @@ namespace prestaToolsApi.Controllers
 
             }
 
-            var created = await _lenderRepository.InsertUser(lender);
+            var created = await _lenderRepository.InsertLender(lender);
 
 
             return Created("created", created);
@@ -73,10 +74,10 @@ namespace prestaToolsApi.Controllers
 
             }
 
-            var user = await _lenderRepository.LoginLender(email, password);
+            var lender = await _lenderRepository.LoginLender(email, password);
 
 
-            if (user == null)
+            if (lender == null)
             {
                 return BadRequest();
 
@@ -96,7 +97,7 @@ namespace prestaToolsApi.Controllers
         {
             //TODO. 
 
-            if (user == null)
+            if (lender == null)
             {
                 return BadRequest();
 

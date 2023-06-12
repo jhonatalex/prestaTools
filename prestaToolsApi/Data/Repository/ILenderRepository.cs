@@ -1,17 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using prestaToolsApi.model;
-
-namespace prestaToolsApi.Data.Repository
+﻿namespace prestaToolsApi.Data.Repository
 {
     public interface ILenderRepository
     {
-
-        Task<IActionResult> getAllLenders();
-        Task<IActionResult> getLenderId(int id);
-        Task<IActionResult> InsertLender([FromBody] Lender lender);
-        Task<IActionResult> LoginLender(string email, string password);
-        Task<IActionResult> UpdateLender([FromBody] Lender lender)
-        Task<IActionResult> DeleteLender(int id);
+        Task<IEnumerable<Lender>> GetAllLenders();
+        Task<Lender> GetByLenderId(int id);
+        Task<Lender> LoginLender(string email, string password);
+        Task<bool> InsertLender(Lender lender);
+        Task<bool> UpdateLender(Lender lender);
+        Task<bool> DeleteLender(Lender lender);
 
     }
 }

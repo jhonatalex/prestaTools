@@ -118,7 +118,7 @@ public partial class PrestatoolsContext : DbContext
             entity.Property(e => e.Name)
                 .HasMaxLength(255)
                 .HasColumnName("name");
-            entity.Property(e => e.NumberBank)
+            entity.Property(e => e.Number_Bank)
                 .HasMaxLength(255)
                 .HasColumnName("number_bank");
             entity.Property(e => e.Password)

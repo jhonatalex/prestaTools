@@ -23,8 +23,8 @@ namespace prestaToolsApi.Data.Repository
         {
             var db = dbConnection();
 
-            var sql = @"INSERT INTO user(name, last_name, password, email, telephone, address, d_identidad, date_up, state)
-                VALUES(@name, @last_name, @password, @email, @telephone, @address, @d_identidad, @date_up, @state)";
+            var sql = @"INSERT INTO lender(d_identidad, name, last_name, password, email, telephone, address, number_bank, balance_wallet, date_up, state)
+                VALUES(@d_identidad, @name, @last_name, @password, @email, @telephone, @address, @number_bank, @balance_wallet, @date_up, @state)";
 
             string date = DateTime.UtcNow.ToString("MM-dd-yyyy");
 
@@ -39,16 +39,14 @@ namespace prestaToolsApi.Data.Repository
                 lender.last_name,
                 password = hashedPassword,
                 lender.email,
-                lender.phone,
-                lender.addres,
+                lender.telephone,
+                lender.address,
                 lender.number_bank,
-                lender.city,
-                lender.country,
                 lender.balance_wallet,
-                lender.created_at,
+                lender.date_up,
                 lender.state
             });
-
+      
             return result > 0;
         }
 
@@ -57,10 +55,10 @@ namespace prestaToolsApi.Data.Repository
             return BCrypt.Net.BCrypt.HashPassword(password);
         }
 
-        public async Task<User> LoginLender(string email, string password)
+        public async Task<Lender> LoginLender(string email, string password)
         {
             var db = dbConnection();
-            var sql = @"SELECT * FROM user WHERE email = @Email";
+            var sql = @"SELECT * FROM lender WHERE email = @Email";
             var result = await db.QueryFirstOrDefaultAsync<Lender>(sql, new { Email = email });
 
             if (result != null && VerifyPassword(password, result.password))
@@ -91,7 +89,7 @@ namespace prestaToolsApi.Data.Repository
         {
             var db = dbConnection();
 
-            var sql = @"SELECT id, name, last_name, password, email, telephone, address, d_identidad, date_up, state
+            var sql = @"SELECT id, d_identidad, name, last_name, password, email, telephone, address, number_bank, balance_wallet, date_up, state
                         FROM lender";
 
             return await db.QueryAsync<Lender>(sql, new { });
@@ -102,7 +100,7 @@ namespace prestaToolsApi.Data.Repository
         {
             var db = dbConnection();
 
-            var sql = @"SELECT id, name, last_name, password, email, telephone, address, d_identidad, date_up, state
+            var sql = @"SELECT id, d_identidad, name, last_name, password, email, telephone, address, number_bank, d_identidad, balance_wallet, date_up, state
                         FROM lender
                         WHERE id = @id";
 
@@ -110,25 +108,22 @@ namespace prestaToolsApi.Data.Repository
 
         }
 
-
-        public async Task<bool> UpdateUser(Lender lender)
+        public async Task<bool> UpdateLender(Lender lender)
         {
             var db = dbConnection();
 
             var sql = @"UPDATE lender   
-                        SET d_identidad = 
+                        SET d_identidad = @d_identidad,
                         name = @name,
-                        lastname = @lastname,
+                        last_name = @last_name,
                         password = @password,
                         email = @email,
-                        phone = @phone,
-                        addres = @addres,
+                        telephone = @telephone,
+                        address = @address,
                         number_bank = @number_bank,
-                        city = @city,
-                        country = @country,
                         balance_wallet = @balance_wallet,
-                        created_at = @created_at,
-                        state = @state,
+                        date_up = @date_up,
+                        state = @state
                       WHERE id = @id";
 
             string date = DateTime.UtcNow.ToString("MM-dd-yyyy");
@@ -144,13 +139,11 @@ namespace prestaToolsApi.Data.Repository
                 lender.last_name,
                 password = hashedPassword,
                 lender.email,
-                lender.phone,
-                lender.addres,
+                lender.telephone,
+                lender.address,
                 lender.number_bank,
-                lender.city,
-                lender.country,
                 lender.balance_wallet,
-                lender.created_at,
+                lender.date_up,
                 lender.state
             });
 

@@ -33,6 +33,7 @@ builder.Services.AddDbContext<PrestatoolsContext>(options => options.UseMySql(bu
 //builder.Services.AddSingleton(new MySqlConnection(builder.Configuration.GetConnectionString("MySqlConnection")));
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<ILenderRepository, LenderRepository>();
 
 var app = builder.Build();
 

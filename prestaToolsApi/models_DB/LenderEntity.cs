@@ -22,7 +22,7 @@ public partial class LenderEntity
 
     public string Address { get; set; } = null!;
 
-    public string NumberBank { get; set; } = null!;
+    public string Number_Bank { get; set; } = null!;
 
     public decimal BalanceWallet { get; set; }
 

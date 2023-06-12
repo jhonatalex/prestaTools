@@ -105,7 +105,6 @@ namespace prestaToolsApi.Data.Repository
 
         }
 
-
         public async Task<bool> UpdateUser(User user)
         {
             var db = dbConnection();
