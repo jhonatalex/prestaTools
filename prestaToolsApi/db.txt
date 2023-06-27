@@ -1,8 +1,8 @@
 CREATE TABLE [User] (
 	id int NOT NULL,
-	name varchar NOT NULL,
-	last_name varchar NOT NULL,
-	password varchar NOT NULL,
+	name varchar(255) NOT NULL,
+	last_name varchar(255) NOT NULL,
+	password varchar(255) NOT NULL,
 	email varchar(255) NOT NULL UNIQUE,
 	telephone varchar(255),
 	address varchar(255),
@@ -69,10 +69,10 @@ CREATE TABLE [Tool] (
 GO
 CREATE TABLE [Category] (
 	id_cat int NOT NULL,
-	title_cat varchar NOT NULL,
-	descrip_cat varchar NOT NULL,
-	url_imagen varchar NOT NULL,
-	url_imagen_banner varchar NOT NULL,
+	title_cat varchar(255),
+	descrip_cat varchar(255),
+	url_imagen varchar(255),
+	url_imagen_banner varchar(255) ,
   CONSTRAINT [PK_CATEGORY] PRIMARY KEY CLUSTERED
   (
   [id_cat] ASC
@@ -160,62 +160,51 @@ VALUES
 SELECT * FROM[Lender]
 
 
-INSERT INTO [Category] (id_cat, title_cat, descrip_cat, url_imagen, url_imagen_banner)
-VALUES
-(1, 'Herramientas', 'Descripción de Herramientas', 'imagen_cat1.jpg', 'banner_cat1.jpg'),
-(2, 'Eventos', 'Descripción de Eventos', 'imagen_cat2.jpg', 'banner_cat2.jpg'),
-(3, 'Industria', 'Descripción de Industria', 'imagen_cat3.jpg', 'banner_cat3.jpg'),
-(4, 'Deportes', 'Descripción de Deportes', 'imagen_cat4.jpg', 'banner_cat4.jpg'),
-(5, 'Instrumentos', 'Descripción','imagen_cat4.jpg', 'banner_cat4.jpg');
+INSERT INTO [Category] (id_cat, title_cat, descrip_cat, url_imagen, url_imagen_banner) VALUES
+(1, 'Herramientas', 'la categoría de herramientas es un verdadero tesoro para todos los entusiastas del bricolaje, profesionales y aficionados por igual. Nuestra amplia gama de herramientas manuales y eléctricas te brinda opciones para cada proyecto y tarea.', 'assets/img/herramientas.png', 'imagen_banner.png'),
+(2, 'Eventos', 'aca encontrarás todo lo que necesitas para crear experiencias inolvidables. Desde altavoces potentes y mesas de mezclas hasta micrófonos profesionales y luces espectaculares, lo necesario para dar vida a tus eventos.', 'imagen_cat2.jpg', 'banner_cat2.jpg'),
+(3, 'Industria', 'destino perfecto para aquellos que buscan maximizar su eficiencia en proyectos industriales. Ofrecemos una amplia variedad de equipos de calidad, desde maquinaria pesada y herramientas especializadas como equipos de medición y seguridad.', 'imagen_cat3.jpg', 'banner_cat3.jpg'),
+(4, 'Deportes', 'Descubre nuestra amplia selección de productos deportivos para todas tus actividades favoritas. Desde equipos y accesorios hasta ropa y calzado especializado, tenemos todo lo que necesitas para mantenerte activo y alcanzar tus metas deportivas.', 'imagen_cat4.jpg', 'banner_cat4.jpg'),
+(5, 'Instrumentos', 'Explora nuestro catálogo de instrumentos musicales y accesorios. Ya sea que seas un músico profesional o estés comenzando a aprender, ofrecemos una amplia variedad de instrumentos de alta calidad para satisfacer tus necesidades musicales.', 'imagen_cat4.jpg', 'banner_cat4.jpg');
+
 
 
 SELECT * FROM[Category]
 
 
 
-ALTER TABLE [Category]
-ALTER COLUMN title_cat varchar(255) NOT NULL;
 
-
-ALTER TABLE [Category]
-ALTER COLUMN descrip_cat varchar(255) NOT NULL;
-
-ALTER TABLE [Category]
-ALTER COLUMN 	url_imagen varchar(255) NOT NULL;
-
-ALTER TABLE [Category]
-ALTER COLUMN 	url_imagen_banner varchar(255) NOT NULL;
 
 
 -- Herramientas
 INSERT INTO [Tool] (id, name, reference, new, model, description, widgets, value_commercial, value_rent, year_buy, weigt, mesuare, number_piece, url_image, url_image_2, url_image_3, terms_use, break_downs, time_use, id_category, id_lenders, date_up, rate)
 VALUES
-(1, 'Herramienta 1', 'Ref-1', 1, 'Modelo 1', 'Descripción 1', 1, 100.00, 10.00, 2020, 1.5, 2.0, 1, 'imagen1.jpg', 'imagen2.jpg', 'imagen3.jpg', 'Términos de uso 1', 'Desgloses 1', 5.0, 1, 'prestamista1@example.com', '2023-06-01', 4),
-(2, 'Herramienta 2', 'Ref-2', 0, 'Modelo 2', 'Descripción 2', 0, 200.00, 20.00, 2021, 2.5, 3.0, 2, 'imagen4.jpg', 'imagen5.jpg', 'imagen6.jpg', 'Términos de uso 2', 'Desgloses 2', 6.0, 1, 'prestamista1@example.com', '2023-06-02', 3);
+(1, 'Taladro Dewalt', 'Ref-1', 1, 'Modelo RF5', 'Descripción 1', 1, 100.00, 10.00, 2020, 1.5, 2.0, 1, 'imagen1.jpg', 'imagen2.jpg', 'imagen3.jpg', 'Términos de uso 1', 'Desgloses 1', 5.0, 1, 'prestamista1@example.com', '2023-06-01', 4),
+(2, 'Martillo Demoledor ', 'Ref-2', 0, 'Dowen', 'Descripción 2', 0, 200.00, 20.00, 2021, 2.5, 3.0, 2, 'imagen4.jpg', 'imagen5.jpg', 'imagen6.jpg', 'Términos de uso 2', 'Desgloses 2', 6.0, 1, 'prestamista1@example.com', '2023-06-02', 3);
 
 -- Eventos
 INSERT INTO [Tool] (id, name, reference, new, model, description, widgets, value_commercial, value_rent, year_buy, weigt, mesuare, number_piece, url_image, url_image_2, url_image_3, terms_use, break_downs, time_use, id_category, id_lenders, date_up, rate)
 VALUES
-(3, 'Evento 1', 'Ref-3', 1, 'Modelo 3', 'Descripción 3', 1, 300.00, 30.00, 2022, 3.5, 4.0, 3, 'imagen7.jpg', 'imagen8.jpg', 'imagen9.jpg', 'Términos de uso 3', 'Desgloses 3', 7.0, 2, 'prestamista2@example.com', '2023-06-03', 5),
-(4, 'Evento 2', 'Ref-4', 0, 'Modelo 4', 'Descripción 4', 0, 400.00, 40.00, 2023, 4.5, 5.0, 4, 'imagen10.jpg', 'imagen11.jpg', 'imagen12.jpg', 'Términos de uso 4', 'Desgloses 4', 8.0, 2, 'prestamista2@example.com', '2023-06-04', 2);
+(3, 'Amplificador ', 'Yamaha', 1, 'R-600', 'Descripción 3', 1, 300.00, 30.00, 2022, 3.5, 4.0, 3, 'imagen7.jpg', 'imagen8.jpg', 'imagen9.jpg', 'Términos de uso 3', 'Desgloses 3', 7.0, 2, 'prestamista2@example.com', '2023-06-03', 5),
+(4, 'Parlante Torre', 'JBL', 0, 'Modelo 4', 'Descripción 4', 0, 400.00, 40.00, 2023, 4.5, 5.0, 4, 'imagen10.jpg', 'imagen11.jpg', 'imagen12.jpg', 'Términos de uso 4', 'Desgloses 4', 8.0, 2, 'prestamista2@example.com', '2023-06-04', 2);
 
 -- Industria
 INSERT INTO [Tool] (id, name, reference, new, model, description, widgets, value_commercial, value_rent, year_buy, weigt, mesuare, number_piece, url_image, url_image_2, url_image_3, terms_use, break_downs, time_use, id_category, id_lenders, date_up, rate)
 VALUES
-(5, 'Industria 1', 'Ref-5', 1, 'Modelo 5', 'Descripción 5', 1, 500.00, 50.00, 2024, 5.5, 6.0, 5, 'imagen13.jpg', 'imagen14.jpg', 'imagen15.jpg', 'Términos de uso 5', 'Desgloses 5', 9.0, 3, 'prestamista2@example.com', '2023-06-05', 1),
-(6, 'Industria 2', 'Ref-6', 0, 'Modelo 6', 'Descripción 6', 0, 600.00, 60.00, 2025, 6.5, 7.0, 6, 'imagen16.jpg', 'imagen17.jpg', 'imagen18.jpg', 'Términos de uso 6', 'Desgloses 6', 10.0, 3, 'prestamista2@example.com', '2023-06-06', 4);
+(5, 'Mezcladora Concreto', 'TW', 1, 'M1', 'Descripción 5', 1, 500.00, 50.00, 2024, 5.5, 6.0, 5, 'imagen13.jpg', 'imagen14.jpg', 'imagen15.jpg', 'Términos de uso 5', 'Desgloses 5', 9.0, 3, 'prestamista2@example.com', '2023-06-05', 1),
+(6, 'Generador Electrico', 'Derco', 0, 'R900W', 'Descripción 6', 0, 600.00, 60.00, 2025, 6.5, 7.0, 6, 'imagen16.jpg', 'imagen17.jpg', 'imagen18.jpg', 'Términos de uso 6', 'Desgloses 6', 10.0, 3, 'prestamista2@example.com', '2023-06-06', 4);
 
 -- Deportes
 INSERT INTO [Tool] (id, name, reference, new, model, description, widgets, value_commercial, value_rent, year_buy, weigt, mesuare, number_piece, url_image, url_image_2, url_image_3, terms_use, break_downs, time_use, id_category, id_lenders, date_up, rate)
 VALUES
-(7, 'Deporte 1', 'Ref-7', 1, 'Modelo 7', 'Descripción 7', 1, 700.00, 70.00, 2026, 7.5, 8.0, 7, 'imagen19.jpg', 'imagen20.jpg', 'imagen21.jpg', 'Términos de uso 7', 'Desgloses 7', 11.0, 4, 'prestamista1@example.com', '2023-06-07', 3),
-(8, 'Deporte 2', 'Ref-8', 0, 'Modelo 8', 'Descripción 8', 0, 800.00, 80.00, 2027, 8.5, 9.0, 8, 'imagen22.jpg', 'imagen23.jpg', 'imagen24.jpg', 'Términos de uso 8', 'Desgloses 8', 12.0, 4, 'prestamista2@example.com', '2023-06-08', 2);
+(7, 'Raqueta Tennis', 'Ref-7', 1, 'Modelo 7', 'Descripción 7', 1, 700.00, 70.00, 2026, 7.5, 8.0, 7, 'imagen19.jpg', 'imagen20.jpg', 'imagen21.jpg', 'Términos de uso 7', 'Desgloses 7', 11.0, 4, 'prestamista1@example.com', '2023-06-07', 3),
+(8, 'Mesa de Tenis', 'Ref-8', 0, 'Modelo 8', 'Descripción 8', 0, 800.00, 80.00, 2027, 8.5, 9.0, 8, 'imagen22.jpg', 'imagen23.jpg', 'imagen24.jpg', 'Términos de uso 8', 'Desgloses 8', 12.0, 4, 'prestamista2@example.com', '2023-06-08', 2);
 
 -- Instrumentos
 INSERT INTO [Tool] (id, name, reference, new, model, description, widgets, value_commercial, value_rent, year_buy, weigt, mesuare, number_piece, url_image, url_image_2, url_image_3, terms_use, break_downs, time_use, id_category, id_lenders, date_up, rate)
 VALUES
-(9, 'Instrumento 1', 'Ref-9', 1, 'Modelo 9', 'Descripción 9', 1, 900.00, 90.00, 2028, 9.5, 10.0, 9, 'imagen25.jpg', 'imagen26.jpg', 'imagen27.jpg', 'Términos de uso 9', 'Desgloses 9', 13.0, 5, 'prestamista1@example.com', '2023-06-09', 5),
-(10, 'Instrumento 2', 'Ref-10', 0, 'Modelo 10', 'Descripción 10', 0, 1000.00, 100.00, 2029, 10.5, 11.0, 10, 'imagen28.jpg', 'imagen29.jpg', 'imagen30.jpg', 'Términos de uso 10', 'Desgloses 10', 14.0, 5, 'prestamista2@example.com', '2023-06-10', 4);
+(9, 'Guitarra Electrica ', 'Fender', 1, 'Stratocaste-2', 'Descripción 9', 1, 900.00, 90.00, 2028, 9.5, 10.0, 9, 'imagen25.jpg', 'imagen26.jpg', 'imagen27.jpg', 'Términos de uso 9', 'Desgloses 9', 13.0, 5, 'prestamista1@example.com', '2023-06-09', 5),
+(10, 'Teclado Midi ', 'Roland', 0, 'E.234', 'Descripción 10', 0, 1000.00, 100.00, 2029, 10.5, 11.0, 10, 'imagen28.jpg', 'imagen29.jpg', 'imagen30.jpg', 'Términos de uso 10', 'Desgloses 10', 14.0, 5, 'prestamista2@example.com', '2023-06-10', 4);
 
 
 SELECT * FROM[Tool]

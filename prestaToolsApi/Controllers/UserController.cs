@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using prestaToolsApi.Data.Repository;
 using prestaToolsApi.ModelsEntity;
 
@@ -7,7 +8,7 @@ namespace prestaToolsApi.Controllers
 {
 
 
-    //[EnableCors("ReglasCors")]
+    [EnableCors("ReglasCors")]
     [ApiController]
     [Route("api/user")]
     public class UserController : Controller
@@ -62,7 +63,7 @@ namespace prestaToolsApi.Controllers
             var created = await _userRepository.InsertUser(user); 
 
 
-            return Created("created", created);
+            return Created("Usuario Creado Satisfactoriamente", created);
 
         }
 
@@ -129,12 +130,34 @@ namespace prestaToolsApi.Controllers
 
 
         [HttpDelete]
-        [Route("delete/{id}")]
-        public async Task<IActionResult> DeleteUser(int id) 
-        {
-            await _userRepository.DeleteUser(new User { Id = id });
+        [Route("delete/{email}")]
+        public async Task<IActionResult> DeleteUser(string email) 
 
-            return NoContent();
+        {
+            try
+            {
+                Boolean resp = await _userRepository.DeleteUser(new User { Email = email });
+
+                if (resp == true)
+                {
+
+                    return StatusCode(StatusCodes.Status200OK, new { message = "Usuario ${email} Borrado Satisfactoriamente" });
+
+                }
+                else
+                {
+                    return BadRequest("Usuario  no encontrado");
+                }
+
+
+            }
+            catch (Exception error)
+            {
+                return StatusCode(StatusCodes.Status200OK, new { message = error.Message });
+            }
+
+
+          
         }
 
 

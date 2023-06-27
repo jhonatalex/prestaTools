@@ -22,7 +22,7 @@ namespace prestaToolsApi.Data.Repository
             string hashedPassword = HashPassword(user.Password);
 
             user.Password = hashedPassword;
-            user.Date = "2020-01-12";
+            user.Date = DateTime.Now.ToString("yyyy-MM-dd");
 
             _context.Users.Add(user);
             int result = await _context.SaveChangesAsync();

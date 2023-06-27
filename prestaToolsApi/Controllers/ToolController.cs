@@ -5,15 +5,13 @@ using Microsoft.EntityFrameworkCore;
 using prestaToolsApi.ModelsEntity;
 
 
-//using prestaToolsApi.model;
-//using prestaToolsApi.models_DB;
 using System.ComponentModel;
 
 namespace prestaToolsApi.Controllers
 {
 
 
-    //[EnableCors("ReglasCors")]
+    [EnableCors("ReglasCors")]
     [ApiController]
     [Route("api/tool")]
     public class ToolController : ControllerBase
@@ -182,35 +180,18 @@ namespace prestaToolsApi.Controllers
 
 
 
-
         /*
-
-
-
 
         [HttpPost]
         [Route("save-imagen-tool")]
-        public async Task<String> saveImage([FromBody] ImageTool file)
+        [DisableRequestSizeLimit, RequestFormLimits(MultipartBodyLengthLimit = int.MaxValue, ValueLengthLimit = int.MaxValue)]
+        public async Task<String> saveImage([FromForm] FileEntity file)
         {
 
             try
             {
-                var ruta = String.Empty;
 
-                if (file.archivo.Length > 0)
-                {
-
-                    var nameFile = Guid.NewGuid().ToString() + ".jpg";
-                    ruta = $"Imagenes/{nameFile}";
-
-                    using (var stream = new FileStream(ruta, FileMode.Create)) {
-                        await file.archivo.CopyToAsync(stream);
-                    
-                    }
-
-                }
-
-                return ruta;
+                return GuardarImagen(file.archivo);
             }
             catch (Exception e)
             {
@@ -219,12 +200,40 @@ namespace prestaToolsApi.Controllers
         }
 
 
-     
+        */
+
+
+        private string GuardarImagen(IFormFile archivo)
+        {
+            // Generar un nombre único para el archivo
+            var nombreArchivo = $"{Guid.NewGuid()}{Path.GetExtension(archivo.FileName)}";
+
+            // Obtener la ruta física donde se almacenarán las imágenes (por ejemplo, en una carpeta "Imagenes" dentro del directorio raíz de la aplicación)
+            var rutaDirectorio = Path.Combine(Directory.GetCurrentDirectory(), "Imagenes/tool");
+
+            // Crear el directorio si no existe
+            if (!Directory.Exists(rutaDirectorio))
+            {
+                Directory.CreateDirectory(rutaDirectorio);
+            }
+
+            // Construir la ruta completa donde se guardará el archivo
+            var rutaArchivo = Path.Combine(rutaDirectorio, nombreArchivo);
+
+            // Guardar el archivo en el servidor
+            using (var fileStream = new FileStream(rutaArchivo, FileMode.Create))
+            {
+                archivo.CopyTo(fileStream);
+            }
+
+            // Devolver la ruta de la imagen guardada
+            return rutaArchivo;
+        }
 
 
 
-        
-    */
+
+
 
 
     }
