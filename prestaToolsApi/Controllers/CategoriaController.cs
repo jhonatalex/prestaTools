@@ -132,43 +132,7 @@ namespace prestaToolsApi.Controllers
             }
         }
 
-        /*
-        [HttpPut]
-        [Route("edit")]
-        public IActionResult editTool([FromBody] Category objectCat)
-        {
-            Category oCategory = new Category();
-
-            oCategory = _dbContext.Categories.Find(objectCat.IdCat);
-
-            if (oCategory == null)
-            {
-                return BadRequest("Herramienta no encontrada");
-            }
-
-
-            try
-            {
-                objectCat.TitleCat = oCategory .TitleCat is null ? objectCat.TitleCat : oCategory.TitleCat;
-                objectCat.DescripCat = oCategory.DescripCat is null ? objectCat.DescripCat : oCategory.DescripCat;
-                objectCat.UrlImagen = oCategory.UrlImagen is null ? objectCat.UrlImagen : oCategory.UrlImagen;
-                objectCat.UrlImagenBanner = oCategory .UrlImagenBanner is null ? objectCat.UrlImagenBanner : oCategory .UrlImagenBanner;
-          
-      
-
-                _dbContext.Categories.Update(objectCat);
-                _dbContext.SaveChanges();
-
-                return StatusCode(StatusCodes.Status200OK, new { message = "Categoria Actualizado Correctamente" });
-            }
-            catch (Exception e)
-            {
-                return StatusCode(StatusCodes.Status200OK, new { message = e.Message });
-            }
-        }
-
        
-        */
 
 
         [HttpDelete]

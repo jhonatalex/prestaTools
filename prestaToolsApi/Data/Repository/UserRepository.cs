@@ -1,6 +1,6 @@
-﻿using Dapper;
+﻿
+
 using Microsoft.EntityFrameworkCore;
-using Org.BouncyCastle.Crypto.Generators;
 using prestaToolsApi.ModelsEntity;
 
 namespace prestaToolsApi.Data.Repository

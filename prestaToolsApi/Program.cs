@@ -35,9 +35,8 @@ builder.Services.AddControllers().AddJsonOptions(opt =>
 
 
 
-
-
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+//builder.Services.AddScoped<ILenderRepository, LenderRepository>();
 
 //CORS HABILITAR
 var misReglasCors = "ReglasCors";
