@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using prestaToolsApi.Data.Repository;
-using prestaToolsApi.model;
+using prestaToolsApi.ModelsEntity;
 
 namespace prestaToolsApi.Controllers
 {
@@ -55,10 +55,10 @@ namespace prestaToolsApi.Controllers
 
             }
 
-            var created = await _lenderRepository.InsertLender(lender);
+            //var created = await _lenderRepository.InsertLender(lender);
 
 
-            return Created("created", created);
+            return BadRequest(); //Created("created", created);
 
         }
 
@@ -108,7 +108,7 @@ namespace prestaToolsApi.Controllers
 
             }
 
-            await _lenderRepository.UpdateLender(lender);
+            //await _lenderRepository.UpdateLender(lender);
 
 
             return NoContent();
@@ -121,7 +121,7 @@ namespace prestaToolsApi.Controllers
         [Route("delete/{id}")]
         public async Task<IActionResult> DeleteLender(int id)
         {
-            await _lenderRepository.DeleteLender(new Lender { id = id });
+            //await _lenderRepository.DeleteLender(new Lender { id = id });
 
             return NoContent();
         }

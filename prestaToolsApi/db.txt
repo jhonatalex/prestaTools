@@ -1,145 +1,142 @@
-CREATE TABLE `User` (
-	`id` INT NOT NULL AUTO_INCREMENT,
-	`name` varchar(255) NOT NULL,
-	`last_name` varchar(255) NOT NULL,
-	`password` varchar(255) NOT NULL,
-	`email` varchar(255) NOT NULL UNIQUE,
-	`telephone` varchar(255)  NULL,
-	`address` varchar(255)  NULL,
-	`d_identidad` varchar(255) NULL,
-	`date_up` TIMESTAMP,
-	`state` BOOLEAN NOT NULL,
-	PRIMARY KEY (`id`)
-);
+CREATE TABLE [User] (
+	id int NOT NULL,
+	name varchar NOT NULL,
+	last_name varchar NOT NULL,
+	password varchar NOT NULL,
+	email varchar(255) NOT NULL UNIQUE,
+	telephone varchar(255),
+	address varchar(255),
+	d_identidad varchar(255),
+	date varchar(255),
+	verify bit NOT NULL,
+	type_user varchar(255),
+  CONSTRAINT [PK_USER] PRIMARY KEY CLUSTERED
+  (
+  [email] ASC
+  ) WITH (IGNORE_DUP_KEY = OFF)
 
-CREATE TABLE `Lender` (
-	`id` INT NOT NULL AUTO_INCREMENT,
-	`d_identidad` varchar(255) NOT NULL,
-	`name` varchar(255) NOT NULL,
-	`last_name` varchar(255) NOT NULL,
-	`password` varchar(255) NOT NULL,
-	`email` varchar(255) NOT NULL UNIQUE,
-	`telephone` varchar(255) NOT NULL,
-	`address` varchar(255) NOT NULL,
-	`number_bank` varchar(255) NOT NULL,
-	`balance_wallet` DECIMAL NOT NULL,
-	`date_up` TIMESTAMP,
-	`state` BOOLEAN NOT NULL,
-	PRIMARY KEY (`id`)
-);
+)
+GO
+CREATE TABLE [Lender] (
+	id int NOT NULL,
+	d_identidad varchar(255) NOT NULL,
+	name varchar(255) NOT NULL,
+	last_name varchar(255) NOT NULL,
+	password varchar(255) NOT NULL,
+	email varchar(255) NOT NULL,
+	telephone varchar(255) NOT NULL,
+	address varchar(255) NOT NULL,
+	number_bank varchar(255),
+	balance_wallet varchar(255),
+	date_up varchar(255),
+  CONSTRAINT [PK_LENDER] PRIMARY KEY CLUSTERED
+  (
+  [email] ASC
+  ) WITH (IGNORE_DUP_KEY = OFF)
 
-CREATE TABLE `Tool` (
-	`id` INT NOT NULL AUTO_INCREMENT,
-	`name` varchar(255) NOT NULL,
-	`reference` varchar(255) NOT NULL,
-	`nuevo` BOOLEAN NOT NULL,
-	`model` varchar(255) NOT NULL,
-	`description` varchar(255) NOT NULL,
-	`widgets` BOOLEAN NOT NULL,
-	`value_commercial` DECIMAL NOT NULL,
-	`value_rent` DECIMAL NOT NULL,
-	`year_buy` INT NOT NULL,
-	`weigt` DECIMAL NOT NULL,
-	`mesuare` DECIMAL NOT NULL,
-	`number_piece` INT NOT NULL,
-	`url_image_1` varchar(255) NOT NULL,
-	`url_image_2` varchar(255) NOT NULL,
-	`url_image_3` varchar(255) NOT NULL,
-	`terms_use` varchar(255) NOT NULL,
-	`break_downs` varchar(255) NOT NULL,
-	`time_use` DECIMAL NOT NULL,
-	`id_category` INT NOT NULL,
-	`id_user` INT NOT NULL,
-	`id_lenders` INT NOT NULL,
-		`date_up` TIMESTAMP,
-	PRIMARY KEY (`id`)
-);
+)
+GO
+CREATE TABLE [Tool] (
+	id int NOT NULL,
+	name varchar(255) NOT NULL,
+	reference varchar(255) NOT NULL,
+	new bit,
+	model varchar(255),
+	description varchar(255),
+	widgets bit,
+	value_commercial decimal NOT NULL,
+	value_rent decimal NOT NULL,
+	year_buy int,
+	weigt decimal,
+	mesuare decimal,
+	number_piece int,
+	url_image varchar(255),
+	url_image_2 varchar(255),
+	url_image_3 varchar(255),
+	terms_use varchar(255),
+	break_downs varchar(255) NOT NULL,
+	time_use decimal,
+	id_category int NOT NULL,
+	id_lenders varchar(255) NOT NULL,
+	date_up varchar(255) NOT NULL,
+	rate int,
+  CONSTRAINT [PK_TOOL] PRIMARY KEY CLUSTERED
+  (
+  [id] ASC
+  ) WITH (IGNORE_DUP_KEY = OFF)
 
-CREATE TABLE `Category` (
-	`id_cat` INT NOT NULL AUTO_INCREMENT,
-	`nombre_cat` varchar(255) NOT NULL,
-	`descrip_cat` varchar(255) NOT NULL,
-	PRIMARY KEY (`id_cat`)
-);
+)
+GO
+CREATE TABLE [Category] (
+	id_cat int NOT NULL,
+	title_cat varchar(255) NOT NULL,
+	descrip_cat varchar(255) NOT NULL,
+	url_imagen varchar(255) NOT NULL,
+	url_imagen_banner varchar(255) NOT NULL,
+  CONSTRAINT [PK_CATEGORY] PRIMARY KEY CLUSTERED
+  (
+  [id_cat] ASC
+  ) WITH (IGNORE_DUP_KEY = OFF)
 
-CREATE TABLE `Venta` (
-	`id_venta` INT NOT NULL AUTO_INCREMENT,
-	`id_user` INT NOT NULL,
-	`type_comprobante` varchar(255) NOT NULL,
-	`number_comprobante` varchar(255) NOT NULL,
-		`date_up` TIMESTAMP,
-	`tax` DECIMAL NOT NULL,
-	`total` DECIMAL NOT NULL,
-	`state` BOOLEAN NOT NULL,
-	PRIMARY KEY (`id_venta`)
-);
+)
+GO
+CREATE TABLE [Venta] (
+	id_venta int NOT NULL,
+	type_comprobante varchar(255),
+	number_comprobante varchar(255),
+	id_user varchar(255) NOT NULL,
+	date varchar(255),
+	state bit NOT NULL,
+  CONSTRAINT [PK_VENTA] PRIMARY KEY CLUSTERED
+  (
+  [id_venta] ASC
+  ) WITH (IGNORE_DUP_KEY = OFF)
 
-CREATE TABLE `Detalle_venta` (
-	`id_detalle_venta` INT NOT NULL AUTO_INCREMENT,
-	`id_venta` INT NOT NULL,
-	`id_tool` INT NOT NULL,
-	`amount_venta` DECIMAL NOT NULL,
-	`date_up` TIMESTAMP,
-	`price` DECIMAL NOT NULL,
-	`descuento` DECIMAL NOT NULL,
-	PRIMARY KEY (`id_detalle_venta`)
-);
+)
+GO
+CREATE TABLE [Detalle_venta] (
+	id_detalle_venta int NOT NULL,
+	id_venta int NOT NULL,
+	id_tool int NOT NULL,
+	amount decimal NOT NULL,
+	date varchar(255) NOT NULL,
+	price decimal NOT NULL,
+	descuento decimal NOT NULL,
+	total int NOT NULL,
+  CONSTRAINT [PK_DETALLE_VENTA] PRIMARY KEY CLUSTERED
+  (
+  [id_detalle_venta] ASC
+  ) WITH (IGNORE_DUP_KEY = OFF)
 
-ALTER TABLE `Tool` ADD CONSTRAINT `Tool_fk0` FOREIGN KEY (`id_category`) REFERENCES `Category`(`id_cat`);
-
-ALTER TABLE `Tool` ADD CONSTRAINT `Tool_fk1` FOREIGN KEY (`id_user`) REFERENCES `User`(`id`);
-
-ALTER TABLE `Tool` ADD CONSTRAINT `Tool_fk2` FOREIGN KEY (`id_lenders`) REFERENCES `Lender`(`id`);
-
-ALTER TABLE `Venta` ADD CONSTRAINT `Venta_fk0` FOREIGN KEY (`id_user`) REFERENCES `User`(`id`);
-
-ALTER TABLE `Detalle_venta` ADD CONSTRAINT `Detalle_venta_fk0` FOREIGN KEY (`id_venta`) REFERENCES `Venta`(`id_venta`);
-
-ALTER TABLE `Detalle_venta` ADD CONSTRAINT `Detalle_venta_fk1` FOREIGN KEY (`id_tool`) REFERENCES `Tool`(`id`);
-
-
-
-********************SEEDS**************************************************************
--- Insertar la categoría "Herramientas"
-INSERT INTO Category (nombre_cat, descrip_cat)
-VALUES ('Herramientas', 'Categoría de herramientas para diversos usos');
-
--- Insertar la categoría "Eventos"
-INSERT INTO Category (nombre_cat, descrip_cat)
-VALUES ('Eventos', 'Categoría de productos relacionados con eventos y celebraciones');
-
--- Insertar la categoría "Industria"
-INSERT INTO Category (nombre_cat, descrip_cat)
-VALUES ('Industria', 'Categoría de productos utilizados en la industria y manufactura');
-
--- Insertar la categoría "Deportes"
-INSERT INTO Category (nombre_cat, descrip_cat)
-VALUES ('Deportes', 'Categoría de productos relacionados con actividades deportivas');
-
--- Insertar datos en la tabla `Lender`
-INSERT INTO Lender (d_identidad, name, last_name, password, email, telephone, address, number_bank, balance_wallet, date_up, state)
-VALUES ('123456789', 'Juan', 'Pérez', 'contraseña123', 'juan@example.com', '1234567890', 'Calle Principal 123', '1234567890', 1000.00, CURRENT_TIMESTAMP, 1);
-
--- Insertar datos en la tabla `Lender`
-INSERT INTO Lender (d_identidad, name, last_name, password, email, telephone, address, number_bank, balance_wallet, date_up, state)
-VALUES ('987654321', 'María', 'López', 'password123', 'maria@example.com', '9876543210', 'Avenida Principal 456', '0987654321', 1500.00, CURRENT_TIMESTAMP, 1);
+)
+GO
 
 
--- Insertar productos de la categoría "Herramientas"
-INSERT INTO Tool (name, reference, nuevo, model, description, widgets, value_commercial, value_rent, year_buy, weigt, mesuare, number_piece, url_image_1, url_image_2, url_image_3, terms_use, break_downs, time_use, id_category, id_user, id_lenders, date_up)
-VALUES ('Taladro', 'REF001', 1, 'Modelo A', 'Descripción de la herramienta 1', 1, 100.00, 10.00, 2022, 5.5, 10.0, 1, 'url_imagen1.jpg', 'url_imagen2.jpg', 'url_imagen3.jpg', 'Términos de uso de la herramienta 1', 'Desgloses de la herramienta 1', 2.5, 1, 1, 1, CURRENT_TIMESTAMP);
-
--- Insertar productos de la categoría "Eventos"
-INSERT INTO Tool (name, reference, nuevo, model, description, widgets, value_commercial, value_rent, year_buy, weigt, mesuare, number_piece, url_image_1, url_image_2, url_image_3, terms_use, break_downs, time_use, id_category, id_user, id_lenders, date_up)
-VALUES ('Parlante', 'REF002', 0, 'Modelo B', 'Descripción del evento 1', 0, 50.00, 5.00, 2023, 0.0, 0.0, 0, 'url_imagen4.jpg', 'url_imagen5.jpg', 'url_imagen6.jpg', 'Términos de uso del evento 1', 'Desgloses del evento 1', 3.5, 2, 2, 2, CURRENT_TIMESTAMP);
-
--- Insertar productos de la categoría "Industria"
-INSERT INTO Tool (name, reference, nuevo, model, description, widgets, value_commercial, value_rent, year_buy, weigt, mesuare, number_piece, url_image_1, url_image_2, url_image_3, terms_use, break_downs, time_use, id_category, id_user, id_lenders, date_up)
-VALUES ('Brazo robotico', 'REF003', 1, 'Modelo C', 'Descripción del producto industrial 1', 0, 200.00, 20.00, 2021, 15.0, 20.0, 5, 'url_imagen7.jpg', 'url_imagen8.jpg', 'url_imagen9.jpg', 'Términos de uso del producto industrial 1', 'Desgloses del producto industrial 1', 4.0, 3, 1, 1, CURRENT_TIMESTAMP);
-
--- Insertar productos de la categoría "Deportes"
-INSERT INTO Tool (name, reference, nuevo, model, description, widgets, value_commercial, value_rent, year_buy, weigt, mesuare, number_piece, url_image_1, url_image_2, url_image_3, terms_use, break_downs, time_use, id_category, id_user, id_lenders, date_up)
-VALUES ('Mesa de Tenis', 'REF004', 1, 'Modelo D', 'Descripción del producto deportivo 1', 1, 75.00, 7.50, 2023, 2.0, 5.0, 2, 'url_imagen10.jpg', 'url_imagen11.jpg', 'url_imagen12.jpg', 'Términos de uso del producto deportivo 1', 'Desgloses del producto deportivo 1', 2.0, 2, 5, 2, CURRENT_TIMESTAMP);
+ALTER TABLE [Tool] WITH CHECK ADD CONSTRAINT [Tool_fk0] FOREIGN KEY ([id_category]) REFERENCES [Category]([id_cat])
+ON UPDATE CASCADE
+GO
+ALTER TABLE [Tool] CHECK CONSTRAINT [Tool_fk0]
+GO
+ALTER TABLE [Tool] WITH CHECK ADD CONSTRAINT [Tool_fk1] FOREIGN KEY ([id_lenders]) REFERENCES [Lender]([email])
+ON UPDATE CASCADE
+GO
+ALTER TABLE [Tool] CHECK CONSTRAINT [Tool_fk1]
+GO
 
 
-SELECT * FROM tool
+ALTER TABLE [Venta] WITH CHECK ADD CONSTRAINT [Venta_fk0] FOREIGN KEY ([id_user]) REFERENCES [User]([email])
+ON UPDATE CASCADE
+GO
+ALTER TABLE [Venta] CHECK CONSTRAINT [Venta_fk0]
+GO
+
+ALTER TABLE [Detalle_venta] WITH CHECK ADD CONSTRAINT [Detalle_venta_fk0] FOREIGN KEY ([id_venta]) REFERENCES [Venta]([id_venta])
+ON UPDATE CASCADE
+GO
+ALTER TABLE [Detalle_venta] CHECK CONSTRAINT [Detalle_venta_fk0]
+GO
+ALTER TABLE [Detalle_venta] WITH CHECK ADD CONSTRAINT [Detalle_venta_fk1] FOREIGN KEY ([id_tool]) REFERENCES [Tool]([id])
+ON UPDATE CASCADE
+GO
+ALTER TABLE [Detalle_venta] CHECK CONSTRAINT [Detalle_venta_fk1]
+GO

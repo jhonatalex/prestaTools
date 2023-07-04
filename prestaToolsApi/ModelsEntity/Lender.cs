@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
 
-namespace prestaToolsApi.models_DB;
+namespace prestaToolsApi.ModelsEntity;
 
-public partial class LenderEntity
+public partial class Lender
 {
     public int Id { get; set; }
 
@@ -22,14 +21,11 @@ public partial class LenderEntity
 
     public string Address { get; set; } = null!;
 
-    public string Number_Bank { get; set; } = null!;
+    public string? NumberBank { get; set; }
 
-    public decimal BalanceWallet { get; set; }
+    public string? BalanceWallet { get; set; }
 
-    public DateTime? DateUp { get; set; }
+    public string? DateUp { get; set; }
 
-    public bool State { get; set; }
-
-    [JsonIgnore]
-    public virtual ICollection<ToolEntity> Tools { get; set; } = new List<ToolEntity>();
+    public virtual ICollection<Tool> Tools { get; set; } = new List<Tool>();
 }

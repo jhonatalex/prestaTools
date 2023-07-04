@@ -1,15 +1,19 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using prestaToolsApi.Data.Repository;
-using System.Security.Claims;
+using prestaToolsApi.ModelsEntity;
 
 namespace prestaToolsApi.Controllers
 {
 
 
+    //[EnableCors("ReglasCors")]
     [ApiController]
     [Route("api/user")]
     public class UserController : Controller
     {
+
+        
         private readonly IUserRepository _userRepository;
         public UserController(IUserRepository userRepository)
         {
@@ -68,18 +72,25 @@ namespace prestaToolsApi.Controllers
         {
             //TODO. 
 
-            if (email == null || password == null)
+            if (email == null )
             {
-                return BadRequest();
+                return StatusCode(StatusCodes.Status200OK, new { message = "no email", });
 
             }
-           
+
+            if ( password == null)
+            {
+                return StatusCode(StatusCodes.Status200OK, new { message = "no password", });
+
+            }
+
+
             var user = await _userRepository.LoginUser(email, password);
 
 
             if (user == null )
             {
-                return BadRequest();
+                return StatusCode(StatusCodes.Status200OK, new { message = "Email o password incorrecta", });
 
             }
 
@@ -121,13 +132,16 @@ namespace prestaToolsApi.Controllers
         [Route("delete/{id}")]
         public async Task<IActionResult> DeleteUser(int id) 
         {
-            await _userRepository.DeleteUser(new User { id = id });
+            await _userRepository.DeleteUser(new User { Id = id });
 
             return NoContent();
         }
 
+
+               
+
     }
 
-
+   
 
 };

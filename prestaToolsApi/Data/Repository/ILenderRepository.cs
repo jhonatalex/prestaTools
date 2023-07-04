@@ -1,4 +1,6 @@
-﻿namespace prestaToolsApi.Data.Repository
+﻿using prestaToolsApi.ModelsEntity;
+
+namespace prestaToolsApi.Data.Repository
 {
     public interface ILenderRepository
     {

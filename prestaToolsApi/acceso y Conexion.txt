@@ -1,0 +1,42 @@
+ "MySqlConnection": "server=localhost;port=3306;database=prestatools;uid=root;password=toor"
+
+root
+desarrollo2023
+
+
+Scaffold-DbContext "Server=(local);Database=prestatools;Integrated Security=true;Encrypt=False;TrustServerCertificate=True" Microsoft.EntityFrameworkCore.SqlServer -OutputDir ModelsEntity
+
+Some Accesos
+Correo: marketglobaldeveloper@gmail.com
+user: prestatools
+PAssword: *9*NhRernmp-9yV
+
+
+
+data 
+
+{
+  "id": 0,
+  "name": "Jhon",
+  "last_name": "harris",
+  "password": "12345",
+  "email": "unouno.com",
+  "telephone": "973773273",
+  "address": "chile",
+  "d_identidad": "188218283",
+  "date": "2023-05-24T04:20:17.281Z",
+  "state": true
+}
+
+
+   [JsonIgnore]
+    public virtual ICollection<Tool> Tools { get; set; } = new List<Tool>();
+
+
+
+
+    public virtual Category? objetoCategoria { get; set; } = null!;
+
+    public virtual Lender? objetoLender { get; set; } = null!;
+
+    public virtual User? objetoUser { get; set; } = null!;
