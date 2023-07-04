@@ -23,7 +23,7 @@ public partial class User
 
     public string? Date { get; set; }
 
-    public bool Verify { get; set; }
+    public bool? Verify { get; set; }
 
     public string? TypeUser { get; set; }
 

@@ -40,9 +40,9 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
-            "BCrypt.Net": {
+            "BCrypt.Net-Next": {
               "target": "Package",
-              "version": "[0.1.0, )"
+              "version": "[4.0.3, )"
             },
             "Dapper": {
               "target": "Package",

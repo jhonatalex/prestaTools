@@ -59,43 +59,37 @@ namespace prestaToolsApi.Controllers
 
             }
 
-            var created = await _userRepository.InsertUser(user); 
+            var respponseBD = await _userRepository.InsertUser(user);
 
-
-            return Created("Usuario Creado Satisfactoriamente", created);
+      
+            return Ok(respponseBD);
 
         }
 
         [HttpPost]
         [Route("login")]
-        public async Task<IActionResult> LoginUser(string email, string password)
+        public async Task<IActionResult> LoginUser([FromBody] Login userpayload)
         {
-            //TODO. 
+       
 
-            if (email == null )
+
+
+            var response = await _userRepository.LoginUser(userpayload.Email, userpayload.Password);
+
+            if (response.user == null)
             {
-                return StatusCode(StatusCodes.Status200OK, new { message = "no email", });
-
+            
+                return StatusCode(StatusCodes.Status401Unauthorized, response);
+      
             }
-
-            if ( password == null)
+            else
             {
-                return StatusCode(StatusCodes.Status200OK, new { message = "no password", });
-
-            }
-
-
-            var user = await _userRepository.LoginUser(email, password);
-
-
-            if (user == null )
-            {
-                return StatusCode(StatusCodes.Status200OK, new { message = "Email o password incorrecta", });
-
+        
+                return Ok(response);
             }
 
 
-            return Created("created", user);
+
 
         }
 

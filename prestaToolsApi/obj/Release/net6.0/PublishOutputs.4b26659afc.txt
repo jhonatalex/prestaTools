@@ -6,7 +6,7 @@ C:\proyects_net\prestaToolsApi\prestaToolsApi\obj\Release\net6.0\PubTmp\Out\pres
 C:\proyects_net\prestaToolsApi\prestaToolsApi\obj\Release\net6.0\PubTmp\Out\prestaToolsApi.pdb
 C:\proyects_net\prestaToolsApi\prestaToolsApi\obj\Release\net6.0\PubTmp\Out\Azure.Core.dll
 C:\proyects_net\prestaToolsApi\prestaToolsApi\obj\Release\net6.0\PubTmp\Out\Azure.Identity.dll
-C:\proyects_net\prestaToolsApi\prestaToolsApi\obj\Release\net6.0\PubTmp\Out\BCrypt.Net.dll
+C:\proyects_net\prestaToolsApi\prestaToolsApi\obj\Release\net6.0\PubTmp\Out\BCrypt.Net-Next.dll
 C:\proyects_net\prestaToolsApi\prestaToolsApi\obj\Release\net6.0\PubTmp\Out\Dapper.dll
 C:\proyects_net\prestaToolsApi\prestaToolsApi\obj\Release\net6.0\PubTmp\Out\Google.Protobuf.dll
 C:\proyects_net\prestaToolsApi\prestaToolsApi\obj\Release\net6.0\PubTmp\Out\K4os.Compression.LZ4.dll
