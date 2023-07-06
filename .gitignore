@@ -36,3 +36,4 @@ _ReSharper*/
 
 # Archivos de caché de Visual Studio Code
 .vscode/
+.vs

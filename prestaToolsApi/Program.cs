@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Options;
 using prestaToolsApi.Data.Repository;
 using prestaToolsApi.ModelsEntity;
@@ -34,8 +35,6 @@ builder.Services.AddControllers().AddJsonOptions(opt =>
 
 
 
-
-
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 //builder.Services.AddScoped<ILenderRepository, LenderRepository>();
 
@@ -64,13 +63,12 @@ if (app.Environment.IsDevelopment())
 }
 
 
-
- app.UseSwagger();
+app.UseSwagger();
  app.UseSwaggerUI();
 
 
 
-//app.UseCors(misReglasCors);
+app.UseCors(misReglasCors);
 
 
 app.UseHttpsRedirection();

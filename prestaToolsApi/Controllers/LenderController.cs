@@ -40,7 +40,7 @@ namespace prestaToolsApi.Controllers
 
         [HttpPost]
         [Route("insert")]
-        public async Task<IActionResult> InsertLender([FromBody] Lender lender)
+        public async Task<IActionResult> InsertLender([FromBody] ModelsEntity.Lender lender)
         {
             //TODO. 
 
@@ -121,7 +121,7 @@ namespace prestaToolsApi.Controllers
         [Route("delete/{id}")]
         public async Task<IActionResult> DeleteLender(int id)
         {
-            //await _lenderRepository.DeleteLender(new Lender { id = id });
+           // await _lenderRepository.DeleteLender(new Lender { Id = id });
 
             return NoContent();
         }

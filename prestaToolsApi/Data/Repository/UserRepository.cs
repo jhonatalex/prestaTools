@@ -1,66 +1,156 @@
-﻿using Dapper;
+﻿
+
+using Azure;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Org.BouncyCastle.Crypto.Generators;
 using prestaToolsApi.ModelsEntity;
+using System.Drawing.Text;
 
 namespace prestaToolsApi.Data.Repository
 {
     public class UserRepository : IUserRepository
     {
-
-       
-
         private readonly PrestatoolsContext _context;
+
+        //Declaración de variables para uso del ApiResponse
+        string token = "tu_token";
+        bool success;
+        ErrorRes errorRes = new ErrorRes();
+        string message;
 
         public UserRepository(PrestatoolsContext context)
         {
             _context = context;
         }
 
-        public async Task<bool> InsertUser(User user)
+        public async Task<ApiResponse<List<User>>> GetAllUser()
         {
-            string hashedPassword = HashPassword(user.Password);
 
-            user.Password = hashedPassword;
-            user.Date = "2020-01-12";
+            List<User> users = await _context.Users.ToListAsync();
 
-            _context.Users.Add(user);
-            int result = await _context.SaveChangesAsync();
-
-            return result > 0;
-        }
-
-        public async Task<User> LoginUser(string email, string password)
-        {
-            User user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
-
-            if (user != null && VerifyPassword(password, user.Password))
+            try
             {
-                return user;
+
+                if (users.Count > 0)
+                {
+                    success = true;
+                    message = "Usuarios encontrados";
+                }
+                else
+                {
+                    success = true;
+                    errorRes = new ErrorRes { /* establecer propiedades de ErrorRes */ };
+                    message = "Usuarios encontrados";
+                }
+
+                var response = new ApiResponse<List<User>>(users, token, success, errorRes, message);
+                return response;
+
             }
 
-            return null;
+            catch (Exception ex)
+            {
+                success = false;
+                errorRes = new ErrorRes { code = ex.GetHashCode(), message = ex.Message };
+                message = "Error";
+
+                var response = new ApiResponse<List<User>>(users, token, success, errorRes, message);
+                return response;
+            }
         }
 
-        public async Task<bool> DeleteUser(User user)
+        public async Task<ApiResponse<User>> GetByUserId(int identifier)
         {
-            _context.Users.Remove(user);
-            int result = await _context.SaveChangesAsync();
+            var userById = await _context.Users.FirstOrDefaultAsync(u => u.Id == identifier);
+            
+            if (userById == null)
+            {
+                success = false;
+                message = "Usuario no encontrado";
+            }
+            else
+            {
+                success = true;
+                message = "Usuario encontrado";
+            }
 
-            return result > 0;
+            var response = new ApiResponse<User>(userById, token, success, errorRes, message);
+            return response;
         }
-        public async Task<IEnumerable<User>> GetAllUser()
+
+        public async Task<ApiResponse<User>> InsertUser(User user)
         {
-            return await _context.Users.ToListAsync();
+    
+            try { 
+            
+                string hashedPassword = HashPassword(user.Password);
+
+                user.Password = hashedPassword;
+                user.Date = DateTime.Now.ToString("yyyy-MM-dd");
+
+                _context.Users.Add(user);
+                int result = await _context.SaveChangesAsync();
+
+                success = true;
+                message = "Usuario creado satisfactoriamente";
+
+                var response = new ApiResponse<User>(user, token, success, errorRes, message);
+                return response;
+
+            }   
+            catch (Exception ex)
+            {
+
+                token = "n/a";
+                success = false;
+                errorRes = new ErrorRes { code = ex.GetHashCode(), message = ex.Message };
+                message = "Error al Insertar";
+
+                var response = new ApiResponse<User>(user, token, success, errorRes, message);
+                return response; 
+            }
+
         }
 
-
-        public async Task<User> GetByUserId(int identifier)
+        public async Task<ApiResponse<User>> LoginUser(string email, string password)
         {
-            return await _context.Users.FirstOrDefaultAsync(u => u.Id == identifier);
+
+            try
+            {
+                
+                User user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+
+                if (user != null && VerifyPassword(password, user.Password))
+                {
+                    success = true;
+                    message = "¡Login exitoso!";
+
+                }else{
+
+                    success = false;
+                    message = "Email o password incorrecto";
+                    errorRes = new ErrorRes { /* establecer propiedades de ErrorRes */ };
+
+                }
+
+                var response = new ApiResponse<User>(user, token, success, errorRes, message);
+                return response;
+
+            }
+            catch (Exception ex)
+            {
+                User user = null;
+                success = false;
+                message = "Error";
+                var errorRes = new ErrorRes { code = ex.GetHashCode(), message = ex.Message };
+
+                var response = new ApiResponse<User>(user, token, success, errorRes, message);
+                return response;
+            }
+
         }
 
-        public async Task<bool> UpdateUser(User user)
+        public async Task<ApiResponse<User>> UpdateUser(User user)
         {
             string hashedPassword = HashPassword(user.Password);
 
@@ -69,8 +159,61 @@ namespace prestaToolsApi.Data.Repository
             _context.Users.Update(user);
             int result = await _context.SaveChangesAsync();
 
-            return result > 0;
+            if (result > 0)
+            {
+                success = true;
+                message = "Usuario actualizado satisfactoriamente";
+            }
+            else
+            {
+                success = false;
+                message = "Usuario no encontrado";
+            }
+
+            var response = new ApiResponse<User>(user, token, success, errorRes, message);
+            return response;
+
         }
+
+        public async Task<ApiResponse<string>> DeleteUser(User user)
+        {
+
+            try
+            {
+                _context.Users.Remove(user);
+                int result = await _context.SaveChangesAsync();
+                string email = user.Email;
+
+                if (result > 0)
+                {
+                    success = true;
+                    message = "Usuario borrado satisfactoriamente";
+                }
+                else
+                {
+                    token = "n/a";
+                    success = false;
+                    message = "Usuario no encontrado";
+                }
+
+                var response = new ApiResponse<string>(email, token, success, errorRes, message);
+                return response;
+            }
+
+            catch (Exception ex)
+            {
+                string email = user.Email;
+                token = "n/a";
+                success = false;
+                message = "Error: usuario no encontrado";
+                var errorRes = new ErrorRes { code = ex.GetHashCode(), message = ex.Message };
+                var response = new ApiResponse<string>(email, token, success, errorRes, message);
+                return response;
+            }
+
+        }
+
+        //METODOS ITERNOS
 
         private string HashPassword(string password)
         {
@@ -81,15 +224,7 @@ namespace prestaToolsApi.Data.Repository
         {
             return BCrypt.Net.BCrypt.Verify(password, hashedPassword);
         }
-
-
-   
-
-
     }
-
-
-
 
 }
         

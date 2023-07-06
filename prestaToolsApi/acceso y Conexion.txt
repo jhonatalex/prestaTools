@@ -40,3 +40,11 @@ data
     public virtual Lender? objetoLender { get; set; } = null!;
 
     public virtual User? objetoUser { get; set; } = null!;
+
+
+
+    workstation id=prestatools.mssql.somee.com;
+    packet size=4096;
+    user id=prestatools_SQLLogin_2;
+    pwd=gcj55rwxqs;
+    data source=prestatools.mssql.somee.com;persist security info=False;initial catalog=prestatools

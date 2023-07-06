@@ -10,6 +10,6 @@ namespace prestaToolsApi.Data.Repository
         Task<bool> InsertLender(Lender lender);
         Task<bool> UpdateLender(Lender lender);
         Task<bool> DeleteLender(Lender lender);
-
+        //Task DeleteLender(Lender lender);
     }
 }

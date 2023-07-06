@@ -2,12 +2,13 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using prestaToolsApi.ModelsEntity;
+using System;
 using System.Security.AccessControl;
 
 namespace prestaToolsApi.Controllers
 {
 
-    //[EnableCors("ReglasCors")]
+   [EnableCors("ReglasCors")]
     [Route("api/[controller]")]
     [ApiController]
     public class CategoriaController : ControllerBase
@@ -73,8 +74,22 @@ namespace prestaToolsApi.Controllers
         public IActionResult insertCat([FromBody] Category objectCat)
         {
 
+
+            /*
+            if (objectCat.imagen1File == null || objectCat.imagen1File.Length == 0)
+            {
+                return BadRequest("No se ha enviado ninguna imagen.");
+            }
+
+            */
+           // var rutaImagen = GuardarImagen(objectCat.imagen1File); // Lógica para guardar la imagen
+
+
+
             try
             {
+                //objectCat.UrlImagen = rutaImagen;
+
                 _dbContext.Categories.Add(objectCat);
                 _dbContext.SaveChanges();
 
@@ -87,44 +102,37 @@ namespace prestaToolsApi.Controllers
         }
 
 
-
-        
         [HttpPut]
         [Route("edit")]
         public IActionResult editTool([FromBody] Category objectCat)
         {
-            Category oCategory = new Category();
+            var existingCategory = _dbContext.Categories.Find(objectCat.IdCat);
 
-            oCategory = _dbContext.Categories.Find(objectCat.IdCat);
-
-            if (oCategory == null)
+            if (existingCategory == null)
             {
-                return BadRequest("Herramienta no encontrada");
+                return BadRequest("Categoría no encontrada");
             }
-
 
             try
             {
-                objectCat.TitleCat = oCategory .TitleCat is null ? objectCat.TitleCat : oCategory.TitleCat;
-                objectCat.DescripCat = oCategory.DescripCat is null ? objectCat.DescripCat : oCategory.DescripCat;
-                objectCat.UrlImagen = oCategory.UrlImagen is null ? objectCat.UrlImagen : oCategory.UrlImagen;
-                objectCat.UrlImagenBanner = oCategory .UrlImagenBanner is null ? objectCat.UrlImagenBanner : oCategory .UrlImagenBanner;
-          
-      
+                existingCategory.TitleCat = objectCat.TitleCat is null? existingCategory.TitleCat: objectCat.TitleCat;
+                existingCategory.DescripCat = objectCat.DescripCat is null ? existingCategory.DescripCat : objectCat.DescripCat;
+                existingCategory.UrlImagen = objectCat.UrlImagen is null ? existingCategory.UrlImagen: objectCat.UrlImagen;
+                existingCategory.UrlImagenBanner = objectCat.UrlImagenBanner is null ?  existingCategory.UrlImagenBanner: objectCat.UrlImagenBanner;
 
-                _dbContext.Categories.Update(oCategory);
+
+
                 _dbContext.SaveChanges();
 
-                return StatusCode(StatusCodes.Status200OK, new { message = "Categoria Actualizado Correctamente" });
+                return StatusCode(StatusCodes.Status200OK, new { message = "Categoría actualizada correctamente" });
             }
             catch (Exception e)
             {
-                return StatusCode(StatusCodes.Status200OK, new { message = e.Message });
+                return StatusCode(StatusCodes.Status500InternalServerError, new { message = e.Message });
             }
         }
 
        
-
 
 
         [HttpDelete]
@@ -137,7 +145,7 @@ namespace prestaToolsApi.Controllers
 
             if (oCategori == null)
             {
-                return BadRequest("categiria no encontrada");
+                return BadRequest("categoria no encontrada");
             }
             try
             {
@@ -154,15 +162,61 @@ namespace prestaToolsApi.Controllers
             }
         }
 
+        /*
+
+        [HttpPost]
+        [Route("save-imagen-cat")]
+        [DisableRequestSizeLimit,RequestFormLimits(MultipartBodyLengthLimit =int.MaxValue, ValueLengthLimit = int.MaxValue)]
+        public async Task<String> saveImage([FromForm] FileEntity file)
+        {
+
+            try
+            {
+
+                return GuardarImagen(file.archivo);
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+        }
+
+        */
+
+
+        private string GuardarImagen(IFormFile archivo)
+        {
+            // Generar un nombre único para el archivo
+            var nombreArchivo = $"{Guid.NewGuid()}{Path.GetExtension(archivo.FileName)}";
+
+            // Obtener la ruta física donde se almacenarán las imágenes (por ejemplo, en una carpeta "Imagenes" dentro del directorio raíz de la aplicación)
+            var rutaDirectorio = Path.Combine(Directory.GetCurrentDirectory(), "Imagenes/categoria");
+
+            // Crear el directorio si no existe
+            if (!Directory.Exists(rutaDirectorio))
+            {
+                Directory.CreateDirectory(rutaDirectorio);
+            }
+
+            // Construir la ruta completa donde se guardará el archivo
+            var rutaArchivo = Path.Combine(rutaDirectorio, nombreArchivo);
+
+            // Guardar el archivo en el servidor
+            using (var fileStream = new FileStream(rutaArchivo, FileMode.Create))
+            {
+                archivo.CopyTo(fileStream);
+            }
+
+            // Devolver la ruta de la imagen guardada
+            return rutaArchivo;
+        }
 
 
 
-       
 
 
 
 
-            
 
     }
 

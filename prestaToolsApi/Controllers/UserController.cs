@@ -7,13 +7,12 @@ namespace prestaToolsApi.Controllers
 {
 
 
-    //[EnableCors("ReglasCors")]
+    [EnableCors("ReglasCors")]
     [ApiController]
     [Route("api/user")]
     public class UserController : Controller
     {
-
-        
+ 
         private readonly IUserRepository _userRepository;
         public UserController(IUserRepository userRepository)
         {
@@ -27,7 +26,7 @@ namespace prestaToolsApi.Controllers
         public async Task<IActionResult> getAllUsers() 
         {
 
-            return Ok(await  _userRepository.GetAllUser());
+            return Ok(await _userRepository.GetAllUser());
 
         }
 
@@ -40,13 +39,10 @@ namespace prestaToolsApi.Controllers
 
         }
 
-
-
         [HttpPost]
         [Route("insert")]
         public async Task<IActionResult> InsertUser([FromBody] User user)
         {
-            //TODO. 
 
             if (user == null)
             {
@@ -59,54 +55,24 @@ namespace prestaToolsApi.Controllers
 
             }
 
-            var created = await _userRepository.InsertUser(user); 
-
-
-            return Created("created", created);
+            var response = await _userRepository.InsertUser(user);
+            return Ok(response);
 
         }
 
         [HttpPost]
         [Route("login")]
-        public async Task<IActionResult> LoginUser(string email, string password)
+        public async Task<IActionResult> LoginUser([FromBody] Login userpayload)
         {
-            //TODO. 
-
-            if (email == null )
-            {
-                return StatusCode(StatusCodes.Status200OK, new { message = "no email", });
-
-            }
-
-            if ( password == null)
-            {
-                return StatusCode(StatusCodes.Status200OK, new { message = "no password", });
-
-            }
-
-
-            var user = await _userRepository.LoginUser(email, password);
-
-
-            if (user == null )
-            {
-                return StatusCode(StatusCodes.Status200OK, new { message = "Email o password incorrecta", });
-
-            }
-
-
-            return Created("created", user);
-
+            var response = await _userRepository.LoginUser(userpayload.Email, userpayload.Password);
+            return Ok(response);
         }
-
-
 
 
         [HttpPut]
         [Route("update")]
         public async Task<IActionResult> UpdateUser([FromBody] User user)
         {
-            //TODO. 
 
             if (user == null)
             {
@@ -119,29 +85,20 @@ namespace prestaToolsApi.Controllers
 
             }
 
-            await _userRepository.UpdateUser(user);
-
-
-            return NoContent();
+            var response = await _userRepository.UpdateUser(user);
+            return Ok(response);
 
         }
-
-
 
         [HttpDelete]
-        [Route("delete/{id}")]
-        public async Task<IActionResult> DeleteUser(int id) 
+        [Route("delete/{email}")]
+        public async Task<IActionResult> DeleteUser(string email) 
         {
-            await _userRepository.DeleteUser(new User { Id = id });
 
-            return NoContent();
-        }
+            return Ok(await _userRepository.DeleteUser(new User { Email = email }));
 
-
-               
+        }            
 
     }
-
-   
 
 };
