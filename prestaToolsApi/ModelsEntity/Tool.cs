@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace prestaToolsApi.ModelsEntity;
 
@@ -51,9 +52,12 @@ public partial class Tool
 
     public int? Rate { get; set; }
 
-    public virtual ICollection<DetalleVentum> DetalleVenta { get; set; } = new List<DetalleVentum>();
+    [JsonIgnore]
+    public virtual ICollection<DetalleVentum>? DetalleVenta { get; set; } = new List<DetalleVentum>();
 
-    public virtual Category objetoCategoria { get; set; } = null!;
+    [JsonIgnore]
+    public virtual Category? objetoCategoria { get; set; } = null!;
 
-    public virtual Lender objetoLender { get; set; } = null!;
+    [JsonIgnore]
+    public virtual Lender? objetoLender { get; set; } = null!;
 }

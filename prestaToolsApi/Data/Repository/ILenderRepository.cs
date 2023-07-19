@@ -4,12 +4,11 @@ namespace prestaToolsApi.Data.Repository
 {
     public interface ILenderRepository
     {
-        Task<IEnumerable<Lender>> GetAllLenders();
-        Task<Lender> GetByLenderId(int id);
-        Task<Lender> LoginLender(string email, string password);
-        Task<bool> InsertLender(Lender lender);
-        Task<bool> UpdateLender(Lender lender);
-        Task<bool> DeleteLender(Lender lender);
-        //Task DeleteLender(Lender lender);
+        Task<ApiResponse<List<Lender>>> GetAllLender();
+        Task<ApiResponse<Lender>> GetByLenderId(int identifier);
+        Task<ApiResponse<Lender>> InsertLender(Lender lender);
+        Task<ApiResponse<Lender>> LoginLender(string email, string password);
+        Task<ApiResponse<Lender>> UpdateLender(Lender lender);
+        Task<ApiResponse<string>> DeleteLender(Lender lender);
     }
 }

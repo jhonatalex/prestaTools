@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "prestaToolsApi", "prestaToolsApi\prestaToolsApi.csproj", "{0B40EBB2-26D5-4B7B-85B4-04D430CCAFFF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "prestaToolsApi", "prestaToolsApi\prestaToolsApi.csproj", "{0B40EBB2-26D5-4B7B-85B4-04D430CCAFFF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infraestructure", "Infraestructure", "{CD44E3F1-BCE1-4458-8F39-EF4C1788DEF9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity", "Identity\Identity.csproj", "{48A66586-362C-4940-B5B9-26A7C65C4D12}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{700B3C5E-8498-4569-BD11-0C36EB55DF0C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +21,16 @@ Global
 		{0B40EBB2-26D5-4B7B-85B4-04D430CCAFFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B40EBB2-26D5-4B7B-85B4-04D430CCAFFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B40EBB2-26D5-4B7B-85B4-04D430CCAFFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48A66586-362C-4940-B5B9-26A7C65C4D12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48A66586-362C-4940-B5B9-26A7C65C4D12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48A66586-362C-4940-B5B9-26A7C65C4D12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48A66586-362C-4940-B5B9-26A7C65C4D12}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{48A66586-362C-4940-B5B9-26A7C65C4D12} = {CD44E3F1-BCE1-4458-8F39-EF4C1788DEF9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7F30B6B5-95C9-4489-8DE8-A4E864800E45}

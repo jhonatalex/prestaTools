@@ -1,6 +1,4 @@
-﻿
-
-using Azure;
+﻿using Azure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using prestaToolsApi.ModelsEntity;
@@ -22,6 +20,10 @@ namespace prestaToolsApi.Data.Repository
         {
             _context = context;
         }
+
+        ////////////////////////////////////////////////////////////////
+        ///               GET ALL USER
+        ////////////////////////////////////////////////////////////////
 
         public async Task<ApiResponse<List<User>>> GetAllUser()
         {
@@ -59,6 +61,10 @@ namespace prestaToolsApi.Data.Repository
             }
         }
 
+        ////////////////////////////////////////////////////////////////
+        ///               GET BY USER ID
+        ////////////////////////////////////////////////////////////////
+
         public async Task<ApiResponse<User>> GetByUserId(int identifier)
         {
             var userById = await _context.Users.FirstOrDefaultAsync(u => u.Id == identifier);
@@ -78,6 +84,10 @@ namespace prestaToolsApi.Data.Repository
             return response;
         }
 
+        ////////////////////////////////////////////////////////////////
+        ///               INSERT USER
+        ////////////////////////////////////////////////////////////////
+
         public async Task<ApiResponse<User>> InsertUser(User user)
         {
     
@@ -93,6 +103,8 @@ namespace prestaToolsApi.Data.Repository
 
                 success = true;
                 message = "Usuario creado satisfactoriamente";
+
+                user = null;
 
                 var response = new ApiResponse<User>(user, token, success, errorRes, message);
                 return response;
@@ -111,6 +123,10 @@ namespace prestaToolsApi.Data.Repository
             }
 
         }
+
+        ////////////////////////////////////////////////////////////////
+        ///               LOGIN USER
+        ////////////////////////////////////////////////////////////////
 
         public async Task<ApiResponse<User>> LoginUser(string email, string password)
         {
@@ -133,6 +149,8 @@ namespace prestaToolsApi.Data.Repository
 
                 }
 
+                user = null;
+
                 var response = new ApiResponse<User>(user, token, success, errorRes, message);
                 return response;
 
@@ -149,6 +167,10 @@ namespace prestaToolsApi.Data.Repository
             }
 
         }
+
+        ////////////////////////////////////////////////////////////////
+        ///               UPDATE USER
+        ////////////////////////////////////////////////////////////////
 
         public async Task<ApiResponse<User>> UpdateUser(User user)
         {
@@ -170,10 +192,16 @@ namespace prestaToolsApi.Data.Repository
                 message = "Usuario no encontrado";
             }
 
+            user = null;
+
             var response = new ApiResponse<User>(user, token, success, errorRes, message);
             return response;
 
         }
+
+        ////////////////////////////////////////////////////////////////
+        ///               DELETE USER
+        ////////////////////////////////////////////////////////////////
 
         public async Task<ApiResponse<string>> DeleteUser(User user)
         {
@@ -224,6 +252,7 @@ namespace prestaToolsApi.Data.Repository
         {
             return BCrypt.Net.BCrypt.Verify(password, hashedPassword);
         }
+
     }
 
 }

@@ -1,15 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using prestaToolsApi.Data.Repository;
 using prestaToolsApi.ModelsEntity;
 
 namespace prestaToolsApi.Controllers
 {
 
-
+    [EnableCors("ReglasCors")]
     [ApiController]
     [Route("api/lender")]
     public class LenderController : Controller
     {
+
         private readonly ILenderRepository _lenderRepository;
         public LenderController(ILenderRepository lenderRepository)
         {
@@ -20,10 +22,10 @@ namespace prestaToolsApi.Controllers
 
         [HttpGet]
         [Route("list")]
-        public async Task<IActionResult> getAllLenders()
+        public async Task<IActionResult> getAllLender()
         {
 
-            return Ok(await _lenderRepository.GetAllLenders());
+            return Ok(await _lenderRepository.GetAllLender());
 
         }
 
@@ -36,13 +38,10 @@ namespace prestaToolsApi.Controllers
 
         }
 
-
-
         [HttpPost]
         [Route("insert")]
-        public async Task<IActionResult> InsertLender([FromBody] ModelsEntity.Lender lender)
+        public async Task<IActionResult> InsertLender([FromBody] Lender lender)
         {
-            //TODO. 
 
             if (lender == null)
             {
@@ -55,47 +54,24 @@ namespace prestaToolsApi.Controllers
 
             }
 
-            //var created = await _lenderRepository.InsertLender(lender);
-
-
-            return BadRequest(); //Created("created", created);
+            var response = await _lenderRepository.InsertLender(lender);
+            return Ok(response);
 
         }
 
         [HttpPost]
         [Route("login")]
-        public async Task<IActionResult> LoginLender(string email, string password)
+        public async Task<IActionResult> LoginLender([FromBody] Login lenderpayload)
         {
-            //TODO. 
-
-            if (email == null || password == null)
-            {
-                return BadRequest();
-
-            }
-
-            var lender = await _lenderRepository.LoginLender(email, password);
-
-
-            if (lender == null)
-            {
-                return BadRequest();
-
-            }
-
-
-            return Created("created", lender);
-
+            var response = await _lenderRepository.LoginLender(lenderpayload.Email, lenderpayload.Password);
+            return Ok(response);
         }
-
-
 
 
         [HttpPut]
         [Route("update")]
         public async Task<IActionResult> UpdateLender([FromBody] Lender lender)
         {
-            //TODO. 
 
             if (lender == null)
             {
@@ -108,23 +84,20 @@ namespace prestaToolsApi.Controllers
 
             }
 
-            //await _lenderRepository.UpdateLender(lender);
-
-
-            return NoContent();
+            var response = await _lenderRepository.UpdateLender(lender);
+            return Ok(response);
 
         }
 
-
-
         [HttpDelete]
-        [Route("delete/{id}")]
-        public async Task<IActionResult> DeleteLender(int id)
+        [Route("delete/{email}")]
+        public async Task<IActionResult> DeleteLender(string email)
         {
-           // await _lenderRepository.DeleteLender(new Lender { Id = id });
 
-            return NoContent();
+            return Ok(await _lenderRepository.DeleteLender(new Lender { Email = email }));
+
         }
 
     }
+
 }
