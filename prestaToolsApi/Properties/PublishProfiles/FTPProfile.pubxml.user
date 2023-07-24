@@ -8,7 +8,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <EncryptedPassword>
     </EncryptedPassword>
     <_PublishTargetUrl>ftp://155.254.244.37/www.prestatools.somee.com</_PublishTargetUrl>
-    <History>True|2023-07-14T00:56:16.1898231Z;True|2023-07-13T18:11:48.5084567-05:00;True|2023-07-03T21:45:28.5457050-05:00;True|2023-07-03T21:29:47.5345204-05:00;True|2023-06-29T22:42:51.7293015-05:00;True|2023-06-26T14:20:55.4302936-05:00;True|2023-06-23T17:36:20.6473936-05:00;True|2023-06-23T17:21:13.4739872-05:00;True|2023-06-13T22:43:11.2000759-05:00;True|2023-06-13T22:38:56.5923861-05:00;</History>
+    <History>True|2023-07-24T20:02:49.2797164Z;True|2023-07-20T19:34:34.8604536-05:00;True|2023-07-20T19:04:50.5867935-05:00;True|2023-07-18T21:28:26.1731864-05:00;True|2023-07-13T19:56:16.1898231-05:00;True|2023-07-13T18:11:48.5084567-05:00;True|2023-07-03T21:45:28.5457050-05:00;True|2023-07-03T21:29:47.5345204-05:00;True|2023-06-29T22:42:51.7293015-05:00;True|2023-06-26T14:20:55.4302936-05:00;True|2023-06-23T17:36:20.6473936-05:00;True|2023-06-23T17:21:13.4739872-05:00;True|2023-06-13T22:43:11.2000759-05:00;True|2023-06-13T22:38:56.5923861-05:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
@@ -16,7 +16,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/19/2023 20:50:57</publishTime>
     </File>
     <File Include="appsettings.json">
-      <publishTime>07/03/2023 20:39:24</publishTime>
+      <publishTime>07/15/2023 21:10:23</publishTime>
     </File>
     <File Include="Azure.Core.dll">
       <publishTime>04/04/2022 16:38:56</publishTime>
@@ -139,16 +139,16 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/16/2023 19:50:04</publishTime>
     </File>
     <File Include="prestaToolsApi.deps.json">
-      <publishTime>07/13/2023 19:53:24</publishTime>
+      <publishTime>07/24/2023 15:00:17</publishTime>
     </File>
     <File Include="prestaToolsApi.dll">
-      <publishTime>07/13/2023 19:52:43</publishTime>
+      <publishTime>07/24/2023 15:00:06</publishTime>
     </File>
     <File Include="prestaToolsApi.exe">
-      <publishTime>07/13/2023 19:52:45</publishTime>
+      <publishTime>07/24/2023 15:00:07</publishTime>
     </File>
     <File Include="prestaToolsApi.pdb">
-      <publishTime>07/13/2023 19:52:43</publishTime>
+      <publishTime>07/24/2023 15:00:06</publishTime>
     </File>
     <File Include="prestaToolsApi.runtimeconfig.json">
       <publishTime>07/03/2023 21:23:59</publishTime>
@@ -250,7 +250,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/19/2020 13:53:38</publishTime>
     </File>
     <File Include="web.config">
-      <publishTime>07/13/2023 19:53:24</publishTime>
+      <publishTime>07/24/2023 15:00:17</publishTime>
     </File>
   </ItemGroup>
   <ItemGroup>

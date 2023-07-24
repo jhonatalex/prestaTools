@@ -118,6 +118,8 @@ namespace prestaToolsApi.Data.Repository
                 errorRes = new ErrorRes { code = ex.GetHashCode(), message = ex.Message };
                 message = "Error al Insertar";
 
+                user = null;
+
                 var response = new ApiResponse<User>(user, token, success, errorRes, message);
                 return response; 
             }
@@ -149,7 +151,7 @@ namespace prestaToolsApi.Data.Repository
 
                 }
 
-                user = null;
+                //user = null;
 
                 var response = new ApiResponse<User>(user, token, success, errorRes, message);
                 return response;

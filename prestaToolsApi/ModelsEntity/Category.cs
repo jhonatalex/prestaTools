@@ -7,7 +7,7 @@ namespace prestaToolsApi.ModelsEntity;
 
 public partial class Category
 {
-    public int IdCat { get; set; }
+    public int? IdCat { get; set; }
 
     public string? TitleCat { get; set; } = null!;
 

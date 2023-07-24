@@ -6,11 +6,11 @@ namespace prestaToolsApi.ModelsEntity;
 
 public partial class Tool
 {
-    public int Id { get; set; }
+    public int? Id { get; set; }
 
     public string Name { get; set; } = null!;
 
-    public string Reference { get; set; } = null!;
+    public string? Reference { get; set; } = null!;
 
     public bool? New { get; set; }
 
@@ -20,9 +20,9 @@ public partial class Tool
 
     public bool? Widgets { get; set; }
 
-    public decimal ValueCommercial { get; set; }
+    public decimal? ValueCommercial { get; set; }
 
-    public decimal ValueRent { get; set; }
+    public decimal? ValueRent { get; set; }
 
     public int? YearBuy { get; set; }
 
@@ -40,7 +40,7 @@ public partial class Tool
 
     public string? TermsUse { get; set; }
 
-    public string BreakDowns { get; set; } = null!;
+    public string? BreakDowns { get; set; } = null!;
 
     public decimal? TimeUse { get; set; }
 
@@ -48,16 +48,16 @@ public partial class Tool
 
     public string IdLenders { get; set; } = null!;
 
-    public string DateUp { get; set; } = null!;
+    public string? DateUp { get; set; } = null!;
 
     public int? Rate { get; set; }
 
-    [JsonIgnore]
+    //[JsonIgnore]
     public virtual ICollection<DetalleVentum>? DetalleVenta { get; set; } = new List<DetalleVentum>();
 
-    [JsonIgnore]
+    //[JsonIgnore]
     public virtual Category? objetoCategoria { get; set; } = null!;
 
-    [JsonIgnore]
+    //[JsonIgnore]
     public virtual Lender? objetoLender { get; set; } = null!;
 }
