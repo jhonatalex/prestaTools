@@ -5,7 +5,7 @@ namespace prestaToolsApi.ModelsEntity;
 
 public partial class Lender
 {
-    public int Id { get; set; }
+    public int? Id { get; set; }
 
     public string? DIdentidad { get; set; } = null!;
 
