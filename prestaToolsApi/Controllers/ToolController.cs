@@ -176,7 +176,7 @@ namespace prestaToolsApi.Controllers
         //    {
         //        objectTool.Name = oTool.Name is null ? objectTool.Name : oTool.Name;
         //        objectTool.Reference = oTool.Reference is null ? objectTool.Reference : oTool.Reference;
-        //        objectTool.New = oTool.New;
+        //        objectTool.NewItem = oTool.NewItem;
         //        objectTool.Model = oTool.Model is null ? objectTool.Model : oTool.Model;
         //        objectTool.Description = oTool.Description is null ? objectTool.Description : oTool.Description;
         //        objectTool.Widgets = oTool.Widgets;

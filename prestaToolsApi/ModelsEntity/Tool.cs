@@ -12,7 +12,7 @@ public partial class Tool
 
     public string? Reference { get; set; } = null!;
 
-    public bool? New { get; set; }
+    public bool? NewItem { get; set; }
 
     public string? Model { get; set; }
 

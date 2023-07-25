@@ -180,7 +180,7 @@ public partial class PrestatoolsContext : DbContext
                 .HasMaxLength(255)
                 .IsUnicode(false)
                 .HasColumnName("name");
-            entity.Property(e => e.New).HasColumnName("new");
+            entity.Property(e => e.NewItem).HasColumnName("newitem");
             entity.Property(e => e.NumberPiece).HasColumnName("number_piece");
             entity.Property(e => e.Rate).HasColumnName("rate");
             entity.Property(e => e.Reference)
