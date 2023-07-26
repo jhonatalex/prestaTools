@@ -36,9 +36,9 @@ public partial class PrestatoolsContext : DbContext
 
             entity.ToTable("Category");
 
-            entity.Property(e => e.IdCat)
-                .ValueGeneratedNever()
-                .HasColumnName("id_cat");
+            //entity.Property(e => e.IdCat)
+            //    .ValueGeneratedNever()
+            //    .HasColumnName("id_cat");
             entity.Property(e => e.DescripCat)
                 .HasMaxLength(255)
                 .IsUnicode(false)
@@ -63,9 +63,9 @@ public partial class PrestatoolsContext : DbContext
 
             entity.ToTable("Detalle_venta");
 
-            entity.Property(e => e.IdDetalleVenta)
-                .ValueGeneratedNever()
-                .HasColumnName("id_detalle_venta");
+            //entity.Property(e => e.IdDetalleVenta)
+            //    .ValueGeneratedNever()
+            //    .HasColumnName("id_detalle_venta");
             entity.Property(e => e.Amount)
                 .HasColumnType("decimal(18, 0)")
                 .HasColumnName("amount");
@@ -149,9 +149,9 @@ public partial class PrestatoolsContext : DbContext
 
             entity.ToTable("Tool");
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("id");
+            //entity.Property(e => e.Id)
+            //    .ValueGeneratedNever()
+            //    .HasColumnName("id");
             entity.Property(e => e.BreakDowns)
                 .HasMaxLength(255)
                 .IsUnicode(false)
@@ -281,9 +281,9 @@ public partial class PrestatoolsContext : DbContext
         {
             entity.HasKey(e => e.IdVenta).HasName("PK_VENTA");
 
-            entity.Property(e => e.IdVenta)
-                .ValueGeneratedNever()
-                .HasColumnName("id_venta");
+            //entity.Property(e => e.IdVenta)
+            //    .ValueGeneratedNever()
+            //    .HasColumnName("id_venta");
             entity.Property(e => e.Date)
                 .HasMaxLength(255)
                 .IsUnicode(false)

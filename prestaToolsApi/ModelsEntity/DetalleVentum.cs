@@ -5,7 +5,7 @@ namespace prestaToolsApi.ModelsEntity;
 
 public partial class DetalleVentum
 {
-    public int IdDetalleVenta { get; set; }
+    public int? IdDetalleVenta { get; set; }
 
     public int IdVenta { get; set; }
 

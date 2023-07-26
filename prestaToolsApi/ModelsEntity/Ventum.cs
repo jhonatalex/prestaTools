@@ -5,7 +5,7 @@ namespace prestaToolsApi.ModelsEntity;
 
 public partial class Ventum
 {
-    public int IdVenta { get; set; }
+    public int? IdVenta { get; set; }
 
     public string? TypeComprobante { get; set; }
 

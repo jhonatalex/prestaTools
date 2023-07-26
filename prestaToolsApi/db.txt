@@ -1,5 +1,5 @@
 CREATE TABLE [User] (
-	id int NOT NULL,
+	id int,
 	name varchar(255) NOT NULL,
 	last_name varchar(255) NOT NULL,
 	password varchar(255) NOT NULL,
@@ -36,11 +36,42 @@ CREATE TABLE [Lender] (
 
 )
 GO
+
+CREATE TABLE [Category] (
+	id_cat int IDENTITY(1,1) NOT NULL,
+	title_cat varchar(255) NOT NULL,
+	descrip_cat varchar(255) NOT NULL,
+	url_imagen varchar(255) NOT NULL,
+	url_imagen_banner varchar(255) NOT NULL,
+
+  CONSTRAINT [PK_CATEGORY] PRIMARY KEY CLUSTERED
+  (
+  [id_cat] ASC
+  ) WITH (IGNORE_DUP_KEY = OFF)
+
+)
+GO
+
+CREATE TABLE [Venta] (
+	id_venta int IDENTITY(1,1) NOT NULL,
+	type_comprobante varchar(255),
+	number_comprobante varchar(255),
+	id_user varchar(255) NOT NULL,
+	date varchar(255),
+	state bit NOT NULL,
+  CONSTRAINT [PK_VENTA] PRIMARY KEY CLUSTERED
+  (
+  [id_venta] ASC
+  ) WITH (IGNORE_DUP_KEY = OFF)
+
+)
+GO
+
 CREATE TABLE [Tool] (
-	id int NOT NULL,
+	id int IDENTITY(1,1) NOT NULL,
 	name varchar(255) NOT NULL,
 	reference varchar(255) NOT NULL,
-	new bit,
+	newitem bit,
 	model varchar(255),
 	description varchar(255),
 	widgets bit,
@@ -67,42 +98,9 @@ CREATE TABLE [Tool] (
 
 )
 GO
-CREATE TABLE [Category] (
-	id_cat int NOT NULL,
-<<<<<<< HEAD
-	title_cat varchar(255) NOT NULL,
-	descrip_cat varchar(255) NOT NULL,
-	url_imagen varchar(255) NOT NULL,
-	url_imagen_banner varchar(255) NOT NULL,
-=======
-	title_cat varchar(255),
-	descrip_cat varchar(255),
-	url_imagen varchar(255),
-	url_imagen_banner varchar(255) ,
->>>>>>> 1831b118fbfb827aa5179f989edce074df128d22
-  CONSTRAINT [PK_CATEGORY] PRIMARY KEY CLUSTERED
-  (
-  [id_cat] ASC
-  ) WITH (IGNORE_DUP_KEY = OFF)
 
-)
-GO
-CREATE TABLE [Venta] (
-	id_venta int NOT NULL,
-	type_comprobante varchar(255),
-	number_comprobante varchar(255),
-	id_user varchar(255) NOT NULL,
-	date varchar(255),
-	state bit NOT NULL,
-  CONSTRAINT [PK_VENTA] PRIMARY KEY CLUSTERED
-  (
-  [id_venta] ASC
-  ) WITH (IGNORE_DUP_KEY = OFF)
-
-)
-GO
 CREATE TABLE [Detalle_venta] (
-	id_detalle_venta int NOT NULL,
+	id_detalle_venta int IDENTITY(1,1) NOT NULL,
 	id_venta int NOT NULL,
 	id_tool int NOT NULL,
 	amount decimal NOT NULL,
@@ -129,14 +127,11 @@ ON UPDATE CASCADE
 GO
 ALTER TABLE [Tool] CHECK CONSTRAINT [Tool_fk1]
 GO
-
-
 ALTER TABLE [Venta] WITH CHECK ADD CONSTRAINT [Venta_fk0] FOREIGN KEY ([id_user]) REFERENCES [User]([email])
 ON UPDATE CASCADE
 GO
 ALTER TABLE [Venta] CHECK CONSTRAINT [Venta_fk0]
 GO
-
 ALTER TABLE [Detalle_venta] WITH CHECK ADD CONSTRAINT [Detalle_venta_fk0] FOREIGN KEY ([id_venta]) REFERENCES [Venta]([id_venta])
 ON UPDATE CASCADE
 GO
@@ -146,45 +141,36 @@ ALTER TABLE [Detalle_venta] WITH CHECK ADD CONSTRAINT [Detalle_venta_fk1] FOREIG
 ON UPDATE CASCADE
 GO
 ALTER TABLE [Detalle_venta] CHECK CONSTRAINT [Detalle_venta_fk1]
-<<<<<<< HEAD
-GO
-=======
 GO
 
-INSERT INTO [User] (id, name, last_name, password, email, telephone, address, d_identidad, date, verify, type_user)
+
+INSERT INTO [User] (name, last_name, password, email, telephone, address, d_identidad, date, verify, type_user)
 VALUES
-(1, 'Hialmar', 'Apellido 1', '123456', 'usuario1@example.com', '1234567890', 'Dirección 1', '123456789', '2023-06-01', 1, 'Tipo 1'),
-(2, 'Ricardo', 'Apellido 2', '123456', 'usuario2@example.com', '1234567890', 'Dirección 2', '987654321', '2023-06-02', 1, 'Tipo 2'),
-(3, 'David', 'Apellido 3', '123456', 'usuario3@example.com', '1234567890', 'Dirección 3', '456789123', '2023-06-03', 1, 'Tipo 1'),
-(4, 'Jhonatan', 'Apellido 4', '123456', 'usuario4@example.com', '1234567890', 'Dirección 4', '789123456', '2023-06-04', 1, 'Tipo 2'),
-(5, 'JhonDeiby', 'Apellido 5', '123456', 'usuario5@example.com', '1234567890', 'Dirección 5', '987654321', '2023-06-05', 1, 'Tipo 1');
+('Hialmar', 'Apellido 1', '123456', 'usuario1@example.com', '1234567890', 'Dirección 1', '123456789', '2023-06-01', 1, 'Tipo 1'),
+('Ricardo', 'Apellido 2', '123456', 'usuario2@example.com', '1234567890', 'Dirección 2', '987654321', '2023-06-02', 1, 'Tipo 2'),
+('David', 'Apellido 3', '123456', 'usuario3@example.com', '1234567890', 'Dirección 3', '456789123', '2023-06-03', 1, 'Tipo 1'),
+('Jhonatan', 'Apellido 4', '123456', 'usuario4@example.com', '1234567890', 'Dirección 4', '789123456', '2023-06-04', 1, 'Tipo 2'),
+('JhonDeiby', 'Apellido 5', '123456', 'usuario5@example.com', '1234567890', 'Dirección 5', '987654321', '2023-06-05', 1, 'Tipo 1');
 
 SELECT * FROM[USER]
 
 
-INSERT INTO [Lender] (id, d_identidad, name, last_name, password, email, telephone, address, number_bank, balance_wallet, date_up)
+INSERT INTO [Lender] (d_identidad, name, last_name, password, email, telephone, address, number_bank, balance_wallet, date_up)
 VALUES
-(1, '123456789', 'Prestamista 1', 'Apellido 1', '123456', 'prestamista1@example.com', '1234567890', 'Dirección 1', '123456789', '1000.00', '2023-06-01'),
-(2, '987654321', 'Prestamista 2', 'Apellido 2', '123456', 'prestamista2@example.com', '1234567890', 'Dirección 2', '987654321', '2000.00', '2023-06-02');
+('123456789', 'Prestamista 1', 'Apellido 1', '123456', 'prestamista1@example.com', '1234567890', 'Dirección 1', '123456789', '1000.00', '2023-06-01'),
+('987654321', 'Prestamista 2', 'Apellido 2', '123456', 'prestamista2@example.com', '1234567890', 'Dirección 2', '987654321', '2000.00', '2023-06-02');
 
 SELECT * FROM[Lender]
 
 
-INSERT INTO [Category] (id_cat, title_cat, descrip_cat, url_imagen, url_imagen_banner) VALUES
-(1, 'Herramientas', 'la categoría de herramientas es un verdadero tesoro para todos los entusiastas del bricolaje, profesionales y aficionados por igual. Nuestra amplia gama de herramientas manuales y eléctricas te brinda opciones para cada proyecto y tarea.', 'assets/img/herramientas.png', 'imagen_banner.png'),
-(2, 'Eventos', 'aca encontrarás todo lo que necesitas para crear experiencias inolvidables. Desde altavoces potentes y mesas de mezclas hasta micrófonos profesionales y luces espectaculares, lo necesario para dar vida a tus eventos.', 'imagen_cat2.jpg', 'banner_cat2.jpg'),
-(3, 'Industria', 'destino perfecto para aquellos que buscan maximizar su eficiencia en proyectos industriales. Ofrecemos una amplia variedad de equipos de calidad, desde maquinaria pesada y herramientas especializadas como equipos de medición y seguridad.', 'imagen_cat3.jpg', 'banner_cat3.jpg'),
-(4, 'Deportes', 'Descubre nuestra amplia selección de productos deportivos para todas tus actividades favoritas. Desde equipos y accesorios hasta ropa y calzado especializado, tenemos todo lo que necesitas para mantenerte activo y alcanzar tus metas deportivas.', 'imagen_cat4.jpg', 'banner_cat4.jpg'),
-(5, 'Instrumentos', 'Explora nuestro catálogo de instrumentos musicales y accesorios. Ya sea que seas un músico profesional o estés comenzando a aprender, ofrecemos una amplia variedad de instrumentos de alta calidad para satisfacer tus necesidades musicales.', 'imagen_cat4.jpg', 'banner_cat4.jpg');
-
-
+INSERT INTO [Category] (title_cat, descrip_cat, url_imagen, url_imagen_banner) VALUES
+('Herramientas', 'la categoría de herramientas es un verdadero tesoro para todos los entusiastas del bricolaje, profesionales y aficionados por igual. Nuestra amplia gama de herramientas manuales y eléctricas te brinda opciones para cada proyecto y tarea.', 'assets/img/herramientas.png', 'imagen_banner.png'),
+('Eventos', 'aca encontrarás todo lo que necesitas para crear experiencias inolvidables. Desde altavoces potentes y mesas de mezclas hasta micrófonos profesionales y luces espectaculares, lo necesario para dar vida a tus eventos.', 'imagen_cat2.jpg', 'banner_cat2.jpg'),
+('Industria', 'destino perfecto para aquellos que buscan maximizar su eficiencia en proyectos industriales. Ofrecemos una amplia variedad de equipos de calidad, desde maquinaria pesada y herramientas especializadas como equipos de medición y seguridad.', 'imagen_cat3.jpg', 'banner_cat3.jpg'),
+('Deportes', 'Descubre nuestra amplia selección de productos deportivos para todas tus actividades favoritas. Desde equipos y accesorios hasta ropa y calzado especializado, tenemos todo lo que necesitas para mantenerte activo y alcanzar tus metas deportivas.', 'imagen_cat4.jpg', 'banner_cat4.jpg'),
+('Instrumentos', 'Explora nuestro catálogo de instrumentos musicales y accesorios. Ya sea que seas un músico profesional o estés comenzando a aprender, ofrecemos una amplia variedad de instrumentos de alta calidad para satisfacer tus necesidades musicales.', 'imagen_cat4.jpg', 'banner_cat4.jpg');
 
 SELECT * FROM[Category]
-
-
-
-
-
 
 -- Herramientas
 INSERT INTO [Tool] (id, name, reference, new, model, description, widgets, value_commercial, value_rent, year_buy, weigt, mesuare, number_piece, url_image, url_image_2, url_image_3, terms_use, break_downs, time_use, id_category, id_lenders, date_up, rate)
@@ -218,4 +204,3 @@ VALUES
 
 
 SELECT * FROM[Tool]
->>>>>>> 1831b118fbfb827aa5179f989edce074df128d22
