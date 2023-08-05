@@ -65,9 +65,9 @@ namespace prestaToolsApi.Data.Repository
         ///               GET BY USER ID
         ////////////////////////////////////////////////////////////////
 
-        public async Task<ApiResponse<User>> GetByUserId(int identifier)
+        public async Task<ApiResponse<User>> GetByUserId(string identifier)
         {
-            var userById = await _context.Users.FirstOrDefaultAsync(u => u.Id == identifier);
+            var userById = await _context.Users.FirstOrDefaultAsync(u => u.Email == identifier);
             
             if (userById == null)
             {

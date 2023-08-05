@@ -3,7 +3,7 @@ using prestaToolsApi.ModelsEntity;
 
 namespace prestaToolsApi.Data.Repository
 {
-    public class ToolRepository: IToolRepository
+    public class CategoriaRepository : ICategoriaRepository
     {
         private readonly PrestatoolsContext _context;
 
@@ -13,38 +13,36 @@ namespace prestaToolsApi.Data.Repository
         ErrorRes errorRes = new ErrorRes();
         string message;
 
-        public ToolRepository(PrestatoolsContext context)
+        public CategoriaRepository(PrestatoolsContext context) 
         {
             _context = context;
         }
 
         ////////////////////////////////////////////////////////////////
-        ///               GET ALL TOOLS
+        ///               GET ALL CATEGORIES
         ////////////////////////////////////////////////////////////////
 
-        public async Task<ApiResponse<List<Tool>>> GetAllTool()
+        public async Task<ApiResponse<List<Category>>> GetAllCategory()
         {
 
-            List<Tool> tools = await _context.Tools
-                .Include(c => c.objetoCategoria)
-                .ToListAsync();
+            List<Category> categories = await _context.Categories.ToListAsync();
 
             try
             {
 
-                if (tools.Count > 0)
+                if (categories.Count > 0)
                 {
                     success = true;
-                    message = "Herramientas encontradas";
+                    message = "Categorías encontradas";
                 }
                 else
                 {
                     success = true;
                     errorRes = new ErrorRes { /* establecer propiedades de ErrorRes */ };
-                    message = "Herramientas no encontradas";
+                    message = "Categorías no encontradas";
                 }
 
-                var response = new ApiResponse<List<Tool>>(tools, token, success, errorRes, message);
+                var response = new ApiResponse<List<Category>>(categories, token, success, errorRes, message);
                 return response;
 
             }
@@ -55,57 +53,51 @@ namespace prestaToolsApi.Data.Repository
                 errorRes = new ErrorRes { code = ex.GetHashCode(), message = ex.Message };
                 message = "Error";
 
-                var response = new ApiResponse<List<Tool>>(tools, token, success, errorRes, message);
+                var response = new ApiResponse<List<Category>>(categories, token, success, errorRes, message);
                 return response;
             }
         }
 
         ////////////////////////////////////////////////////////////////
-        ///               GET BY TOOL ID
+        ///               GET BY CATEGORY ID
         ////////////////////////////////////////////////////////////////
 
-        public async Task<ApiResponse<Tool>> GetByToolId(int identifier)
+        public async Task<ApiResponse<Category>> GetByCategoryId(int identifier)
         {
-            Tool toolById = await _context.Tools.FirstOrDefaultAsync(u => u.Id == identifier);
-            toolById = _context.Tools
-                .Include(c => c.objetoCategoria)
-                .Include(d => d.objetoLender)
-                .Where(ObjetoTool => ObjetoTool.Id == identifier).FirstOrDefault();
-
-            if (toolById == null)
+            Category categoryById = await _context.Categories.FirstOrDefaultAsync(u => u.IdCat == identifier);
+            
+            if (categoryById == null)
             {
                 success = false;
-                message = "Herramienta no encontrada";
+                message = "Categoría no encontrada";
             }
             else
             {
                 success = true;
-                message = "Herramienta encontrada";
+                message = "Categoría encontrada";
             }
 
-            var response = new ApiResponse<Tool>(toolById, token, success, errorRes, message);
+            var response = new ApiResponse<Category>(categoryById, token, success, errorRes, message);
             return response;
         }
 
         ////////////////////////////////////////////////////////////////
-        ///               INSERT TOOL
+        ///               INSERT CATEGORY
         ////////////////////////////////////////////////////////////////
 
-        public async Task<ApiResponse<Tool>> InsertTool(Tool tool)
+        public async Task<ApiResponse<Category>> InsertCategory(Category category)
         {
 
             try
             {
 
-                tool.DateUp = DateTime.Now.ToString("yyyy-MM-dd");
-                _context.Tools.Add(tool);
+                _context.Categories.Add(category);
 
                 int result = await _context.SaveChangesAsync();
                 success = true;
-                message = "Herramienta creada satisfactoriamente";
+                message = "Categoría creada satisfactoriamente";
 
-                tool = null;
-                var response = new ApiResponse<Tool>(tool, token, success, errorRes, message);
+                var response = new ApiResponse<Category>(null, token, success, errorRes, message);
                 return response;
 
             }
@@ -115,66 +107,62 @@ namespace prestaToolsApi.Data.Repository
                 token = "n/a";
                 success = false;
                 errorRes = new ErrorRes { code = ex.GetHashCode(), message = ex.Message };
-                message = "Error al insertar herramienta";
+                message = "Error al insertar categoría";
 
-                tool = null;
-
-                var response = new ApiResponse<Tool>(tool, token, success, errorRes, message);
+                var response = new ApiResponse<Category>(null, token, success, errorRes, message);
                 return response;
             }
 
         }
 
         ////////////////////////////////////////////////////////////////
-        ///               UPDATE TOOL
+        ///               UPDATE CATEGORY
         ////////////////////////////////////////////////////////////////
 
-        public async Task<ApiResponse<Tool>> UpdateTool(Tool tool)
+        public async Task<ApiResponse<Category>> UpdateCategory(Category category)
         {
 
-            _context.Tools.Update(tool);
+            _context.Categories.Update(category);
             int result = await _context.SaveChangesAsync();
 
             if (result > 0)
             {
                 success = true;
-                message = "Herramienta actualizada satisfactoriamente";
+                message = "Categoría actualizada satisfactoriamente";
             }
             else
             {
                 success = false;
-                message = "Herramienta no encontrada";
+                message = "Categoría no encontrada";
             }
 
-            tool = null;
-
-            var response = new ApiResponse<Tool>(tool, token, success, errorRes, message);
+            var response = new ApiResponse<Category>(null, token, success, errorRes, message);
             return response;
 
         }
 
         ////////////////////////////////////////////////////////////////
-        ///               DELETE TOOL
+        ///               DELETE CATEGORY
         ////////////////////////////////////////////////////////////////
 
-        public async Task<ApiResponse<string>> DeleteTool(Tool tool)
+        public async Task<ApiResponse<string>> DeleteCategory(Category category)
         {
 
             try
             {
-                _context.Tools.Remove(tool);
+                _context.Categories.Remove(category);
                 int result = await _context.SaveChangesAsync();
 
                 if (result > 0)
                 {
                     success = true;
-                    message = "Herramienta borrada satisfactoriamente";
+                    message = "Categoría borrada satisfactoriamente";
                 }
                 else
                 {
                     token = "n/a";
                     success = false;
-                    message = "Herramienta no encontrada";
+                    message = "Categoría no encontrada";
                 }
 
                 var response = new ApiResponse<string>(null, token, success, errorRes, message);
@@ -185,7 +173,7 @@ namespace prestaToolsApi.Data.Repository
             {
                 token = "n/a";
                 success = false;
-                message = "Error: herramienta no encontrada";
+                message = "Error: Categoría no encontrada";
                 var errorRes = new ErrorRes { code = ex.GetHashCode(), message = ex.Message };
                 var response = new ApiResponse<string>(null, token, success, errorRes, message);
                 return response;
@@ -193,7 +181,5 @@ namespace prestaToolsApi.Data.Repository
             }
 
         }
-
     }
-
 }

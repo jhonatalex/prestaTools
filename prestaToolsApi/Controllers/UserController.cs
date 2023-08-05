@@ -32,11 +32,11 @@ namespace prestaToolsApi.Controllers
         }
 
         [HttpGet]
-        [Route("get/users/{id}")]
-        public async Task<IActionResult> getUserId( int id)
+        [Route("get/users/{email}")]
+        public async Task<IActionResult> getUserId(string email)
         {
 
-            return Ok(await _userRepository.GetByUserId(id));
+            return Ok(await _userRepository.GetByUserId(email));
 
         }
 

@@ -55,11 +55,11 @@ public partial class Tool
     [JsonIgnore]
     public virtual ICollection<DetalleVentum>? DetalleVenta { get; set; } = new List<DetalleVentum>();
 
-    [JsonIgnore]
+    //[JsonIgnore]
     public virtual Category? objetoCategoria { get; set; } = null!;
     //public virtual Category? objetoCategoria { get; set; } = new Category();
 
-    [JsonIgnore]
-    public virtual Lender? objetoLender { get; set; } = null!;
+    //[JsonIgnore]
+    public virtual Lender? objetoLender { get; set; } //= null!;
     //public virtual Lender? objetoLender { get; set; }= new Lender();
 }

@@ -33,11 +33,12 @@ builder.Services.AddControllers().AddJsonOptions(opt =>
 
 });
 
-
+//INYECCIÓN DE DEPENDENCIAS
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ILenderRepository, LenderRepository>();
 builder.Services.AddScoped<IToolRepository, ToolRepository>();
+builder.Services.AddScoped<ICategoriaRepository, CategoriaRepository>();
 
 //CORS HABILITAR
 var misReglasCors = "ReglasCors";
