@@ -30,7 +30,7 @@ namespace prestaToolsApi.Controllers
         }
 
         [HttpGet]
-        [Route("get/category/{idCat:int}")]
+        [Route("get/{idCat:int}")]
         public async Task<IActionResult> getCategoryId(int idCat)
         {
 

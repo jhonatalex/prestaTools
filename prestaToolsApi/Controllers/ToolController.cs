@@ -32,7 +32,7 @@ namespace prestaToolsApi.Controllers
         }
 
         [HttpGet]
-        [Route("get/tool/{idTool:int}")]
+        [Route("get/{idTool:int}")]
         public async Task<IActionResult> getToolId(int idTool)
         {
 

@@ -65,7 +65,10 @@ namespace prestaToolsApi.Data.Repository
         public async Task<ApiResponse<Category>> GetByCategoryId(int identifier)
         {
             Category categoryById = await _context.Categories.FirstOrDefaultAsync(u => u.IdCat == identifier);
-            
+            categoryById = _context.Categories
+                .Include(c => c.Tools)
+                .Where(Tools => Tools.IdCat == identifier).FirstOrDefault();
+
             if (categoryById == null)
             {
                 success = false;

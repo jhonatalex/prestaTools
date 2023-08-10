@@ -98,15 +98,38 @@ namespace prestaToolsApi.Data.Repository
             {
 
                 tool.DateUp = DateTime.Now.ToString("yyyy-MM-dd");
-                _context.Tools.Add(tool);
 
-                int result = await _context.SaveChangesAsync();
-                success = true;
-                message = "Herramienta creada satisfactoriamente";
+                var categoryExists = _context.Categories.Any(cat => cat.IdCat == tool.IdCategory);
+                var lenderExists = _context.Lenders.Any(len => len.Email == tool.IdLenders);
 
-                tool = null;
-                var response = new ApiResponse<Tool>(tool, token, success, errorRes, message);
-                return response;
+                if (categoryExists) 
+                {
+                    if (lenderExists)
+                    {
+                        _context.Tools.Add(tool);
+                        int result = await _context.SaveChangesAsync();
+                        success = true;
+                        message = "Herramienta creada satisfactoriamente";
+                        var response = new ApiResponse<Tool>(null, token, success, errorRes, message);
+                        return response;
+
+                    }
+                    else
+                    {
+                        success = false;
+                        message = "Debe estar verificado para poder registrar una herramienta";
+                        var response = new ApiResponse<Tool>(null, token, success, errorRes, message);
+                        return response;
+
+                    }
+                }
+                else
+                {
+                    success = false;
+                    message = "La categoría no existe";
+                    var response = new ApiResponse<Tool>(null, token, success, errorRes, message);
+                    return response;
+                }
 
             }
             catch (Exception ex)
