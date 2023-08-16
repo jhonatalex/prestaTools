@@ -36,9 +36,9 @@ public partial class PrestatoolsContext : DbContext
 
             entity.ToTable("Category");
 
-            //entity.Property(e => e.IdCat)
-            //    .ValueGeneratedNever()
-            //    .HasColumnName("id_cat");
+            entity.Property(e => e.IdCat)
+               .ValueGeneratedNever()
+               .HasColumnName("id_cat");
             entity.Property(e => e.DescripCat)
                 .HasMaxLength(255)
                 .IsUnicode(false)

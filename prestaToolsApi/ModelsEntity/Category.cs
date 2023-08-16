@@ -20,5 +20,5 @@ public partial class Category
 
 
     [JsonIgnore]
-    public virtual ICollection<Tool> Tools { get; set; } = new List<Tool>();
+    public virtual ICollection<Tool>? Tools { get; set; } = new List<Tool>();
 }
