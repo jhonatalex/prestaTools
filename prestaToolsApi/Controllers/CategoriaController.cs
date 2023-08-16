@@ -9,7 +9,7 @@ using System.Security.AccessControl;
 namespace prestaToolsApi.Controllers
 {
 
-   [EnableCors("ReglasCors")]
+    [EnableCors("ReglasCors")]
     [Route("api/[controller]")]
     [ApiController]
     public class CategoriaController : ControllerBase

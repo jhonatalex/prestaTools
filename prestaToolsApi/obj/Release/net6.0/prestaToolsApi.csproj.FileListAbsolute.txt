@@ -200,3 +200,4 @@ C:\Git\prestaTools\prestaToolsApi\obj\Release\net6.0\refint\prestaToolsApi.dll
 C:\Git\prestaTools\prestaToolsApi\obj\Release\net6.0\prestaToolsApi.pdb
 C:\Git\prestaTools\prestaToolsApi\obj\Release\net6.0\prestaToolsApi.genruntimeconfig.cache
 C:\Git\prestaTools\prestaToolsApi\obj\Release\net6.0\ref\prestaToolsApi.dll
+C:\Git\prestaTools\prestaToolsApi\bin\Release\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

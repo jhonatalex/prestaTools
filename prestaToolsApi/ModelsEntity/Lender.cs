@@ -27,5 +27,11 @@ public partial class Lender
 
     public string? DateUp { get; set; }
 
+    public string? commune { get; set; }
+
+    public string? region { get; set; }
+    
+    public int? Rate { get; set; }
+
     public virtual ICollection<Tool> Tools { get; set; } = new List<Tool>();
 }

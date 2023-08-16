@@ -76,6 +76,15 @@ public partial class PrestatoolsContext : DbContext
             entity.Property(e => e.Descuento)
                 .HasColumnType("decimal(18, 0)")
                 .HasColumnName("descuento");
+            entity.Property(e => e.StartDate)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("start_date");
+            entity.Property(e => e.EndDate)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("end_date");
+            entity.Property(e => e.RentalDays).HasColumnName("rental_days");
             entity.Property(e => e.IdTool).HasColumnName("id_tool");
             entity.Property(e => e.IdVenta).HasColumnName("id_venta");
             entity.Property(e => e.Price)
@@ -141,6 +150,15 @@ public partial class PrestatoolsContext : DbContext
                 .HasMaxLength(255)
                 .IsUnicode(false)
                 .HasColumnName("telephone");
+            entity.Property(e => e.commune)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("commune");
+            entity.Property(e => e.region)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("region");
+            entity.Property(e => e.Rate).HasColumnName("rate");
         });
 
         modelBuilder.Entity<Tool>(entity =>
@@ -187,6 +205,10 @@ public partial class PrestatoolsContext : DbContext
                 .HasMaxLength(255)
                 .IsUnicode(false)
                 .HasColumnName("reference");
+            entity.Property(e => e.Brand)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("brand");
             entity.Property(e => e.TermsUse)
                 .HasMaxLength(255)
                 .IsUnicode(false)
@@ -274,6 +296,15 @@ public partial class PrestatoolsContext : DbContext
                 .HasMaxLength(255)
                 .IsUnicode(false)
                 .HasColumnName("type_user");
+            entity.Property(e => e.commune)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("commune");
+            entity.Property(e => e.region)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("region");
+            entity.Property(e => e.Rate).HasColumnName("rate");
             entity.Property(e => e.Verify).HasColumnName("verify");
         });
 

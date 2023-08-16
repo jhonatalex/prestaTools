@@ -200,3 +200,6 @@ C:\Git\prestaTools\prestaToolsApi\bin\Debug\net6.0\Microsoft.Extensions.Options.
 C:\Git\prestaTools\prestaToolsApi\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
 C:\Git\prestaTools\prestaToolsApi\bin\Debug\net6.0\Mono.TextTemplating.dll
 C:\Git\prestaTools\prestaToolsApi\bin\Debug\net6.0\System.CodeDom.dll
+C:\Git\prestaTools\prestaToolsApi\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Git\prestaTools\prestaToolsApi\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Git\prestaTools\prestaToolsApi\bin\Debug\net6.0\Transbank.dll

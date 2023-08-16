@@ -25,6 +25,13 @@ public partial class User
 
     public bool? Verify { get; set; }
 
+    public string? commune { get; set; }
+
+    public string? region { get; set; }
+
+    public int? Rate { get; set; }
+
     public string? TypeUser { get; set; }
+
     public virtual ICollection<Ventum> Venta { get; set; } = new List<Ventum>();
 }

@@ -52,6 +52,8 @@ public partial class Tool
 
     public int? Rate { get; set; }
 
+    public string? Brand { get ; set; }
+
     [JsonIgnore]
     public virtual ICollection<DetalleVentum>? DetalleVenta { get; set; } = new List<DetalleVentum>();
 
