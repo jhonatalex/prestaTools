@@ -12,6 +12,7 @@ C:\proyects_net\prestaToolsApi\prestaToolsApi\obj\Release\net6.0\PubTmp\Out\Goog
 C:\proyects_net\prestaToolsApi\prestaToolsApi\obj\Release\net6.0\PubTmp\Out\K4os.Compression.LZ4.dll
 C:\proyects_net\prestaToolsApi\prestaToolsApi\obj\Release\net6.0\PubTmp\Out\K4os.Compression.LZ4.Streams.dll
 C:\proyects_net\prestaToolsApi\prestaToolsApi\obj\Release\net6.0\PubTmp\Out\K4os.Hash.xxHash.dll
+C:\proyects_net\prestaToolsApi\prestaToolsApi\obj\Release\net6.0\PubTmp\Out\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\proyects_net\prestaToolsApi\prestaToolsApi\obj\Release\net6.0\PubTmp\Out\Microsoft.Bcl.AsyncInterfaces.dll
 C:\proyects_net\prestaToolsApi\prestaToolsApi\obj\Release\net6.0\PubTmp\Out\Microsoft.Data.SqlClient.dll
 C:\proyects_net\prestaToolsApi\prestaToolsApi\obj\Release\net6.0\PubTmp\Out\Microsoft.EntityFrameworkCore.dll
@@ -39,6 +40,7 @@ C:\proyects_net\prestaToolsApi\prestaToolsApi\obj\Release\net6.0\PubTmp\Out\Micr
 C:\proyects_net\prestaToolsApi\prestaToolsApi\obj\Release\net6.0\PubTmp\Out\Microsoft.SqlServer.Server.dll
 C:\proyects_net\prestaToolsApi\prestaToolsApi\obj\Release\net6.0\PubTmp\Out\Microsoft.Win32.SystemEvents.dll
 C:\proyects_net\prestaToolsApi\prestaToolsApi\obj\Release\net6.0\PubTmp\Out\MySql.Data.dll
+C:\proyects_net\prestaToolsApi\prestaToolsApi\obj\Release\net6.0\PubTmp\Out\Newtonsoft.Json.dll
 C:\proyects_net\prestaToolsApi\prestaToolsApi\obj\Release\net6.0\PubTmp\Out\BouncyCastle.Crypto.dll
 C:\proyects_net\prestaToolsApi\prestaToolsApi\obj\Release\net6.0\PubTmp\Out\Swashbuckle.AspNetCore.Swagger.dll
 C:\proyects_net\prestaToolsApi\prestaToolsApi\obj\Release\net6.0\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerGen.dll
@@ -54,6 +56,7 @@ C:\proyects_net\prestaToolsApi\prestaToolsApi\obj\Release\net6.0\PubTmp\Out\Syst
 C:\proyects_net\prestaToolsApi\prestaToolsApi\obj\Release\net6.0\PubTmp\Out\System.Text.Encodings.Web.dll
 C:\proyects_net\prestaToolsApi\prestaToolsApi\obj\Release\net6.0\PubTmp\Out\System.Text.Json.dll
 C:\proyects_net\prestaToolsApi\prestaToolsApi\obj\Release\net6.0\PubTmp\Out\System.Windows.Extensions.dll
+C:\proyects_net\prestaToolsApi\prestaToolsApi\obj\Release\net6.0\PubTmp\Out\Transbank.dll
 C:\proyects_net\prestaToolsApi\prestaToolsApi\obj\Release\net6.0\PubTmp\Out\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
 C:\proyects_net\prestaToolsApi\prestaToolsApi\obj\Release\net6.0\PubTmp\Out\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
 C:\proyects_net\prestaToolsApi\prestaToolsApi\obj\Release\net6.0\PubTmp\Out\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll

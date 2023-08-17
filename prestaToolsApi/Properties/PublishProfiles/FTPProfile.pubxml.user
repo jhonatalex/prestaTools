@@ -8,7 +8,11 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <EncryptedPassword>
     </EncryptedPassword>
     <_PublishTargetUrl>ftp://155.254.244.37/www.prestatools.somee.com</_PublishTargetUrl>
+<<<<<<< HEAD
     <History>True|2023-07-26T22:50:34.6197851Z;True|2023-07-25T23:23:18.3519804-04:00;True|2023-07-25T22:59:46.7260790-04:00;True|2023-07-24T23:16:40.9297015-04:00;True|2023-07-24T16:02:49.2797164-04:00;True|2023-07-20T20:34:34.8604536-04:00;True|2023-07-20T20:04:50.5867935-04:00;True|2023-07-18T22:28:26.1731864-04:00;True|2023-07-13T20:56:16.1898231-04:00;True|2023-07-13T19:11:48.5084567-04:00;True|2023-07-03T22:45:28.5457050-04:00;True|2023-07-03T22:29:47.5345204-04:00;True|2023-06-29T23:42:51.7293015-04:00;True|2023-06-26T15:20:55.4302936-04:00;True|2023-06-23T18:36:20.6473936-04:00;True|2023-06-23T18:21:13.4739872-04:00;True|2023-06-13T23:43:11.2000759-04:00;True|2023-06-13T23:38:56.5923861-04:00;</History>
+=======
+    <History>True|2023-08-12T00:56:53.5048498Z;True|2023-08-11T19:36:32.7471375-05:00;True|2023-08-11T19:25:54.1505020-05:00;True|2023-08-10T23:38:32.2121678-05:00;True|2023-08-10T22:01:13.5245935-05:00;True|2023-08-09T23:00:32.8603370-05:00;True|2023-08-02T15:46:28.3064549-05:00;True|2023-07-29T14:38:25.6890476-05:00;True|2023-07-25T22:54:33.8765032-05:00;True|2023-07-25T22:23:18.3519804-05:00;True|2023-07-25T21:59:46.7260790-05:00;True|2023-07-24T22:16:40.9297015-05:00;True|2023-07-24T15:02:49.2797164-05:00;True|2023-07-20T19:34:34.8604536-05:00;True|2023-07-20T19:04:50.5867935-05:00;True|2023-07-18T21:28:26.1731864-05:00;True|2023-07-13T19:56:16.1898231-05:00;True|2023-07-13T18:11:48.5084567-05:00;True|2023-07-03T21:45:28.5457050-05:00;True|2023-07-03T21:29:47.5345204-05:00;True|2023-06-29T22:42:51.7293015-05:00;True|2023-06-26T14:20:55.4302936-05:00;True|2023-06-23T17:36:20.6473936-05:00;True|2023-06-23T17:21:13.4739872-05:00;True|2023-06-13T22:43:11.2000759-05:00;True|2023-06-13T22:38:56.5923861-05:00;</History>
+>>>>>>> 1aba458987f86e1a3d67f705b90848d204975b24
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
@@ -16,7 +20,11 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/12/2023 21:12:34</publishTime>
     </File>
     <File Include="appsettings.json">
+<<<<<<< HEAD
       <publishTime>07/26/2023 18:43:21</publishTime>
+=======
+      <publishTime>08/10/2023 21:03:08</publishTime>
+>>>>>>> 1aba458987f86e1a3d67f705b90848d204975b24
     </File>
     <File Include="Azure.Core.dll">
       <publishTime>04/04/2022 17:38:56</publishTime>
@@ -47,6 +55,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     </File>
     <File Include="K4os.Hash.xxHash.dll">
       <publishTime>11/08/2022 15:08:14</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.Authentication.JwtBearer.dll">
+      <publishTime>06/21/2023 14:36:00</publishTime>
     </File>
     <File Include="Microsoft.Bcl.AsyncInterfaces.dll">
       <publishTime>04/14/2020 18:39:12</publishTime>
@@ -136,9 +147,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/04/2023 18:26:02</publishTime>
     </File>
     <File Include="Pomelo.EntityFrameworkCore.MySql.dll">
-      <publishTime>01/16/2023 19:50:04</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="prestaToolsApi.deps.json">
+<<<<<<< HEAD
       <publishTime>07/26/2023 18:46:29</publishTime>
     </File>
     <File Include="prestaToolsApi.dll">
@@ -152,6 +164,21 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     </File>
     <File Include="prestaToolsApi.runtimeconfig.json">
       <publishTime>07/26/2023 18:45:48</publishTime>
+=======
+      <publishTime>08/11/2023 19:54:12</publishTime>
+    </File>
+    <File Include="prestaToolsApi.dll">
+      <publishTime>08/11/2023 19:53:30</publishTime>
+    </File>
+    <File Include="prestaToolsApi.exe">
+      <publishTime>08/11/2023 19:53:30</publishTime>
+    </File>
+    <File Include="prestaToolsApi.pdb">
+      <publishTime>08/11/2023 19:53:30</publishTime>
+    </File>
+    <File Include="prestaToolsApi.runtimeconfig.json">
+      <publishTime>08/10/2023 21:58:03</publishTime>
+>>>>>>> 1aba458987f86e1a3d67f705b90848d204975b24
     </File>
     <File Include="runtimes/browser/lib/net6.0/System.Text.Encodings.Web.dll">
       <publishTime>10/18/2022 13:40:14</publishTime>
@@ -250,7 +277,11 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/19/2020 15:53:38</publishTime>
     </File>
     <File Include="web.config">
+<<<<<<< HEAD
       <publishTime>07/26/2023 18:46:30</publishTime>
+=======
+      <publishTime>08/11/2023 19:54:12</publishTime>
+>>>>>>> 1aba458987f86e1a3d67f705b90848d204975b24
     </File>
   </ItemGroup>
   <ItemGroup>

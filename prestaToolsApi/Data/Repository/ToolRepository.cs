@@ -1,7 +1,4 @@
-﻿
-
-
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using prestaToolsApi.ModelsEntity;
 
 namespace prestaToolsApi.Data.Repository
@@ -28,8 +25,9 @@ namespace prestaToolsApi.Data.Repository
         public async Task<ApiResponse<List<Tool>>> GetAllTool()
         {
 
-            //List<Tool> tools = await _context.Tools.ToListAsync();
-            List<Tool> tools = _context.Tools.Include(c => c.objetoCategoria).ToList();
+            List<Tool> tools = await _context.Tools
+                .Include(c => c.objetoCategoria)
+                .ToListAsync();
 
             try
             {
@@ -43,7 +41,7 @@ namespace prestaToolsApi.Data.Repository
                 {
                     success = true;
                     errorRes = new ErrorRes { /* establecer propiedades de ErrorRes */ };
-                    message = "Herramientas encontradas";
+                    message = "Herramientas no encontradas";
                 }
 
                 var response = new ApiResponse<List<Tool>>(tools, token, success, errorRes, message);
@@ -69,7 +67,10 @@ namespace prestaToolsApi.Data.Repository
         public async Task<ApiResponse<Tool>> GetByToolId(int identifier)
         {
             Tool toolById = await _context.Tools.FirstOrDefaultAsync(u => u.Id == identifier);
-            toolById = _context.Tools.Include(c => c.objetoCategoria).Where(ObjetoTool => ObjetoTool.Id == identifier).FirstOrDefault();
+            toolById = _context.Tools
+                .Include(c => c.objetoCategoria)
+                .Include(d => d.objetoLender)
+                .Where(ObjetoTool => ObjetoTool.Id == identifier).FirstOrDefault();
 
             if (toolById == null)
             {
@@ -97,15 +98,38 @@ namespace prestaToolsApi.Data.Repository
             {
 
                 tool.DateUp = DateTime.Now.ToString("yyyy-MM-dd");
-                _context.Tools.Add(tool);
 
-                int result = await _context.SaveChangesAsync();
-                success = true;
-                message = "Herramienta creada satisfactoriamente";
+                var categoryExists = _context.Categories.Any(cat => cat.IdCat == tool.IdCategory);
+                var lenderExists = _context.Lenders.Any(len => len.Email == tool.IdLenders);
 
-                tool = null;
-                var response = new ApiResponse<Tool>(tool, token, success, errorRes, message);
-                return response;
+                if (categoryExists) 
+                {
+                    if (lenderExists)
+                    {
+                        _context.Tools.Add(tool);
+                        int result = await _context.SaveChangesAsync();
+                        success = true;
+                        message = "Herramienta creada satisfactoriamente";
+                        var response = new ApiResponse<Tool>(null, token, success, errorRes, message);
+                        return response;
+
+                    }
+                    else
+                    {
+                        success = false;
+                        message = "Debe estar verificado para poder registrar una herramienta";
+                        var response = new ApiResponse<Tool>(null, token, success, errorRes, message);
+                        return response;
+
+                    }
+                }
+                else
+                {
+                    success = false;
+                    message = "La categoría no existe";
+                    var response = new ApiResponse<Tool>(null, token, success, errorRes, message);
+                    return response;
+                }
 
             }
             catch (Exception ex)
@@ -124,138 +148,75 @@ namespace prestaToolsApi.Data.Repository
 
         }
 
-        //        ////////////////////////////////////////////////////////////////
-        //        ///               LOGIN TOOL
-        //        ////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////
+        ///               UPDATE TOOL
+        ////////////////////////////////////////////////////////////////
 
-        //        public async Task<ApiResponse<Tool>> LoginTool(string email, string password)
-        //        {
+        public async Task<ApiResponse<Tool>> UpdateTool(Tool tool)
+        {
 
-        //            try
-        //            {
+            _context.Tools.Update(tool);
+            int result = await _context.SaveChangesAsync();
 
-        //                User user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+            if (result > 0)
+            {
+                success = true;
+                message = "Herramienta actualizada satisfactoriamente";
+            }
+            else
+            {
+                success = false;
+                message = "Herramienta no encontrada";
+            }
 
-        //                if (user != null && VerifyPassword(password, user.Password))
-        //                {
-        //                    success = true;
-        //                    message = "¡Login exitoso!";
+            tool = null;
 
-        //                }
-        //                else
-        //                {
+            var response = new ApiResponse<Tool>(tool, token, success, errorRes, message);
+            return response;
 
-        //                    success = false;
-        //                    message = "Email o password incorrecto";
-        //                    errorRes = new ErrorRes { /* establecer propiedades de ErrorRes */ };
+        }
 
-        //                }
+        ////////////////////////////////////////////////////////////////
+        ///               DELETE TOOL
+        ////////////////////////////////////////////////////////////////
 
+        public async Task<ApiResponse<string>> DeleteTool(Tool tool)
+        {
 
+            try
+            {
+                _context.Tools.Remove(tool);
+                int result = await _context.SaveChangesAsync();
 
-        //                var response = new ApiResponse<Tool>(null, token, success, errorRes, message);
-        //                return response;
+                if (result > 0)
+                {
+                    success = true;
+                    message = "Herramienta borrada satisfactoriamente";
+                }
+                else
+                {
+                    token = "n/a";
+                    success = false;
+                    message = "Herramienta no encontrada";
+                }
 
-        //            }
-        //            catch (Exception ex)
-        //            {
-        //                Tool tool = null;
-        //                success = false;
-        //                message = "Error";
-        //                var errorRes = new ErrorRes { code = ex.GetHashCode(), message = ex.Message };
+                var response = new ApiResponse<string>(null, token, success, errorRes, message);
+                return response;
+            }
 
-        //                var response = new ApiResponse<Tool>(null, token, success, errorRes, message);
-        //                return response;
-        //            }
+            catch (Exception ex)
+            {
+                token = "n/a";
+                success = false;
+                message = "Error: herramienta no encontrada";
+                var errorRes = new ErrorRes { code = ex.GetHashCode(), message = ex.Message };
+                var response = new ApiResponse<string>(null, token, success, errorRes, message);
+                return response;
 
-        //        }
+            }
 
-        //        ////////////////////////////////////////////////////////////////
-        //        ///               UPDATE TOOL
-        //        ////////////////////////////////////////////////////////////////
-
-        //        public async Task<ApiResponse<Tool>> UpdateTool(Tool tool)
-        //        {
-        //            //string hashedPassword = HashPassword(user.Password);
-
-        //            //user.Password = hashedPassword;
-
-        //            _context.Tools.Update(tool);
-        //            int result = await _context.SaveChangesAsync();
-
-        //            if (result > 0)
-        //            {
-        //                success = true;
-        //                message = "Usuario actualizado satisfactoriamente";
-        //            }
-        //            else
-        //            {
-        //                success = false;
-        //                message = "Usuario no encontrado";
-        //            }
-
-        //            //user = null;
-
-        //            var response = new ApiResponse<Tool>(null, token, success, errorRes, message);
-        //            return response;
-
-        //        }
-
-        //        ////////////////////////////////////////////////////////////////
-        //        ///               DELETE TOOL
-        //        ////////////////////////////////////////////////////////////////
-
-        //        public async Task<ApiResponse<string>> DeleteTool(Tool tool)
-        //        {
-
-        //            try
-        //            {
-        //                _context.Tools.Remove(tool);
-        //                int result = await _context.SaveChangesAsync();
-        //                //string email = user.Email;
-
-        //                if (result > 0)
-        //                {
-        //                    success = true;
-        //                    message = "Usuario borrado satisfactoriamente";
-        //                }
-        //                else
-        //                {
-        //                    token = "n/a";
-        //                    success = false;
-        //                    message = "Usuario no encontrado";
-        //                }
-
-        //                var response = new ApiResponse<string>(null, token, success, errorRes, message);
-        //                return response;
-        //            }
-
-        //            catch (Exception ex)
-        //            {
-        //                //string email = user.Email;
-        //                token = "n/a";
-        //                success = false;
-        //                message = "Error: usuario no encontrado";
-        //                var errorRes = new ErrorRes { code = ex.GetHashCode(), message = ex.Message };
-        //                var response = new ApiResponse<string>(email, token, success, errorRes, message);
-        //                return response;
-        //            }
-
-        //        }
-
-        //        //METODOS ITERNOS
-
-        //        private string HashPassword(string password)
-        //        {
-        //            return BCrypt.Net.BCrypt.HashPassword(password);
-        //        }
-
-        //        private bool VerifyPassword(string password, string hashedPassword)
-        //        {
-        //            return BCrypt.Net.BCrypt.Verify(password, hashedPassword);
-        //        }
-
-        //    }
+        }
 
     }
+
 }

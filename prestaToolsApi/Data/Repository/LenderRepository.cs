@@ -64,11 +64,11 @@ namespace prestaToolsApi.Data.Repository
         ///               GET BY LENDER ID
         ////////////////////////////////////////////////////////////////
         
-        public async Task<ApiResponse<Lender>> GetByLenderId(int identifier)
+        public async Task<ApiResponse<Lender>> GetByLenderId(string identifier)
         {
-            var lenderById = await _context.Lenders.FirstOrDefaultAsync(u => u.Id == identifier);
+            var lenderByEmail = await _context.Lenders.FirstOrDefaultAsync(u => u.Email == identifier);
 
-            if (lenderById == null)
+            if (lenderByEmail == null)
             {
                 success = false;
                 message = "Lender no encontrado";
@@ -79,7 +79,7 @@ namespace prestaToolsApi.Data.Repository
                 message = "Lender encontrado";
             }
 
-            var response = new ApiResponse<Lender>(lenderById, token, success, errorRes, message);
+            var response = new ApiResponse<Lender>(lenderByEmail, token, success, errorRes, message);
             return response;
         }
 

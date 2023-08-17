@@ -30,11 +30,11 @@ namespace prestaToolsApi.Controllers
         }
 
         [HttpGet]
-        [Route("get/lenders/{id}")]
-        public async Task<IActionResult> getLenderId(int id)
+        [Route("get/{email}")]
+        public async Task<IActionResult> getLenderId(string email)
         {
 
-            return Ok(await _lenderRepository.GetByLenderId(id));
+            return Ok(await _lenderRepository.GetByLenderId(email));
 
         }
 

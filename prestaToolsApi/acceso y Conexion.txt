@@ -5,6 +5,8 @@ desarrollo2023
 
 
 Scaffold-DbContext "Server=(local);Database=prestatools;Integrated Security=true;Encrypt=False;TrustServerCertificate=True" Microsoft.EntityFrameworkCore.SqlServer -OutputDir ModelsEntity
+Scaffold-DbContext "Server=prestatool.mssql.somee.com; DataBase=prestatool; user id=prestatools_SQLLogin_1;pwd=gcj55rwxqs; Encrypt=False" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
+
 
 Some Accesos
 Correo: marketglobaldeveloper@gmail.com

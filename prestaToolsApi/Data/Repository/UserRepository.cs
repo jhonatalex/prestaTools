@@ -1,14 +1,21 @@
 ﻿using Azure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.VisualBasic;
+using Org.BouncyCastle.Bcpg;
 using prestaToolsApi.ModelsEntity;
 using System.Drawing.Text;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace prestaToolsApi.Data.Repository
 {
     public class UserRepository : IUserRepository
     {
         private readonly PrestatoolsContext _context;
+        private readonly IConfiguration _config;
 
         //Declaración de variables para uso del ApiResponse
         string token = "tu_token";
@@ -16,9 +23,13 @@ namespace prestaToolsApi.Data.Repository
         ErrorRes errorRes = new ErrorRes();
         string message;
 
-        public UserRepository(PrestatoolsContext context)
+        //Variables para el token
+        private string secretKey;
+
+        public UserRepository(PrestatoolsContext context, IConfiguration config)
         {
             _context = context;
+            _config = config;
         }
 
         ////////////////////////////////////////////////////////////////
@@ -65,9 +76,9 @@ namespace prestaToolsApi.Data.Repository
         ///               GET BY USER ID
         ////////////////////////////////////////////////////////////////
 
-        public async Task<ApiResponse<User>> GetByUserId(int identifier)
+        public async Task<ApiResponse<User>> GetByUserId(string identifier)
         {
-            var userById = await _context.Users.FirstOrDefaultAsync(u => u.Id == identifier);
+            var userById = await _context.Users.FirstOrDefaultAsync(u => u.Email == identifier);
             
             if (userById == null)
             {
@@ -132,9 +143,10 @@ namespace prestaToolsApi.Data.Repository
 
         public async Task<ApiResponse<User>> LoginUser(string email, string password)
         {
-
+            
             try
             {
+                
                 
                 User user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
 
@@ -143,15 +155,32 @@ namespace prestaToolsApi.Data.Repository
                     success = true;
                     message = "¡Login exitoso!";
 
-                }else{
+                    secretKey = _config.GetSection("JWT").GetSection("Key").ToString();
+
+                    var keyByte = Encoding.ASCII.GetBytes(secretKey);
+                    var claims = new ClaimsIdentity();
+                    claims.AddClaim(new Claim(ClaimTypes.NameIdentifier,email));
+                    var tokenDescriptor = new SecurityTokenDescriptor
+                    {
+                        Subject = claims,
+                        Expires = DateTime.UtcNow.AddDays(90),
+                        SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(keyByte), SecurityAlgorithms.HmacSha256Signature)
+                    };
+
+                    var tokenHandler = new JwtSecurityTokenHandler();
+                    var tokenConfig = tokenHandler.CreateToken(tokenDescriptor);
+                    string tokenCreated = tokenHandler.WriteToken(tokenConfig);
+                    token = tokenCreated;
+
+                }
+                else
+                {
 
                     success = false;
                     message = "Email o password incorrecto";
                     errorRes = new ErrorRes { /* establecer propiedades de ErrorRes */ };
 
                 }
-
-                //user = null;
 
                 var response = new ApiResponse<User>(user, token, success, errorRes, message);
                 return response;
