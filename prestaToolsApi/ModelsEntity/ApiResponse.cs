@@ -2,7 +2,7 @@
 {
     public class ApiResponse<T>
     {
-
+        public ApiResponse() { }
         public ApiResponse(T _data, string _token, bool _success, ErrorRes _error, string _message) 
         {
             data = _data;

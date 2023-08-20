@@ -8,129 +8,137 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <EncryptedPassword>
     </EncryptedPassword>
     <_PublishTargetUrl>ftp://155.254.244.37/www.prestatools.somee.com</_PublishTargetUrl>
+<<<<<<< HEAD
+    <History>True|2023-07-26T22:50:34.6197851Z;True|2023-07-25T23:23:18.3519804-04:00;True|2023-07-25T22:59:46.7260790-04:00;True|2023-07-24T23:16:40.9297015-04:00;True|2023-07-24T16:02:49.2797164-04:00;True|2023-07-20T20:34:34.8604536-04:00;True|2023-07-20T20:04:50.5867935-04:00;True|2023-07-18T22:28:26.1731864-04:00;True|2023-07-13T20:56:16.1898231-04:00;True|2023-07-13T19:11:48.5084567-04:00;True|2023-07-03T22:45:28.5457050-04:00;True|2023-07-03T22:29:47.5345204-04:00;True|2023-06-29T23:42:51.7293015-04:00;True|2023-06-26T15:20:55.4302936-04:00;True|2023-06-23T18:36:20.6473936-04:00;True|2023-06-23T18:21:13.4739872-04:00;True|2023-06-13T23:43:11.2000759-04:00;True|2023-06-13T23:38:56.5923861-04:00;</History>
+=======
     <History>True|2023-08-12T00:56:53.5048498Z;True|2023-08-11T19:36:32.7471375-05:00;True|2023-08-11T19:25:54.1505020-05:00;True|2023-08-10T23:38:32.2121678-05:00;True|2023-08-10T22:01:13.5245935-05:00;True|2023-08-09T23:00:32.8603370-05:00;True|2023-08-02T15:46:28.3064549-05:00;True|2023-07-29T14:38:25.6890476-05:00;True|2023-07-25T22:54:33.8765032-05:00;True|2023-07-25T22:23:18.3519804-05:00;True|2023-07-25T21:59:46.7260790-05:00;True|2023-07-24T22:16:40.9297015-05:00;True|2023-07-24T15:02:49.2797164-05:00;True|2023-07-20T19:34:34.8604536-05:00;True|2023-07-20T19:04:50.5867935-05:00;True|2023-07-18T21:28:26.1731864-05:00;True|2023-07-13T19:56:16.1898231-05:00;True|2023-07-13T18:11:48.5084567-05:00;True|2023-07-03T21:45:28.5457050-05:00;True|2023-07-03T21:29:47.5345204-05:00;True|2023-06-29T22:42:51.7293015-05:00;True|2023-06-26T14:20:55.4302936-05:00;True|2023-06-23T17:36:20.6473936-05:00;True|2023-06-23T17:21:13.4739872-05:00;True|2023-06-13T22:43:11.2000759-05:00;True|2023-06-13T22:38:56.5923861-05:00;</History>
+>>>>>>> 1aba458987f86e1a3d67f705b90848d204975b24
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
     <File Include="appsettings.Development.json">
-      <publishTime>05/19/2023 20:50:57</publishTime>
+      <publishTime>05/12/2023 21:12:34</publishTime>
     </File>
     <File Include="appsettings.json">
+<<<<<<< HEAD
+      <publishTime>07/26/2023 18:43:21</publishTime>
+=======
       <publishTime>08/10/2023 21:03:08</publishTime>
+>>>>>>> 1aba458987f86e1a3d67f705b90848d204975b24
     </File>
     <File Include="Azure.Core.dll">
-      <publishTime>04/04/2022 16:38:56</publishTime>
+      <publishTime>04/04/2022 17:38:56</publishTime>
     </File>
     <File Include="Azure.Identity.dll">
-      <publishTime>04/05/2022 15:26:00</publishTime>
+      <publishTime>04/05/2022 16:26:00</publishTime>
     </File>
     <File Include="BCrypt.Net-Next.dll">
-      <publishTime>03/03/2022 11:10:20</publishTime>
+      <publishTime>03/03/2022 13:10:20</publishTime>
     </File>
     <File Include="BCrypt.Net.dll">
       <publishTime>05/04/2011 15:49:00</publishTime>
     </File>
     <File Include="BouncyCastle.Crypto.dll">
-      <publishTime>10/19/2021 06:53:34</publishTime>
+      <publishTime>10/19/2021 08:53:34</publishTime>
     </File>
     <File Include="Dapper.dll">
-      <publishTime>11/03/2021 09:07:40</publishTime>
+      <publishTime>11/03/2021 11:07:40</publishTime>
     </File>
     <File Include="Google.Protobuf.dll">
-      <publishTime>10/26/2022 08:46:18</publishTime>
+      <publishTime>10/26/2022 10:46:18</publishTime>
     </File>
     <File Include="K4os.Compression.LZ4.dll">
-      <publishTime>01/06/2023 12:16:12</publishTime>
+      <publishTime>01/06/2023 14:16:12</publishTime>
     </File>
     <File Include="K4os.Compression.LZ4.Streams.dll">
-      <publishTime>01/06/2023 12:16:12</publishTime>
+      <publishTime>01/06/2023 14:16:12</publishTime>
     </File>
     <File Include="K4os.Hash.xxHash.dll">
-      <publishTime>11/08/2022 13:08:14</publishTime>
+      <publishTime>11/08/2022 15:08:14</publishTime>
     </File>
     <File Include="Microsoft.AspNetCore.Authentication.JwtBearer.dll">
       <publishTime>06/21/2023 14:36:00</publishTime>
     </File>
     <File Include="Microsoft.Bcl.AsyncInterfaces.dll">
-      <publishTime>04/14/2020 17:39:12</publishTime>
+      <publishTime>04/14/2020 18:39:12</publishTime>
     </File>
     <File Include="Microsoft.Data.SqlClient.dll">
-      <publishTime>10/07/2022 18:35:40</publishTime>
+      <publishTime>10/07/2022 20:35:40</publishTime>
     </File>
     <File Include="Microsoft.EntityFrameworkCore.Abstractions.dll">
-      <publishTime>05/04/2023 13:53:22</publishTime>
+      <publishTime>05/04/2023 14:53:22</publishTime>
     </File>
     <File Include="Microsoft.EntityFrameworkCore.dll">
-      <publishTime>05/04/2023 13:53:40</publishTime>
+      <publishTime>05/04/2023 14:53:40</publishTime>
     </File>
     <File Include="Microsoft.EntityFrameworkCore.Relational.dll">
-      <publishTime>05/04/2023 13:53:48</publishTime>
+      <publishTime>05/04/2023 14:53:48</publishTime>
     </File>
     <File Include="Microsoft.EntityFrameworkCore.SqlServer.dll">
-      <publishTime>02/15/2023 12:00:32</publishTime>
+      <publishTime>02/15/2023 14:00:32</publishTime>
     </File>
     <File Include="Microsoft.Extensions.Caching.Abstractions.dll">
-      <publishTime>10/18/2022 11:31:34</publishTime>
+      <publishTime>10/18/2022 13:31:34</publishTime>
     </File>
     <File Include="Microsoft.Extensions.Caching.Memory.dll">
-      <publishTime>10/18/2022 11:31:44</publishTime>
+      <publishTime>10/18/2022 13:31:44</publishTime>
     </File>
     <File Include="Microsoft.Extensions.Configuration.Abstractions.dll">
-      <publishTime>10/18/2022 11:19:14</publishTime>
+      <publishTime>10/18/2022 13:19:14</publishTime>
     </File>
     <File Include="Microsoft.Extensions.DependencyInjection.Abstractions.dll">
-      <publishTime>10/18/2022 11:19:10</publishTime>
+      <publishTime>10/18/2022 13:19:10</publishTime>
     </File>
     <File Include="Microsoft.Extensions.DependencyInjection.dll">
-      <publishTime>10/18/2022 11:19:34</publishTime>
+      <publishTime>10/18/2022 13:19:34</publishTime>
     </File>
     <File Include="Microsoft.Extensions.Logging.Abstractions.dll">
-      <publishTime>10/18/2022 11:19:52</publishTime>
+      <publishTime>10/18/2022 13:19:52</publishTime>
     </File>
     <File Include="Microsoft.Extensions.Logging.dll">
-      <publishTime>10/18/2022 11:20:18</publishTime>
+      <publishTime>10/18/2022 13:20:18</publishTime>
     </File>
     <File Include="Microsoft.Extensions.Options.dll">
-      <publishTime>10/18/2022 11:19:34</publishTime>
+      <publishTime>10/18/2022 13:19:34</publishTime>
     </File>
     <File Include="Microsoft.Extensions.Primitives.dll">
-      <publishTime>10/18/2022 11:19:10</publishTime>
+      <publishTime>10/18/2022 13:19:10</publishTime>
     </File>
     <File Include="Microsoft.Identity.Client.dll">
-      <publishTime>06/22/2022 14:59:58</publishTime>
+      <publishTime>06/22/2022 15:59:58</publishTime>
     </File>
     <File Include="Microsoft.Identity.Client.Extensions.Msal.dll">
-      <publishTime>11/19/2021 17:02:00</publishTime>
+      <publishTime>11/19/2021 19:02:00</publishTime>
     </File>
     <File Include="Microsoft.IdentityModel.Abstractions.dll">
-      <publishTime>07/01/2022 13:47:38</publishTime>
+      <publishTime>07/01/2022 14:47:38</publishTime>
     </File>
     <File Include="Microsoft.IdentityModel.JsonWebTokens.dll">
-      <publishTime>07/01/2022 13:25:52</publishTime>
+      <publishTime>07/01/2022 14:25:52</publishTime>
     </File>
     <File Include="Microsoft.IdentityModel.Logging.dll">
-      <publishTime>07/01/2022 13:27:42</publishTime>
+      <publishTime>07/01/2022 14:27:42</publishTime>
     </File>
     <File Include="Microsoft.IdentityModel.Protocols.dll">
-      <publishTime>07/01/2022 13:29:14</publishTime>
+      <publishTime>07/01/2022 14:29:14</publishTime>
     </File>
     <File Include="Microsoft.IdentityModel.Protocols.OpenIdConnect.dll">
-      <publishTime>07/01/2022 13:39:00</publishTime>
+      <publishTime>07/01/2022 14:39:00</publishTime>
     </File>
     <File Include="Microsoft.IdentityModel.Tokens.dll">
-      <publishTime>07/01/2022 13:33:46</publishTime>
+      <publishTime>07/01/2022 14:33:46</publishTime>
     </File>
     <File Include="Microsoft.OpenApi.dll">
-      <publishTime>08/29/2020 15:14:12</publishTime>
+      <publishTime>08/29/2020 16:14:12</publishTime>
     </File>
     <File Include="Microsoft.SqlServer.Server.dll">
-      <publishTime>01/27/2022 12:19:08</publishTime>
+      <publishTime>01/27/2022 14:19:08</publishTime>
     </File>
     <File Include="Microsoft.Win32.SystemEvents.dll">
-      <publishTime>10/19/2020 13:40:26</publishTime>
+      <publishTime>10/19/2020 15:40:26</publishTime>
     </File>
     <File Include="MySql.Data.dll">
-      <publishTime>04/12/2023 19:31:20</publishTime>
+      <publishTime>04/12/2023 20:31:20</publishTime>
     </File>
     <File Include="MySql.EntityFrameworkCore.dll">
       <publishTime>04/12/2023 20:31:20</publishTime>
@@ -142,6 +150,21 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="prestaToolsApi.deps.json">
+<<<<<<< HEAD
+      <publishTime>07/26/2023 18:46:29</publishTime>
+    </File>
+    <File Include="prestaToolsApi.dll">
+      <publishTime>07/26/2023 18:45:48</publishTime>
+    </File>
+    <File Include="prestaToolsApi.exe">
+      <publishTime>07/26/2023 18:45:48</publishTime>
+    </File>
+    <File Include="prestaToolsApi.pdb">
+      <publishTime>07/26/2023 18:45:48</publishTime>
+    </File>
+    <File Include="prestaToolsApi.runtimeconfig.json">
+      <publishTime>07/26/2023 18:45:48</publishTime>
+=======
       <publishTime>08/11/2023 19:54:12</publishTime>
     </File>
     <File Include="prestaToolsApi.dll">
@@ -155,105 +178,110 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     </File>
     <File Include="prestaToolsApi.runtimeconfig.json">
       <publishTime>08/10/2023 21:58:03</publishTime>
+>>>>>>> 1aba458987f86e1a3d67f705b90848d204975b24
     </File>
     <File Include="runtimes/browser/lib/net6.0/System.Text.Encodings.Web.dll">
-      <publishTime>10/18/2022 11:40:14</publishTime>
+      <publishTime>10/18/2022 13:40:14</publishTime>
     </File>
     <File Include="runtimes/unix/lib/netcoreapp3.0/System.Drawing.Common.dll">
-      <publishTime>10/19/2020 13:49:58</publishTime>
+      <publishTime>10/19/2020 15:49:58</publishTime>
     </File>
     <File Include="runtimes/unix/lib/netcoreapp3.1/Microsoft.Data.SqlClient.dll">
-      <publishTime>10/07/2022 18:35:40</publishTime>
+      <publishTime>10/07/2022 20:35:40</publishTime>
     </File>
     <File Include="runtimes/win-arm/native/Microsoft.Data.SqlClient.SNI.dll">
-      <publishTime>10/03/2022 17:45:42</publishTime>
+      <publishTime>10/03/2022 19:45:42</publishTime>
     </File>
     <File Include="runtimes/win-arm64/native/Microsoft.Data.SqlClient.SNI.dll">
-      <publishTime>10/03/2022 17:45:32</publishTime>
+      <publishTime>10/03/2022 19:45:32</publishTime>
     </File>
     <File Include="runtimes/win-x64/native/comerr64.dll">
-      <publishTime>04/12/2023 19:27:08</publishTime>
+      <publishTime>04/12/2023 20:27:08</publishTime>
     </File>
     <File Include="runtimes/win-x64/native/gssapi64.dll">
-      <publishTime>04/12/2023 19:27:08</publishTime>
+      <publishTime>04/12/2023 20:27:08</publishTime>
     </File>
     <File Include="runtimes/win-x64/native/k5sprt64.dll">
-      <publishTime>04/12/2023 19:27:08</publishTime>
+      <publishTime>04/12/2023 20:27:08</publishTime>
     </File>
     <File Include="runtimes/win-x64/native/krb5_64.dll">
-      <publishTime>04/12/2023 19:27:08</publishTime>
+      <publishTime>04/12/2023 20:27:08</publishTime>
     </File>
     <File Include="runtimes/win-x64/native/krbcc64.dll">
-      <publishTime>04/12/2023 19:27:08</publishTime>
+      <publishTime>04/12/2023 20:27:08</publishTime>
     </File>
     <File Include="runtimes/win-x64/native/Microsoft.Data.SqlClient.SNI.dll">
-      <publishTime>10/03/2022 17:45:32</publishTime>
+      <publishTime>10/03/2022 19:45:32</publishTime>
     </File>
     <File Include="runtimes/win-x86/native/Microsoft.Data.SqlClient.SNI.dll">
-      <publishTime>10/03/2022 17:45:32</publishTime>
+      <publishTime>10/03/2022 19:45:32</publishTime>
     </File>
     <File Include="runtimes/win/lib/netcoreapp3.0/Microsoft.Win32.SystemEvents.dll">
-      <publishTime>10/19/2020 13:52:12</publishTime>
+      <publishTime>10/19/2020 15:52:12</publishTime>
     </File>
     <File Include="runtimes/win/lib/netcoreapp3.0/System.Drawing.Common.dll">
-      <publishTime>10/19/2020 13:53:02</publishTime>
+      <publishTime>10/19/2020 15:53:02</publishTime>
     </File>
     <File Include="runtimes/win/lib/netcoreapp3.0/System.Windows.Extensions.dll">
-      <publishTime>10/19/2020 13:53:36</publishTime>
+      <publishTime>10/19/2020 15:53:36</publishTime>
     </File>
     <File Include="runtimes/win/lib/netcoreapp3.1/Microsoft.Data.SqlClient.dll">
-      <publishTime>10/07/2022 18:35:52</publishTime>
+      <publishTime>10/07/2022 20:35:52</publishTime>
     </File>
     <File Include="runtimes/win/lib/netstandard2.0/System.Runtime.Caching.dll">
-      <publishTime>10/19/2020 13:52:44</publishTime>
+      <publishTime>10/19/2020 15:52:44</publishTime>
     </File>
     <File Include="runtimes/win/lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll">
-      <publishTime>10/19/2020 13:49:30</publishTime>
+      <publishTime>10/19/2020 15:49:30</publishTime>
     </File>
     <File Include="Swashbuckle.AspNetCore.Swagger.dll">
-      <publishTime>01/11/2023 01:48:20</publishTime>
+      <publishTime>01/11/2023 03:48:20</publishTime>
     </File>
     <File Include="Swashbuckle.AspNetCore.SwaggerGen.dll">
-      <publishTime>01/11/2023 01:48:24</publishTime>
+      <publishTime>01/11/2023 03:48:24</publishTime>
     </File>
     <File Include="Swashbuckle.AspNetCore.SwaggerUI.dll">
-      <publishTime>01/11/2023 01:49:02</publishTime>
+      <publishTime>01/11/2023 03:49:02</publishTime>
     </File>
     <File Include="System.Configuration.ConfigurationManager.dll">
-      <publishTime>10/19/2020 13:52:30</publishTime>
+      <publishTime>10/19/2020 15:52:30</publishTime>
     </File>
     <File Include="System.Drawing.Common.dll">
-      <publishTime>10/19/2020 13:50:02</publishTime>
+      <publishTime>10/19/2020 15:50:02</publishTime>
     </File>
     <File Include="System.IdentityModel.Tokens.Jwt.dll">
-      <publishTime>07/01/2022 13:23:04</publishTime>
+      <publishTime>07/01/2022 14:23:04</publishTime>
     </File>
     <File Include="System.IO.Pipelines.dll">
-      <publishTime>04/13/2022 12:49:36</publishTime>
+      <publishTime>04/13/2022 13:49:36</publishTime>
     </File>
     <File Include="System.Memory.Data.dll">
-      <publishTime>04/08/2021 11:45:54</publishTime>
+      <publishTime>04/08/2021 12:45:54</publishTime>
     </File>
     <File Include="System.Runtime.Caching.dll">
-      <publishTime>10/19/2020 13:52:34</publishTime>
+      <publishTime>10/19/2020 15:52:34</publishTime>
     </File>
     <File Include="System.Security.Cryptography.ProtectedData.dll">
-      <publishTime>10/19/2020 13:52:26</publishTime>
+      <publishTime>10/19/2020 15:52:26</publishTime>
     </File>
     <File Include="System.Security.Permissions.dll">
-      <publishTime>10/19/2020 13:52:36</publishTime>
+      <publishTime>10/19/2020 15:52:36</publishTime>
     </File>
     <File Include="System.Text.Encodings.Web.dll">
-      <publishTime>10/18/2022 11:19:30</publishTime>
+      <publishTime>10/18/2022 13:19:30</publishTime>
     </File>
     <File Include="System.Text.Json.dll">
-      <publishTime>11/18/2022 11:32:58</publishTime>
+      <publishTime>11/18/2022 13:32:58</publishTime>
     </File>
     <File Include="System.Windows.Extensions.dll">
-      <publishTime>10/19/2020 13:53:38</publishTime>
+      <publishTime>10/19/2020 15:53:38</publishTime>
     </File>
     <File Include="web.config">
+<<<<<<< HEAD
+      <publishTime>07/26/2023 18:46:30</publishTime>
+=======
       <publishTime>08/11/2023 19:54:12</publishTime>
+>>>>>>> 1aba458987f86e1a3d67f705b90848d204975b24
     </File>
   </ItemGroup>
   <ItemGroup>
