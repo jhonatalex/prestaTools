@@ -60,43 +60,41 @@ public partial class PrestatoolsContext : DbContext
         modelBuilder.Entity<DetalleVentum>(entity =>
         {
             entity.HasKey(e => e.IdDetalleVenta).HasName("PK_DETALLE_VENTA");
-
             entity.ToTable("Detalle_venta");
-
             entity.Property(e => e.IdDetalleVenta)
                 //.ValueGeneratedNever()
-                .HasColumnName("id_detalle_venta");
+                .HasColumnName("id_detalle_venta");//1
             entity.Property(e => e.Amount)
                 .HasColumnType("decimal(18, 0)")
-                .HasColumnName("amount");
+                .HasColumnName("amount");//2
             entity.Property(e => e.Date)
                 .HasMaxLength(255)
                 .IsUnicode(false)
-                .HasColumnName("date");
+                .HasColumnName("date");//3
             entity.Property(e => e.Descuento)
                 .HasColumnType("decimal(18, 0)")
-                .HasColumnName("descuento");
+                .HasColumnName("descuento");//4
             entity.Property(e => e.StartDate)
                 .HasMaxLength(255)
                 .IsUnicode(false)
-                .HasColumnName("start_date");
+                .HasColumnName("start_date");//5
             entity.Property(e => e.EndDate)
                 .HasMaxLength(255)
                 .IsUnicode(false)
-                .HasColumnName("end_date");
-            entity.Property(e => e.RentalDays).HasColumnName("rental_days");
-            entity.Property(e => e.IdTool).HasColumnName("id_tool");
-            entity.Property(e => e.IdVenta).HasColumnName("id_venta");
+                .HasColumnName("end_date");//6
+            entity.Property(e => e.RentalDays).HasColumnName("rental_days");//7
+            entity.Property(e => e.IdTool).HasColumnName("id_tool");//8
+            entity.Property(e => e.IdVenta).HasColumnName("id_venta");//9
             entity.Property(e => e.Price)
                 .HasColumnType("decimal(18, 0)")
-                .HasColumnName("price");
-            entity.Property(e => e.Total).HasColumnName("total");
-
+                .HasColumnName("price");//10
+            entity.Property(e => e.Total)
+                .HasColumnType("decimal(18, 0)")
+                .HasColumnName("total");//11
             entity.HasOne(d => d.IdToolNavigation).WithMany(p => p.DetalleVenta)
                 .HasForeignKey(d => d.IdTool)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("Detalle_venta_fk1");
-
             entity.HasOne(d => d.IdVentaNavigation).WithMany(p => p.DetalleVenta)
                 .HasForeignKey(d => d.IdVenta)
                 .OnDelete(DeleteBehavior.ClientSetNull)

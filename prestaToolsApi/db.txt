@@ -73,6 +73,7 @@ CREATE TABLE [Tool] (
 	reference varchar(255) NOT NULL,
 	newitem bit,
 	model varchar(255),
+	brand varchar(255),
 	description varchar(255),
 	widgets bit,
 	value_commercial decimal NOT NULL,
@@ -103,11 +104,14 @@ CREATE TABLE [Detalle_venta] (
 	id_detalle_venta int IDENTITY(1,1) NOT NULL,
 	id_venta int NOT NULL,
 	id_tool int NOT NULL,
-	amount decimal NOT NULL,
+	amount decimal,
 	date varchar(255) NOT NULL,
 	price decimal NOT NULL,
 	descuento decimal NOT NULL,
-	total int NOT NULL,
+	total decimal NOT NULL,
+	start_date varchar(255) NOT NULL,
+	end_date varchar(255) NOT NULL,
+	rental_days int NOT NULL,
   CONSTRAINT [PK_DETALLE_VENTA] PRIMARY KEY CLUSTERED
   (
   [id_detalle_venta] ASC

@@ -22,6 +22,8 @@ namespace prestaToolsApi.Data.Repository
         public async Task<ApiResponse<ResponseTransaction>> iniciar(PayData payData)
         {
 
+            // TO DO: insertar venta y detalle de venta en BDD. Antes de llamar a transbank
+
             try
             {
                 success = true;
