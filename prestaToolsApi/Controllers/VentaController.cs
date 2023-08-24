@@ -28,9 +28,9 @@ namespace prestaToolsApi.Controllers
 
         [HttpPost]
         [Route("insertar-venta")]
-        public async Task<IActionResult> insertar([FromBody] Ventum venta)
+        public async Task<IActionResult> insertar([FromBody] DetalleVentum detalleVenta)
         {
-            var response = await _ventaRepository.insertar(venta);
+            var response = await _ventaRepository.insertar(detalleVenta);
             return Ok(response);
         }
 

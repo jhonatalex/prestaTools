@@ -12,6 +12,10 @@ namespace prestaToolsApi.Data.Repository
     public class VentaRepository : IVentaRepository
     {
         private readonly PrestatoolsContext _context;
+        public VentaRepository(PrestatoolsContext context)
+        {
+            _context = context;
+        }
 
         //Declaración de variables para uso del ApiResponse
         string token = "tu_token";
@@ -45,7 +49,14 @@ namespace prestaToolsApi.Data.Repository
 
                 if (responseTx != null)
                 {
+                    _context.Venta.Add(payData.ventum);
+                    var resultVentum = await _context.SaveChangesAsync();
 
+                    int nuevoID = (int)payData.ventum.IdVenta;
+                    payData.detalleVentum.IdVenta = nuevoID;
+
+                    _context.DetalleVenta.Add(payData.detalleVentum);
+                    var resultDetalle = await _context.SaveChangesAsync();
                     var response = new ApiResponse<ResponseTransaction>(responseTransaction, token, success, errorRes, message);
                     return response;
                 }
@@ -73,16 +84,33 @@ namespace prestaToolsApi.Data.Repository
 
         }
 
-        public async Task<ApiResponse<Ventum>> insertar(Ventum venta)
+        public async Task<ApiResponse<DetalleVentum>> insertar(DetalleVentum detalleVenta)
         {
             try
             {
 
-                _context.Venta.Add(venta);
-                success = true;
-                message = "Venta insertada correctamente";
-                var response = new ApiResponse<Ventum>(null, token, success, errorRes, message);
+                //_context.Venta.Add(venta);
+                //var result = await _context.SaveChangesAsync();
+                _context.DetalleVenta.Add(detalleVenta);
+                var resultdetalle = await _context.SaveChangesAsync();
+
+                if (resultdetalle == 1)
+                {
+                    success = true;
+                    message = "Datos insertados correctamente";
+                    
+                }
+                else
+                {
+                    success = false;
+                    errorRes = new ErrorRes { code = resultdetalle, message = "Error al insertar al contexto" }; 
+                    message = "Error al insertar";
+                    
+                }
+
+                var response = new ApiResponse<DetalleVentum>(null, token, success, errorRes, message);
                 return response;
+
 
             }
             catch (Exception ex)
@@ -91,9 +119,9 @@ namespace prestaToolsApi.Data.Repository
                 token = "n/a";
                 success = false;
                 errorRes = new ErrorRes { code = ex.GetHashCode(), message = ex.Message };
-                message = "Error al insertar venta";
+                message = "Error al insertar venta y/o detalle de venta";
 
-                var response = new ApiResponse<Ventum>(null, token, success, errorRes, message);
+                var response = new ApiResponse<DetalleVentum>(null, token, success, errorRes, message);
                 return response;
 
             }
