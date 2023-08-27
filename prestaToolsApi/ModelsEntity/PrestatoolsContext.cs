@@ -207,6 +207,10 @@ public partial class PrestatoolsContext : DbContext
                 .HasMaxLength(255)
                 .IsUnicode(false)
                 .HasColumnName("brand");
+            entity.Property(e => e.State)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("state");
             entity.Property(e => e.TermsUse)
                 .HasMaxLength(255)
                 .IsUnicode(false)
