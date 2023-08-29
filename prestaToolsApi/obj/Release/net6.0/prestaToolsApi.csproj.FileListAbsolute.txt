@@ -204,3 +204,5 @@ C:\Git\prestaTools\prestaToolsApi\bin\Release\net6.0\Microsoft.AspNetCore.Authen
 C:\proyects_net\prestaToolsApi\prestaToolsApi\bin\Release\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\proyects_net\prestaToolsApi\prestaToolsApi\bin\Release\net6.0\Newtonsoft.Json.dll
 C:\proyects_net\prestaToolsApi\prestaToolsApi\bin\Release\net6.0\Transbank.dll
+C:\Git\prestaTools\prestaToolsApi\bin\Release\net6.0\Newtonsoft.Json.dll
+C:\Git\prestaTools\prestaToolsApi\bin\Release\net6.0\Transbank.dll

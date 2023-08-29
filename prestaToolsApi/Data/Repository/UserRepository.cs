@@ -111,13 +111,11 @@ namespace prestaToolsApi.Data.Repository
 
                 _context.Users.Add(user);
                 int result = await _context.SaveChangesAsync();
-
+                    
                 success = true;
                 message = "Usuario creado satisfactoriamente";
 
-                user = null;
-
-                var response = new ApiResponse<User>(user, token, success, errorRes, message);
+                var response = new ApiResponse<User>(null, token, success, errorRes, message);
                 return response;
 
             }   
@@ -129,9 +127,7 @@ namespace prestaToolsApi.Data.Repository
                 errorRes = new ErrorRes { code = ex.GetHashCode(), message = ex.Message };
                 message = "Error al Insertar";
 
-                user = null;
-
-                var response = new ApiResponse<User>(user, token, success, errorRes, message);
+                var response = new ApiResponse<User>(null, token, success, errorRes, message);
                 return response; 
             }
 
