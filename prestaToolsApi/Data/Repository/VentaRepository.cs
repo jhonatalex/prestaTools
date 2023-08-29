@@ -128,24 +128,25 @@ namespace prestaToolsApi.Data.Repository
             
         }
 
-        public async Task<ApiResponse<ResponseCommit>> confirmar(PayData payData)
+        public async Task<ApiResponse<ResponseCommit>> confirmar(string tokenPasarela)
         {
 
             try
             {
                 
                 var tx = new Transaction(new Options(IntegrationCommerceCodes.WEBPAY_PLUS, IntegrationApiKeys.WEBPAY, WebpayIntegrationType.Test));
-                var responseCx = tx.Commit(token);
+                var responseCx = tx.Commit(tokenPasarela);
 
                 ResponseCommit responseCommit = new ResponseCommit();
                 responseCommit.ResponseCode = (int)responseCx.ResponseCode;
                 responseCommit.Status = responseCx.Status;
 
-                if (responseCommit.ResponseCode == 0 || responseCommit.Status == "AUTHORIZED")
+                if (responseCommit.ResponseCode == 0 && responseCommit.Status == "AUTHORIZED")
                 {
 
                     success = true;
                     message = "Transacción confirmada";
+                    //Actualizar tabla: marcar venta como paga
                     var response = new ApiResponse<ResponseCommit>(responseCommit, token, success, errorRes, message);
                     return response;
                 }

@@ -16,9 +16,18 @@ public partial class DetalleVentum
     public decimal Total { get; set; }
     public string StartDate { get; set; }
     public string EndDate { get; set; }
+
+    //Datos de ResponseCommit
+    public string BuyOrder { set; get; }
+    public string SessionId { set; get; }
+    public string PaymentTypeCode { set; get; }
+    public decimal InstallmentsAmount { set; get; }
+    public decimal InstallmentsNumber { set; get; }
+    public string Token { set; get; }
     public int RentalDays { get; set; }
     [JsonIgnore]
     public virtual Tool? IdToolNavigation { get; set; } = null!;
     [JsonIgnore]
     public virtual Ventum? IdVentaNavigation { get; set; } = null!;
+
 }

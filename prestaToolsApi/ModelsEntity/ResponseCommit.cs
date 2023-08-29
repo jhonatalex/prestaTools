@@ -21,9 +21,9 @@ namespace prestaToolsApi.ModelsEntity
         public decimal Amount { set; get; }
         public string Status { set; get; }
         //Estado de la transacción(INITIALIZED, AUTHORIZED, REVERSED, FAILED, NULLIFIED, PARTIALLY_NULLIFIED, CAPTURED).
-        public string BuyOrder { set; get; }
+        public string BuyOrder { set; get; } //
         //Orden de compra de la tienda indicado en Transaction.create(). Largo máximo: 26
-        public string SessionId { set; get; }
+        public string SessionId { set; get; }//
         //Identificador de sesión, el mismo enviado originalmente por el comercio en Transaction.create(). Largo máximo: 61.
         public string CardDetail { set; get; }
         //Objeto que representa los datos de la tarjeta de crédito del tarjeta habiente.
@@ -35,7 +35,7 @@ namespace prestaToolsApi.ModelsEntity
         public string TransactionDate { set; get; }
         //Fecha y hora de la autorización. Largo: 24, formato: ISO 8601 (Ej: yyyy-mm-ddTHH:mm:ss.xxxZ)
         public string AuthorizationCode { set; get; }
-        public string PaymentTypeCode { set; get; }
+        public string PaymentTypeCode { set; get; }//
         //Tipo de pago de la transacción.
         //VD = Venta Débito.
         //VN = Venta Normal.
@@ -49,7 +49,7 @@ namespace prestaToolsApi.ModelsEntity
         //0 = Transacción aprobada
         public decimal InstallmentsAmount { set; get; }
         //Monto de las cuotas. Largo máximo: 17
-        public decimal InstallmentsNumber { set; get; }
+        public int InstallmentsNumber { set; get; }
         //Cantidad de cuotas. Largo máximo: 2
         public decimal Balance { set; get; }
         //Monto restante para un detalle anulado. Largo máximo: 17

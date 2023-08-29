@@ -36,9 +36,9 @@ namespace prestaToolsApi.Controllers
 
         [HttpPost]
         [Route("confirmar-transaccion")]
-        public async Task<IActionResult> confirmar([FromBody] PayData payData)
+        public async Task<IActionResult> confirmar(string tokenPasarela)
         {
-            var response = await _ventaRepository.confirmar(payData);
+            var response = await _ventaRepository.confirmar(tokenPasarela);
             return Ok(response);
         }
     }

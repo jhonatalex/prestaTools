@@ -82,15 +82,35 @@ public partial class PrestatoolsContext : DbContext
                 .HasMaxLength(255)
                 .IsUnicode(false)
                 .HasColumnName("end_date");//6
-            entity.Property(e => e.RentalDays).HasColumnName("rental_days");//7
-            entity.Property(e => e.IdTool).HasColumnName("id_tool");//8
-            entity.Property(e => e.IdVenta).HasColumnName("id_venta");//9
+            entity.Property(e => e.BuyOrder)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("buy_order");
+            entity.Property(e => e.SessionId)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("session_id");
+            entity.Property(e => e.PaymentTypeCode)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("payment_type_code");
+            entity.Property(e => e.InstallmentsAmount)
+                .HasColumnType("decimal(18, 0)")
+                .HasColumnName("installments_amount");
+            entity.Property(e => e.InstallmentsNumber).HasColumnName("installments_number");
+            entity.Property(e => e.Token)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("token");
+            entity.Property(e => e.RentalDays).HasColumnName("rental_days");
+            entity.Property(e => e.IdTool).HasColumnName("id_tool");
+            entity.Property(e => e.IdVenta).HasColumnName("id_venta");
             entity.Property(e => e.Price)
                 .HasColumnType("decimal(18, 0)")
-                .HasColumnName("price");//10
+                .HasColumnName("price");
             entity.Property(e => e.Total)
                 .HasColumnType("decimal(18, 0)")
-                .HasColumnName("total");//11
+                .HasColumnName("total");
             entity.HasOne(d => d.IdToolNavigation).WithMany(p => p.DetalleVenta)
                 .HasForeignKey(d => d.IdTool)
                 .OnDelete(DeleteBehavior.ClientSetNull)
