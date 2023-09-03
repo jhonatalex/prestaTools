@@ -11,7 +11,7 @@ public partial class Ventum
     public string? NumberComprobante { get; set; }
     public string IdUser { get; set; } //= null!;
     public string? Date { get; set; }
-    public bool? State { get; set; }
+    public string State { get; set; }//Pendiente, Pagada, Rechazada
     [JsonIgnore]
     public virtual ICollection<DetalleVentum>? DetalleVenta { get; set; } //= new List<DetalleVentum>();
     [JsonIgnore]

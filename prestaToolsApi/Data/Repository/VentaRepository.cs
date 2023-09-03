@@ -49,15 +49,24 @@ namespace prestaToolsApi.Data.Repository
 
                 if (responseTx != null)
                 {
+                    //Guardar venta
                     _context.Venta.Add(payData.ventum);
                     var resultVentum = await _context.SaveChangesAsync();
 
+                    //Mapear ID de venta
                     int nuevoID = (int)payData.ventum.IdVenta;
                     payData.detalleVentum.IdVenta = nuevoID;
 
+                    //Guardar token transbank en detalle de venta
+                    payData.detalleVentum.Token = tokenTransbank;
+
+                    //Agregar detalle de venta
                     _context.DetalleVenta.Add(payData.detalleVentum);
                     var resultDetalle = await _context.SaveChangesAsync();
+                    
+                    //Armar la respuesta
                     var response = new ApiResponse<ResponseTransaction>(responseTransaction, token, success, errorRes, message);
+
                     return response;
                 }
                 else
@@ -89,8 +98,6 @@ namespace prestaToolsApi.Data.Repository
             try
             {
 
-                //_context.Venta.Add(venta);
-                //var result = await _context.SaveChangesAsync();
                 _context.DetalleVenta.Add(detalleVenta);
                 var resultdetalle = await _context.SaveChangesAsync();
 
@@ -128,34 +135,61 @@ namespace prestaToolsApi.Data.Repository
             
         }
 
-        public async Task<ApiResponse<ResponseCommit>> confirmar(string tokenPasarela)
+        public async Task<ApiResponse<Ventum>> confirmar(Token tokenPasarela)
         {
 
             try
             {
                 
                 var tx = new Transaction(new Options(IntegrationCommerceCodes.WEBPAY_PLUS, IntegrationApiKeys.WEBPAY, WebpayIntegrationType.Test));
-                var responseCx = tx.Commit(tokenPasarela);
+                var responseCx = tx.Commit(tokenPasarela.token);
 
                 ResponseCommit responseCommit = new ResponseCommit();
                 responseCommit.ResponseCode = (int)responseCx.ResponseCode;
                 responseCommit.Status = responseCx.Status;
 
+
                 if (responseCommit.ResponseCode == 0 && responseCommit.Status == "AUTHORIZED")
                 {
 
+                    //1. Buscar con el token el detalle de venta
+                    var detalleVentaEncontrado = _context.DetalleVenta.FirstOrDefault(detalle => detalle.Token == tokenPasarela.token);
+
+                    //2. actualizar los nuevos valores (byorder, ssesionid, etc....)
+                    detalleVentaEncontrado.BuyOrder = responseCommit.BuyOrder;
+                    detalleVentaEncontrado.SessionId = responseCommit.SessionId;
+                    detalleVentaEncontrado.PaymentTypeCode = responseCommit.PaymentTypeCode;
+                    detalleVentaEncontrado.InstallmentsAmount = responseCommit.InstallmentsAmount;
+                    detalleVentaEncontrado.InstallmentsNumber = responseCommit.InstallmentsNumber;
+                    _context.DetalleVenta.Update(detalleVentaEncontrado);
+                    int resultdetalle = await _context.SaveChangesAsync();
+
+                    //3. buscar la venta con el ID de venta
+                    var ventaEncontrada = _context.Venta.FirstOrDefault(venta => venta.IdVenta == detalleVentaEncontrado.IdVenta);
+
+                    //4. cambiar el state a la venta a "Pagado"
+                    ventaEncontrada.State = "Pagada";
+                    _context.Venta.Update(ventaEncontrada);
+                    int resultventa = await _context.SaveChangesAsync();
+
+                    //5. enviar al frond la venta y detalle de venta (como 2 objetos)
                     success = true;
                     message = "Transacción confirmada";
-                    //Actualizar tabla: marcar venta como paga
-                    var response = new ApiResponse<ResponseCommit>(responseCommit, token, success, errorRes, message);
+                    var response = new ApiResponse<Ventum>(ventaEncontrada, token, success, errorRes, message);
                     return response;
+
                 }
                 else
                 {
+                    //To do:
+                    //1. Buscar con el token el detalle de venta
+                    //2. buscar la venta con el ID de venta
+                    //3. cambiar el state a la venta a "Rechazada"
+                    //4. enviar al frond la venta y detalle de venta (como 2 objetos)
 
                     success = false;
                     message = "Error al confirmar transaccion";
-                    var response = new ApiResponse<ResponseCommit>(null, token, success, errorRes, message);
+                    var response = new ApiResponse<Ventum>(null, token, success, errorRes, message);
                     return response;
                 }
 
@@ -167,7 +201,7 @@ namespace prestaToolsApi.Data.Repository
                 success = false;
                 message = "Error";
                 errorRes = new ErrorRes { code = ex.GetHashCode(), message = ex.Message };
-                var response = new ApiResponse<ResponseCommit>(null, token, success, errorRes, message);
+                var response = new ApiResponse<Ventum>(null, token, success, errorRes, message);
                 return response;
             }
 

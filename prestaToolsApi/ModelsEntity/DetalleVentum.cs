@@ -22,7 +22,7 @@ public partial class DetalleVentum
     public string SessionId { set; get; }
     public string PaymentTypeCode { set; get; }
     public decimal InstallmentsAmount { set; get; }
-    public decimal InstallmentsNumber { set; get; }
+    public int InstallmentsNumber { set; get; }
     public string Token { set; get; }
     public int RentalDays { get; set; }
     [JsonIgnore]
