@@ -154,6 +154,9 @@ namespace prestaToolsApi.Data.Repository
 
                     //1. Buscar con el token el detalle de venta
                     var detalleVentaEncontrado = _context.DetalleVenta.FirstOrDefault(detalle => detalle.Token == tokenPasarela.token);
+                    detalleVentaEncontrado = _context.DetalleVenta
+                        .Include(c => c.IdToolNavigation)
+                        .Where(ObjetoTool => ObjetoTool.IdTool == detalleVentaEncontrado.IdTool).FirstOrDefault();
 
                     //2. actualizar los nuevos valores (byorder, ssesionid, etc....)
                     detalleVentaEncontrado.BuyOrder = responseCommit.BuyOrder;

@@ -25,7 +25,7 @@ public partial class DetalleVentum
     public int InstallmentsNumber { set; get; }
     public string Token { set; get; }
     public int RentalDays { get; set; }
-    [JsonIgnore]
+    //[JsonIgnore]
     public virtual Tool? IdToolNavigation { get; set; } = null!;
     [JsonIgnore]
     public virtual Ventum? IdVentaNavigation { get; set; } = null!;
