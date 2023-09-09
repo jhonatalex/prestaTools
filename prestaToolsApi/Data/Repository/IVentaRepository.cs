@@ -7,6 +7,6 @@ namespace prestaToolsApi.Data.Repository
     {
         Task<ApiResponse<ResponseTransaction>> iniciar(PayData payData);
         Task<ApiResponse<DetalleVentum>> insertar(DetalleVentum detalleVenta);
-        Task<ApiResponse<ResponseCommit>> confirmar(string tokenTrans);
+        Task<ApiResponse<Ventum>> confirmar(Token tokenPasarela);
     }
 }

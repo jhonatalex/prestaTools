@@ -93,9 +93,6 @@ namespace prestaToolsApi.Data.Repository
             try
             {
 
-                string hashedPassword = HashPassword(lender.Password);
-
-                lender.Password = hashedPassword;
                 lender.DateUp = DateTime.Now.ToString("yyyy-MM-dd");
 
                 _context.Lenders.Add(lender);

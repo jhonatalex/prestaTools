@@ -12,6 +12,6 @@ public partial class Category
     public string? DescripCat { get; set; } = null!;
     public string? UrlImagen { get; set; } = null!;
     public string? UrlImagenBanner { get; set; } = null!;
-    //[JsonIgnore]
+    [JsonIgnore]
     public virtual ICollection<Tool>? Tools { get; set; } = new List<Tool>();
 }

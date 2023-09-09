@@ -97,7 +97,8 @@ public partial class PrestatoolsContext : DbContext
             entity.Property(e => e.InstallmentsAmount)
                 .HasColumnType("decimal(18, 0)")
                 .HasColumnName("installments_amount");
-            entity.Property(e => e.InstallmentsNumber).HasColumnName("installments_number");
+            entity.Property(e => e.InstallmentsNumber)
+                .HasColumnName("installments_number");
             entity.Property(e => e.Token)
                 .HasMaxLength(255)
                 .IsUnicode(false)
@@ -349,7 +350,10 @@ public partial class PrestatoolsContext : DbContext
                 .HasMaxLength(255)
                 .IsUnicode(false)
                 .HasColumnName("number_comprobante");
-            entity.Property(e => e.State).HasColumnName("state");
+            entity.Property(e => e.State)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("state");
             entity.Property(e => e.TypeComprobante)
                 .HasMaxLength(255)
                 .IsUnicode(false)

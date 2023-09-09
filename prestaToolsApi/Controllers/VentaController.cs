@@ -26,6 +26,7 @@ namespace prestaToolsApi.Controllers
             return Ok(response);
         }
 
+        //Esto es un entpoint de prueba
         [HttpPost]
         [Route("insertar-venta")]
         public async Task<IActionResult> insertar([FromBody] DetalleVentum detalleVenta)
@@ -36,7 +37,7 @@ namespace prestaToolsApi.Controllers
 
         [HttpPost]
         [Route("confirmar-transaccion")]
-        public async Task<IActionResult> confirmar(string tokenPasarela)
+        public async Task<IActionResult> confirmar(Token tokenPasarela)
         {
             var response = await _ventaRepository.confirmar(tokenPasarela);
             return Ok(response);

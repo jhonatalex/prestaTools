@@ -31,6 +31,8 @@ public partial class Tool
     public int? Rate { get; set; }
     public string? Brand { get ; set; }
     public string? State { get; set; }
+    //public string? Start_date { get; set; } // fecha a partir de la cual estará disponible
+    //public string? End_date { get; set; } // fecha hasta la cual estará disponible
 
     [JsonIgnore]
     public virtual ICollection<DetalleVentum>? DetalleVenta { get; set; } = new List<DetalleVentum>();
