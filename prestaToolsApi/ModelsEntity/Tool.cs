@@ -30,6 +30,7 @@ public partial class Tool
     public string? DateUp { get; set; } = null!;
     public int? Rate { get; set; }
     public string? Brand { get ; set; }
+    public string? State { get; set; }
 
     [JsonIgnore]
     public virtual ICollection<DetalleVentum>? DetalleVenta { get; set; } = new List<DetalleVentum>();

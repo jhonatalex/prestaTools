@@ -28,17 +28,17 @@ namespace prestaToolsApi.Controllers
 
         [HttpPost]
         [Route("insertar-venta")]
-        public async Task<IActionResult> insertar([FromBody] Ventum venta)
+        public async Task<IActionResult> insertar([FromBody] DetalleVentum detalleVenta)
         {
-            var response = await _ventaRepository.insertar(venta);
+            var response = await _ventaRepository.insertar(detalleVenta);
             return Ok(response);
         }
 
         [HttpPost]
         [Route("confirmar-transaccion")]
-        public async Task<IActionResult> confirmar([FromBody] PayData payData)
+        public async Task<IActionResult> confirmar(string tokenPasarela)
         {
-            var response = await _ventaRepository.confirmar(payData);
+            var response = await _ventaRepository.confirmar(tokenPasarela);
             return Ok(response);
         }
     }
