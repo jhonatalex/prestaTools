@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Uqrqom2C/eNTsE6mFCbjaLCMfahYuobV8qF7SvfRJ3pWfQjZZVaUSOhHjC7APEw8gwiH2NLOWQrDQuil7UOqPA==",
+  "dgSpecHash": "CMX0e6bT9wG4e8I3MXI8VjGIs5mB6KDseedZQwBUCiXwSO6ash6eCLLwoW5glmGG5dT0UzUlK0qOB95tyAG9PQ==",
   "success": true,
   "projectFilePath": "C:\\Git\\prestaTools\\prestaToolsApi\\prestaToolsApi.csproj",
   "expectedPackageFiles": [
@@ -48,6 +48,7 @@
     "C:\\Users\\riccr\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\riccr\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\riccr\\.nuget\\packages\\microsoft.sqlserver.server\\1.0.0\\microsoft.sqlserver.server.1.0.0.nupkg.sha512",
+    "C:\\Users\\riccr\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.17.2\\microsoft.visualstudio.azure.containers.tools.targets.1.17.2.nupkg.sha512",
     "C:\\Users\\riccr\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
     "C:\\Users\\riccr\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
     "C:\\Users\\riccr\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",

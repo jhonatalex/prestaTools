@@ -201,9 +201,9 @@ namespace prestaToolsApi.Data.Repository
 
         public async Task<ApiResponse<User>> UpdateUser(User user)
         {
-            string hashedPassword = HashPassword(user.Password);
 
-            user.Password = hashedPassword;
+            //string hashedPassword = HashPassword(user.Password);
+            //user.Password = hashedPassword;
 
             _context.Users.Update(user);
             int result = await _context.SaveChangesAsync();

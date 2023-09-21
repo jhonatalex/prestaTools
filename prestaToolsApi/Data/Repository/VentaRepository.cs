@@ -175,7 +175,11 @@ namespace prestaToolsApi.Data.Repository
                     _context.Venta.Update(ventaEncontrada);
                     int resultventa = await _context.SaveChangesAsync();
 
-                    //5. enviar al frond la venta y detalle de venta (como 2 objetos)
+                    //5. Enviar un email al usuario: detalle de venta y herramienta que alquiló
+                    //   y al lender: herramienta que alquiló y su comisión (guardarla en amount 60% del total)
+                    //   y al administrador de la página: detalle de venta con comisión y todo
+
+                    //6. enviar al frond la venta y detalle de venta (como 2 objetos)
                     success = true;
                     message = "Transacción confirmada";
                     var response = new ApiResponse<Ventum>(ventaEncontrada, token, success, errorRes, message);

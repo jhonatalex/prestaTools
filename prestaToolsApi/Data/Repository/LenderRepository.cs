@@ -93,9 +93,9 @@ namespace prestaToolsApi.Data.Repository
             try
             {
 
-                string hashedPassword = HashPassword(lender.Password);
+                //string hashedPassword = HashPassword(lender.Password);
 
-                lender.Password = hashedPassword;
+                //lender.Password = hashedPassword;
                 lender.DateUp = DateTime.Now.ToString("yyyy-MM-dd");
 
                 _context.Lenders.Add(lender);
@@ -175,12 +175,11 @@ namespace prestaToolsApi.Data.Repository
         ////////////////////////////////////////////////////////////////
         ///               UPDATE LENDER
         ////////////////////////////////////////////////////////////////
-
         public async Task<ApiResponse<Lender>> UpdateLender(Lender lender)
         {
-            string hashedPassword = HashPassword(lender.Password);
 
-            lender.Password = hashedPassword;
+            //string hashedPassword = HashPassword(lender.Password);
+            //lender.Password = hashedPassword;
 
             _context.Lenders.Update(lender);
             int result = await _context.SaveChangesAsync();
