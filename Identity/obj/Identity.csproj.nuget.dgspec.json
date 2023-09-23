@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\proyects_net\\prestaToolsApi\\prestaToolsApi\\prestaToolsApi.csproj": {}
+    "C:\\proyects_net\\prestaToolsApi\\Identity\\Identity.csproj": {}
   },
   "projects": {
-    "C:\\proyects_net\\prestaToolsApi\\prestaToolsApi\\prestaToolsApi.csproj": {
+    "C:\\proyects_net\\prestaToolsApi\\Identity\\Identity.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\proyects_net\\prestaToolsApi\\prestaToolsApi\\prestaToolsApi.csproj",
-        "projectName": "prestaToolsApi",
-        "projectPath": "C:\\proyects_net\\prestaToolsApi\\prestaToolsApi\\prestaToolsApi.csproj",
+        "projectUniqueName": "C:\\proyects_net\\prestaToolsApi\\Identity\\Identity.csproj",
+        "projectName": "Identity",
+        "projectPath": "C:\\proyects_net\\prestaToolsApi\\Identity\\Identity.csproj",
         "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-        "outputPath": "C:\\proyects_net\\prestaToolsApi\\prestaToolsApi\\obj\\",
+        "outputPath": "C:\\proyects_net\\prestaToolsApi\\Identity\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,43 +40,41 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
-            "BCrypt.Net-Next": {
-              "target": "Package",
-              "version": "[4.0.3, )"
-            },
-            "Dapper": {
-              "target": "Package",
-              "version": "[2.0.123, )"
-            },
-            "MailKit": {
-              "target": "Package",
-              "version": "[4.2.0, )"
-            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[6.0.20, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.20, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.20, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
               "version": "[6.0.20, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[7.0.4, )"
+              "version": "[6.0.20, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[7.0.7, )"
+              "version": "[6.0.20, )"
             },
-            "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
-              "version": "[1.17.2, )"
+              "version": "[6.0.15, )"
             },
-            "MySql.Data": {
+            "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
-              "version": "[8.0.33, )"
-            },
-            "Swashbuckle.AspNetCore": {
-              "target": "Package",
-              "version": "[6.5.0, )"
+              "version": "[6.32.0, )"
             },
             "TransbankSDK": {
               "target": "Package",
@@ -95,9 +93,6 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
