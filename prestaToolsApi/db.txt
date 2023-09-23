@@ -58,7 +58,7 @@ CREATE TABLE [Venta] (
 	number_comprobante varchar(255),
 	id_user varchar(255) NOT NULL,
 	date varchar(255),
-	state bit NOT NULL,
+	state varchar(255),
   CONSTRAINT [PK_VENTA] PRIMARY KEY CLUSTERED
   (
   [id_venta] ASC
@@ -104,14 +104,20 @@ CREATE TABLE [Detalle_venta] (
 	id_detalle_venta int IDENTITY(1,1) NOT NULL,
 	id_venta int NOT NULL,
 	id_tool int NOT NULL,
-	amount decimal,
+	amount decimal NOT NULL,
 	date varchar(255) NOT NULL,
 	price decimal NOT NULL,
 	descuento decimal NOT NULL,
-	total decimal NOT NULL,
-	start_date varchar(255) NOT NULL,
-	end_date varchar(255) NOT NULL,
-	rental_days int NOT NULL,
+	total decimal,
+	start_date varchar(255),
+	end_date varchar(255),
+	rental_days int,
+	buy_order VARCHAR(255),
+	session_id VARCHAR(255),
+	payment_type_code varchar(255),
+	installments_amount decimal,
+	installments_number int,
+	token varchar(255),	
   CONSTRAINT [PK_DETALLE_VENTA] PRIMARY KEY CLUSTERED
   (
   [id_detalle_venta] ASC

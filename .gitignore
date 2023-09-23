@@ -1,9 +1,9 @@
 # Carpeta de binarios
-bin/
-obj/
+prestaToolsApi/bin/
+prestaToolsApi/obj/
 
 # Carpeta de publicación
-Publish/
+prestaToolsApi/Publish/
 
 # Carpeta de paquetes NuGet
 #packages/

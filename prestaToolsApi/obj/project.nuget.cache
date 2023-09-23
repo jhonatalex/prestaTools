@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "gpCXpz7b0ty98ZOKPa7rjAMe6Dj2tExScnuDtBR8qaBecAl8XeFLVNuiLroIhqCVCGKetZRbYYpvhTaNKFpWWg==",
+  "dgSpecHash": "LrqR4fVZGiAH1m7+kTEC1GjWZSAbEZkO/FIz1h88FmV2SeTDu40r/WsLi3HE9lIqeUVjt3CpyZ9ROuNPxnTkew==",
   "success": true,
   "projectFilePath": "C:\\proyects_net\\prestaToolsApi\\prestaToolsApi\\prestaToolsApi.csproj",
   "expectedPackageFiles": [
@@ -48,6 +48,7 @@
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.sqlserver.server\\1.0.0\\microsoft.sqlserver.server.1.0.0.nupkg.sha512",
+    "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.17.2\\microsoft.visualstudio.azure.containers.tools.targets.1.17.2.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
@@ -129,5 +130,12 @@
     "C:\\Users\\Lenovo\\.nuget\\packages\\system.windows.extensions\\5.0.0\\system.windows.extensions.5.0.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\transbanksdk\\6.0.0\\transbanksdk.6.0.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problema al leer el archivo de caché C:\\proyects_net\\prestaToolsApi\\prestaToolsApi\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
