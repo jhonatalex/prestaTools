@@ -12,9 +12,13 @@ namespace prestaToolsApi.Data.Repository
     public class VentaRepository : IVentaRepository
     {
         private readonly PrestatoolsContext _context;
-        public VentaRepository(PrestatoolsContext context)
+
+        private readonly IEmailService _emailService;
+
+        public VentaRepository(PrestatoolsContext context, IEmailService emailService)
         {
             _context = context;
+            _emailService = emailService; 
         }
 
 
@@ -216,5 +220,36 @@ namespace prestaToolsApi.Data.Repository
 
         }
 
+        async Task<ApiResponse<Ventum>> IVentaRepository.sendEmail(EmailDTO emailObject)
+        {
+            try
+            {
+                var messageEmail = "Helo mundo";
+
+                //_emailSender.SendAsyncronousEmail(email, subject, messageEmail);
+
+
+                _emailService.SendEmail(emailObject);
+                success = true;
+                message = "Mensaje Enviado con Exito";
+             
+                var response = new ApiResponse<Ventum>(null, token, success, errorRes, message);
+                return response;
+
+
+            }
+            catch (Exception ex)
+            {
+
+                token = "n/a";
+                success = false;
+                errorRes = new ErrorRes { code = ex.GetHashCode(), message = ex.Message };
+                message = "Error alenviar e email";
+
+                var response = new ApiResponse<Ventum>(null, token, success, errorRes, message);
+                return response;
+
+            }
+        }
     }
 }
