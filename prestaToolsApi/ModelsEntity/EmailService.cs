@@ -40,7 +40,7 @@ namespace prestaToolsApi.ModelsEntity
         void IEmailService.SendEmail(EmailDTO request)
         {
             var email = new MimeMessage();
-            email.From.Add(MailboxAddress.Parse(_config.GetSection("Email:UserName").Value));
+            email.From.Add(MailboxAddress.Parse(_config.GetSection("Gmail:UserName").Value));
             email.To.Add(MailboxAddress.Parse(request.Para));
             email.Subject = request.Asunto;
             email.Body = new TextPart(MimeKit.Text.TextFormat.Html)
@@ -50,14 +50,14 @@ namespace prestaToolsApi.ModelsEntity
 
             using var smtp = new SmtpClient();
             smtp.Connect(
-                _config.GetSection("Email:Host").Value,
-                 Convert.ToInt32(_config.GetSection("Email:Port").Value),
+                _config.GetSection("Gmail:Host").Value,
+                 Convert.ToInt32(_config.GetSection("Gmail:Port").Value),
                  SecureSocketOptions.StartTls
                  
                );
             smtp.Authenticate(
-                _config.GetSection("Email:UserName").Value,
-                _config.GetSection("Email:Password").Value
+                _config.GetSection("Gmail:UserName").Value,
+                _config.GetSection("Gmail:Password").Value
                 );
 
             smtp.Send(email);
