@@ -224,10 +224,22 @@ namespace prestaToolsApi.Data.Repository
         {
             try
             {
-                var messageEmail = "Helo mundo";
+            
 
+                var contenido = "  <h1>Gracias por tu pedido</h1>\r\n    <p>Hola Jhonatan,</p>\r\n    " +
+                    "<p>Solo para que lo sepas, hemos recibido tu pedido #3382, y ahora se está procesando:</p>\r\n  " +
+                    "  \r\n    <table border=\"1\">\r\n        <tr>\r\n            <th>Pedido #3382 (19 de septiembre de 2023)</th>\r\n   " +
+                    "         <th>Producto</th>\r\n            <th>Cantidad</th>\r\n            <th>Precio</th>\r\n        </tr>\r\n     " +
+                    "   <tr>\r\n            <td rowspan=\"3\">Polera Go - M, Gris</td>\r\n            <td>Talla:</td>\r\n            <td>M</td>\r\n    " +
+                    "        <td rowspan=\"3\">$15.000</td>\r\n        </tr>\r\n        <tr>\r\n            <td>Color:</td>\r\n            <td>Gris</td>\r\n  " +
+                    "      </tr>\r\n        <tr>\r\n            <td>Subtotal:</td>\r\n            <td>$15.000</td>\r\n        </tr>\r\n    </table>\r\n    \r\n  " +
+                    "  <p>Método de pago: Transbank Webpay Plus</p>\r\n    <p>Total: $15.000</p>\r\n    \r\n    <p>Dirección de facturación:</p>\r\n    <address>\r\n  " +
+                    "      Market Global<br>\r\n        Jhonatan Mejias<br>\r\n        Diego Isidro Monardez<br>\r\n        Coquimbo<br>\r\n        1840000 Ovalle<br>\r\n " +
+                    "       +56941623264<br>\r\n        <a href=\"mailto:jhonatanmejias@gmail.com\">jhonatanmejias@gmail.com</a>\r\n " +
+                    "   </address>\r\n    \r\n    <p>¡Gracias por usar PrestaTools.cl!</p>";
                 //_emailSender.SendAsyncronousEmail(email, subject, messageEmail);
 
+                emailObject.Contenido= contenido;
 
                 _emailService.SendEmail(emailObject);
                 success = true;
