@@ -206,3 +206,6 @@ C:\Git\prestaTools\prestaToolsApi\bin\Debug\net6.0\Transbank.dll
 C:\proyects_net\prestaToolsApi\prestaToolsApi\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\proyects_net\prestaToolsApi\prestaToolsApi\bin\Debug\net6.0\Newtonsoft.Json.dll
 C:\proyects_net\prestaToolsApi\prestaToolsApi\bin\Debug\net6.0\Transbank.dll
+C:\Git\prestaTools\prestaToolsApi\bin\Debug\net6.0\MailKit.dll
+C:\Git\prestaTools\prestaToolsApi\bin\Debug\net6.0\MimeKit.dll
+C:\Git\prestaTools\prestaToolsApi\bin\Debug\net6.0\NETCore.MailKit.dll
