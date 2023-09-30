@@ -1,0 +1,39 @@
+# Carpeta de binarios
+prestaToolsApi/bin/
+prestaToolsApi/obj/
+
+# Carpeta de publicación
+prestaToolsApi/Publish/
+
+# Carpeta de paquetes NuGet
+#packages/
+
+# Archivo de configuración local
+appsettings.Development.json
+
+# Archivos de respaldo de Visual Studio
+*.bak
+*.user
+*.suo
+*.cache
+*.csproj.user
+
+# Archivos de registro
+*.log
+
+# Archivos de resultados de pruebas
+TestResults/
+
+# Archivos de configuración de Visual Studio
+.vs/
+
+# Archivos de caché de ReSharper
+_ReSharper*/
+
+# Archivos de caché de Rider
+.idea/
+*.sln.iml
+
+# Archivos de caché de Visual Studio Code
+.vscode/
+.vs

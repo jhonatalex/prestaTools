@@ -182,6 +182,30 @@ namespace prestaToolsApi.Data.Repository
                     int resultventa = await _context.SaveChangesAsync();
 
                     //5. Enviar un email al usuario: detalle de venta y herramienta que alquiló
+
+                    EmailDTO emailObject = new EmailDTO();
+
+                    emailObject.Asunto = "Hemos Recinbido tu pedido en PrestaTools";
+                    var contenido = $" <h1>Gracias por tu pedido</h1>\r\n    <p>Hola {ventaEncontrada.IdUser},</p>\r\n    " +
+                          $"<p>Solo para que lo sepas, hemos recibido tu pedido {detalleVentaEncontrado.BuyOrder}, y ahora se está procesando:</p>\r\n  " +
+                          $"  \r\n    <table border=\"1\">\r\n        <tr>\r\n            <th>Pedido # {detalleVentaEncontrado.BuyOrder}  {detalleVentaEncontrado.Date})</th>\r\n   " +
+                          "         <th>Producto</th>\r\n            <th>Cantidad</th>\r\n            <th>Precio</th>\r\n        </tr>\r\n     " +
+                          $"   <tr>\r\n            <td rowspan=\"3\"> {detalleVentaEncontrado.IdToolNavigation}</td>  " +
+                          $"        <td rowspan=\"3\">${detalleVentaEncontrado.Amount}</td>\r\n        </tr>\r\n        <tr>\r\n            <td>Color:</td>\r\n            <td>Gris</td>\r\n  " +
+                          $"      </tr>\r\n        <tr>\r\n            <td>Subtotal:</td>\r\n            <td>${detalleVentaEncontrado.Total}</td>\r\n        </tr>\r\n    </table>\r\n    \r\n  " +
+                          $"  <p>Método de pago: {detalleVentaEncontrado.PaymentTypeCode}</p>\r\n    <p>Total: ${detalleVentaEncontrado.Total}</p>\r\n    \r\n    <p>Dirección de facturación:</p>\r\n    <address>\r\n  " +
+                          $"      Market Global<br>\r\n        Jhonatan Mejias<br>\r\n        Diego Isidro Monardez<br>\r\n        Coquimbo<br>\r\n        1840000 Ovalle<br>\r\n " +
+                          $"       +56941623264<br>\r\n        <a href=\"mailto:jhonatanmejias@gmail.com\">jhonatanmejias@gmail.com</a>\r\n " +
+                          $"   </address>\r\n    \r\n    <p>¡Gracias por usar PrestaTools.cl!</p>";
+                    //_emailSender.SendAsyncronousEmail(email, subject, messageEmail);
+
+                    emailObject.Contenido = contenido;
+                    emailObject.Para = ventaEncontrada.IdUser;
+
+                    _emailService.SendEmail(emailObject);
+
+
+
                     //   y al lender: herramienta que alquiló y su comisión (guardarla en amount 60% del total)
                     //   y al administrador de la página: detalle de venta con comisión y todo
 
@@ -226,7 +250,7 @@ namespace prestaToolsApi.Data.Repository
             {
             
 
-                var contenido = "  <h1>Gracias por tu pedido</h1>\r\n    <p>Hola Jhonatan,</p>\r\n    " +
+                var contenido = $" <h1>Gracias por tu pedido</h1>\r\n    <p>Hola Jhonat,</p>\r\n    " +
                     "<p>Solo para que lo sepas, hemos recibido tu pedido #3382, y ahora se está procesando:</p>\r\n  " +
                     "  \r\n    <table border=\"1\">\r\n        <tr>\r\n            <th>Pedido #3382 (19 de septiembre de 2023)</th>\r\n   " +
                     "         <th>Producto</th>\r\n            <th>Cantidad</th>\r\n            <th>Precio</th>\r\n        </tr>\r\n     " +
