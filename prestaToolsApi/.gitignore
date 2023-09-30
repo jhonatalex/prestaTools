@@ -37,7 +37,3 @@ _ReSharper*/
 # Archivos de caché de Visual Studio Code
 .vscode/
 .vs
-/prestaToolsApi/prestaToolsApi.csproj
-/.vs/ProjectEvaluation/prestatoolsapi.metadata.v6.1
-/.vs/ProjectEvaluation/prestatoolsapi.projects.v6.1
-/prestaToolsApi/Data/Repository/VentaRepository.cs
