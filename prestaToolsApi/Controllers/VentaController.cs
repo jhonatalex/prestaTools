@@ -42,5 +42,13 @@ namespace prestaToolsApi.Controllers
             var response = await _ventaRepository.confirmar(tokenPasarela);
             return Ok(response);
         }
+
+        [HttpPost]
+        [Route("Send-Email")]
+        public async Task<IActionResult> sendEmail([FromBody] EmailDTO objetoEmail)
+        {
+            var response = await _ventaRepository.sendEmail(objetoEmail);
+            return Ok(response);
+        }
     }
 }
