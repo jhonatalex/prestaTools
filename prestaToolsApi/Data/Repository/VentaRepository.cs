@@ -1,5 +1,6 @@
 ﻿using Google.Protobuf.WellKnownTypes;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 //using Microsoft.Extensions.Options;
 using prestaToolsApi.ModelsEntity;
 using Transbank.Common;
@@ -143,80 +144,111 @@ namespace prestaToolsApi.Data.Repository
 
         public async Task<ApiResponse<Ventum>> confirmar(Token tokenPasarela)
         {
-
+            String rastroError = "";
             try
             {
-                
+                rastroError = "1";
                 var tx = new Transaction(new Options(IntegrationCommerceCodes.WEBPAY_PLUS, IntegrationApiKeys.WEBPAY, WebpayIntegrationType.Test));
+                rastroError = rastroError + "2";
                 var responseCx = tx.Commit(tokenPasarela.token);
+                rastroError = rastroError + "3";
 
                 ResponseCommit responseCommit = new ResponseCommit();
+                rastroError = rastroError + "4";
                 responseCommit.ResponseCode = (int)responseCx.ResponseCode;
+                rastroError = rastroError + "5";
                 responseCommit.Status = responseCx.Status;
+                rastroError = rastroError + "6";
 
 
                 if (responseCommit.ResponseCode == 0 && responseCommit.Status == "AUTHORIZED")
                 {
-
+                    rastroError = rastroError + "7";
                     //1. Buscar con el token el detalle de venta
-                    var detalleVentaEncontrado = _context.DetalleVenta.FirstOrDefault(detalle => detalle.Token == tokenPasarela.token);
-                    detalleVentaEncontrado = _context.DetalleVenta
-                        .Include(c => c.IdToolNavigation)
-                        .Where(ObjetoTool => ObjetoTool.IdTool == detalleVentaEncontrado.IdTool).FirstOrDefault();
+                    var detalleVentaEncontrado = _context.DetalleVenta.FirstOrDefault(d => d.Token == tokenPasarela.token);
+                    rastroError = rastroError + "8" + " - " + detalleVentaEncontrado.Token + " - " + detalleVentaEncontrado.IdTool + " - " + detalleVentaEncontrado.IdToolNavigation;
+                    //detalleVentaEncontrado = _context.DetalleVenta
+                    //    .Include(c => c.IdToolNavigation)
+                    //    .Where(t => t.IdTool == detalleVentaEncontrado.IdTool).FirstOrDefault();
+
+                    // conseguir la tool rentada
+                    var toolRentada = _context.Tools.FirstOrDefault(t => t.Id == detalleVentaEncontrado.IdTool);
+
+                    rastroError = rastroError + "9";
 
                     //2. actualizar los nuevos valores (byorder, ssesionid, etc....)
                     detalleVentaEncontrado.BuyOrder = responseCommit.BuyOrder;
+                    rastroError = rastroError + "a";
                     detalleVentaEncontrado.SessionId = responseCommit.SessionId;
+                    rastroError = rastroError + "b";
                     detalleVentaEncontrado.PaymentTypeCode = responseCommit.PaymentTypeCode;
+                    rastroError = rastroError + "c";
                     detalleVentaEncontrado.InstallmentsAmount = responseCommit.InstallmentsAmount;
+                    rastroError = rastroError + "d";
                     detalleVentaEncontrado.InstallmentsNumber = responseCommit.InstallmentsNumber;
+                    rastroError = rastroError + "e";
                     _context.DetalleVenta.Update(detalleVentaEncontrado);
+                    rastroError = rastroError + "f";
                     int resultdetalle = await _context.SaveChangesAsync();
+                    rastroError = rastroError + "g";
 
                     //3. buscar la venta con el ID de venta
                     var ventaEncontrada = _context.Venta.FirstOrDefault(venta => venta.IdVenta == detalleVentaEncontrado.IdVenta);
+                    rastroError = rastroError + "h";
 
                     //4. cambiar el state a la venta a "Pagado"
                     ventaEncontrada.State = "Pagada";
+                    rastroError = rastroError + "i";
                     _context.Venta.Update(ventaEncontrada);
+                    rastroError = rastroError + "j";
                     int resultventa = await _context.SaveChangesAsync();
+                    rastroError = rastroError + "k";
+
+                    // cambiar el estado de la tool a rentado
+                    toolRentada.State = "rentado";
+                    _context.Tools.Update(toolRentada);
+                    int result = await _context.SaveChangesAsync();
+                    rastroError = rastroError + "l";
+
+                    // encontrar user y demás para hacer la tabla
+
+                    var estaVenta = _context.Venta.FirstOrDefault(v => v.IdVenta == detalleVentaEncontrado.IdVenta);
+                    var esteUser = _context.Users.FirstOrDefault(u => u.Email == estaVenta.IdUser); 
 
                     //5. Enviar un email al usuario: detalle de venta y herramienta que alquiló
 
                     EmailDTO emailObject = new EmailDTO();
                      
                     emailObject.Asunto = "Hemos Recibido tu pedido en PrestaTools";
-                    var contenido = $" <h1>Gracias por tu pedido</h1>\r\n    <p>Hola ventaEncontrada.IdUserNavigation.Name ventaEncontrada.IdUserNavigation.LastName,</p>\r\n    " +
-                          $"<p>Solo para que lo sepas, hemos recibido tu pedido detalleVentaEncontrado.BuyOrder, y ahora se está procesando:</p>\r\n  " +
+                    var contenido = $" <h1>Gracias por tu pedido</h1>\r\n    <p>Hola {esteUser.Name} {esteUser.LastName},</p>\r\n    " +
+                          $"<p>Solo para que lo sepas, hemos recibido tu pedido {detalleVentaEncontrado.BuyOrder}, y ahora se está procesando:</p>\r\n  " +
 
                           $"<table cellspacing=\"0\" cellpadding=\"6\" border=\"1\" style=\"color:#636363;border:1px solid #e5e5e5;vertical-align:middle;width:100%;font-family:" +
                           $"'Helvetica Neue',Helvetica,Roboto,Arial,sans-serif\" width=\"100%\">\r\n\t\t<thead>\r\n\t\t\t<tr>\r\n\t\t\t\t<th scope=\"col\" style=\"color:#636363;" +
                           $"border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left\" align=\"left\">Producto</th>\r\n\t\t\t\t<th scope=\"col\" style=\"color:#636363;border:1px solid #e5e5e5;" +
                           $"vertical-align:middle;padding:12px;text-align:left\" align=\"left\">Cantidad</th>\r\n\t\t\t\t<th scope=\"col\" style=\"color:#636363;border:1px solid #e5e5e5;vertical-align:middle;" +
                           $"padding:12px;text-align:left\" align=\"left\">Precio</th>\r\n\t\t\t</tr>\r\n\t\t</thead>\r\n\t\t<tbody>\r\n\t\t\t\t<tr>\r\n\t\t<td style=\"color:#636363;border:1px solid #e5e5e5;" +
-                          $"padding:12px;text-align:left;vertical-align:middle;font-family:'Helvetica Neue',Helvetica,Roboto,Arial,sans-serif;word-wrap:break-word\" align=\"left\">detalleVentaEncontrado.IdToolNavigation.Name</td>" +
+                          $"padding:12px;text-align:left;vertical-align:middle;font-family:'Helvetica Neue',Helvetica,Roboto,Arial,sans-serif;word-wrap:break-word\" align=\"left\">{toolRentada.Name}</td>" +
                           $"\r\n\t\t<td style=\"color:#636363;border:1px solid #e5e5e5;padding:12px;text-align:left;vertical-align:middle;font-family:'Helvetica Neue',Helvetica,Roboto,Arial,sans-serif\" align=\"left\">" +
                           $"1</td>\r\n\t\t<td style=\"color:#636363;border:1px solid #e5e5e5;padding:12px;text-align:left;vertical-align:middle;font-family:'Helvetica Neue',Helvetica,Roboto,Arial,sans-serif\" align=\"left\">" +
-                          $"\r\n\t\t\t<span><span>$</span>detalleVentaEncontrado.Price</span>\t\t</td>\r\n\t</tr>\r\n\t\r\n\t\t</tbody>\r\n\t\t<tfoot>\r\n\t\t\t\t\t\t\t\t<tr>\r\n\t\t\t\t\t\t<th scope=\"row\" colspan=\"2\" style=\"color:#636363;" +
+                          $"\r\n\t\t\t<span><span>$</span>{detalleVentaEncontrado.Price}</span>\t\t</td>\r\n\t</tr>\r\n\t\r\n\t\t</tbody>\r\n\t\t<tfoot>\r\n\t\t\t\t\t\t\t\t<tr>\r\n\t\t\t\t\t\t<th scope=\"row\" colspan=\"2\" style=\"color:#636363;" +
                           $"border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left;border-top-width:4px\" align=\"left\">Subtotal:</th>\r\n\t\t\t\t\t\t<td style=\"color:#636363;border:1px solid #e5e5e5;" +
-                          $"vertical-align:middle;padding:12px;text-align:left;border-top-width:4px\" align=\"left\"><span><span>$</span>detalleVentaEncontrado.Total</span></td>\r\n\t\t\t\t\t</tr>\r\n\t\t\t\t\t\t\t\t\t\t<tr>" +
+                          $"vertical-align:middle;padding:12px;text-align:left;border-top-width:4px\" align=\"left\"><span><span>$</span>{detalleVentaEncontrado.Total}</span></td>\r\n\t\t\t\t\t</tr>\r\n\t\t\t\t\t\t\t\t\t\t<tr>" +
                           $"\r\n\t\t\t\t\t\t<th scope=\"row\" colspan=\"2\" style=\"color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left\" align=\"left\">Método de pago:</th>" +
-                          $"\r\n\t\t\t\t\t\t<td style=\"color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left\" align=\"left\">detalleVentaEncontrado.PaymentTypeCode</td>\r\n\t\t\t\t\t</tr>" +
+                          $"\r\n\t\t\t\t\t\t<td style=\"color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left\" align=\"left\">{detalleVentaEncontrado.PaymentTypeCode}</td>\r\n\t\t\t\t\t</tr>" +
                           $"\r\n\t\t\t\t\t\t\t\t\t\t<tr>\r\n\t\t\t\t\t\t<th scope=\"row\" colspan=\"2\" style=\"color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left\" align=\"left\">Total:</th>" +
-                          $"\r\n\t\t\t\t\t\t<td style=\"color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left\" align=\"left\"><span><span>$</span>detalleVentaEncontrado.Total</span></td>\r\n\t\t\t\t\t</tr>" +
+                          $"\r\n\t\t\t\t\t\t<td style=\"color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left\" align=\"left\"><span><span>$</span>{detalleVentaEncontrado.Total}</span></td>\r\n\t\t\t\t\t</tr>" +
                           $"\r\n\t\t\t\t\t\t\t</tfoot>\r\n\t</table>" +
 
                           $"<p>Dirección de facturación:</p>\r\n    <address>\r\n  " +
-                          $"      ventaEncontrada.IdUser<br>" +
-                          $"      ventaEncontrada.IdUserNavigation.Address<br>" +
-                          $"      entaEncontrada.IdUserNavigation.region<br>" +
-                          $"      ventaEncontrada.IdUserNavigation.commune<br>" +
-                          $"      ventaEncontrada.IdUserNavigation.Telephone<br>" +
+                          $"      {esteUser.Email}<br>" +
+                          $"      {esteUser.Address}<br>" +
+                          $"      {esteUser.region}<br>" +
+                          $"      {esteUser.commune}<br>" +
+                          $"      {esteUser.Telephone}<br>" +
                           $"   </address>\r\n    \r\n    " +
                           $"<p>¡Gracias por usar PrestaTools.cl!</p>" +
                           $"< a href =\"mailto:ventas@prestatools.cl\">ventas@prestatools.cl</a>";
-
-                    var contenido2 = "hOla";
 
                     emailObject.Contenido = contenido;
                     emailObject.Para = ventaEncontrada.IdUser;
@@ -270,7 +302,7 @@ namespace prestaToolsApi.Data.Repository
             {
 
                 success = false;
-                message = "Error al confirmar venta (catch)";
+                message = "Error al confirmar venta (catch)" + rastroError;
                 errorRes = new ErrorRes { code = ex.GetHashCode(), message = ex.Message };
                 var response = new ApiResponse<Ventum>(null, token, success, errorRes, message);
                 return response;

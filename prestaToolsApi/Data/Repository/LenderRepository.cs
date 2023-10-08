@@ -27,7 +27,9 @@ namespace prestaToolsApi.Data.Repository
         public async Task<ApiResponse<List<Lender>>> GetAllLender()
         {
 
-            List<Lender> lenders = await _context.Lenders.ToListAsync();
+            List<Lender> lenders = await _context.Lenders
+                .Include(c => c.Tools)
+                .ToListAsync();
 
             try
             {
