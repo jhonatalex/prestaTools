@@ -68,7 +68,7 @@ namespace prestaToolsApi.Data.Repository
         
         public async Task<ApiResponse<Lender>> GetByLenderId(string identifier)
         {
-            var lenderByEmail = await _context.Lenders.FirstOrDefaultAsync(u => u.Email == identifier);
+            var lenderByEmail = await _context.Lenders.Include(c => c.Tools).FirstOrDefaultAsync(u => u.Email == identifier);
 
             if (lenderByEmail == null)
             {

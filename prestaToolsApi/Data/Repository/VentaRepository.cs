@@ -221,7 +221,7 @@ namespace prestaToolsApi.Data.Repository
                      
                     emailObject.Asunto = "Hemos Recibido tu pedido en PrestaTools";
                     var contenido = $" <h1>Gracias por tu pedido</h1>\r\n    <p>Hola {esteUser.Name} {esteUser.LastName},</p>\r\n    " +
-                          $"<p>Solo para que lo sepas, hemos recibido tu pedido {detalleVentaEncontrado.BuyOrder}, y ahora se está procesando:</p>\r\n  " +
+                          $"<p>Solo para que lo sepas, hemos recibido tu pedido {estaVenta.NumberComprobante}, y ahora se está procesando:</p>\r\n  " +
 
                           $"<table cellspacing=\"0\" cellpadding=\"6\" border=\"1\" style=\"color:#636363;border:1px solid #e5e5e5;vertical-align:middle;width:100%;font-family:" +
                           $"'Helvetica Neue',Helvetica,Roboto,Arial,sans-serif\" width=\"100%\">\r\n\t\t<thead>\r\n\t\t\t<tr>\r\n\t\t\t\t<th scope=\"col\" style=\"color:#636363;" +
@@ -248,7 +248,8 @@ namespace prestaToolsApi.Data.Repository
                           $"      {esteUser.Telephone}<br>" +
                           $"   </address>\r\n    \r\n    " +
                           $"<p>¡Gracias por usar PrestaTools.cl!</p>" +
-                          $"< a href =\"mailto:ventas@prestatools.cl\">ventas@prestatools.cl</a>";
+                          $"<p>ventas@prestatools.clls.cl</p>";
+                    //$"< a href =\"mailto:ventas@prestatools.cl\">ventas@prestatools.cl</a>";
 
                     emailObject.Contenido = contenido;
                     emailObject.Para = ventaEncontrada.IdUser;
