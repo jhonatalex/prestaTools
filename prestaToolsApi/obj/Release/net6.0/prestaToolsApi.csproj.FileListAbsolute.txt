@@ -209,3 +209,6 @@ C:\Git\prestaTools\prestaToolsApi\bin\Release\net6.0\Transbank.dll
 C:\Git\prestaTools\prestaToolsApi\bin\Release\net6.0\MailKit.dll
 C:\Git\prestaTools\prestaToolsApi\bin\Release\net6.0\MimeKit.dll
 C:\Git\prestaTools\prestaToolsApi\bin\Release\net6.0\NETCore.MailKit.dll
+C:\proyects_net\prestaToolsApi\prestaToolsApi\bin\Release\net6.0\MailKit.dll
+C:\proyects_net\prestaToolsApi\prestaToolsApi\bin\Release\net6.0\MimeKit.dll
+C:\proyects_net\prestaToolsApi\prestaToolsApi\bin\Release\net6.0\NETCore.MailKit.dll
